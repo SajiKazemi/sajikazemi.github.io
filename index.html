@@ -1,687 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saji Kazemi — Product Marketing Manager</title>
-  <meta name="description" content="Saji Kazemi — Product Marketing Manager. I research what customers want, craft the story, then prove it with data." />
-  <meta name="author" content="Saji Kazemi" />
-  <meta property="og:title" content="Who is Saji? — Product Marketing Manager" />
-  <meta property="og:description" content="I research what customers want, craft the story, then prove it with data." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sajikazemi.github.io" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24'>✦</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    ::selection { background: #D4A85325; color: #D4A853; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who is Saji? — Product Marketing Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; }
+::selection { background: #D4A85325; color: #D4A853; }
 
-    .s-title { font-family: 'Lora', Georgia, serif; font-size: clamp(1.85rem, 4.5vw, 2.8rem); font-weight: 300; color: #C4A882; letter-spacing: -0.02em; line-height: 1.15; }
+/* ─── TYPOGRAPHY ─── */
+.s-title { font-family: 'Lora', Georgia, serif; font-size: clamp(1.85rem, 4.5vw, 2.8rem); font-weight: 300; color: #C4A882; letter-spacing: -0.02em; line-height: 1.15; }
 
-    .nav-c { width: 34px; height: 34px; background: #120F0C; border: 1px solid #2A221A; border-radius: 50%; color: #6B5744; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; }
-    .nav-c:hover { border-color: #D4A85366; color: #D4A853; }
+/* ─── BUTTONS ─── */
+.bg  { padding: 12px 26px; background: #D4A853; color: #0C0A09; border: none; border-radius: 7px; font-size: 13.5px; font-family: inherit; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s; letter-spacing: 0.02em; }
+.bg:hover { opacity: 0.85; }
+.bo  { padding: 12px 26px; background: transparent; border: 1px solid #2A221A; border-radius: 7px; color: #6B5744; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; transition: all .2s; letter-spacing: 0.02em; text-decoration: none; display: inline-block; }
+.bo:hover { border-color: #D4A85344; color: #C4A882; }
+.bg2 { padding: 12px 26px; background: transparent; border: 1px solid #1A140F; border-radius: 7px; color: #4A3F33; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; letter-spacing: 0.02em; }
+.bg2:hover { color: #6B5744; border-color: #2A221A; }
 
-    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
-    @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr !important; } }
+/* ─── NAV CIRCLES ─── */
+.nav-c { width: 34px; height: 34px; background: #120F0C; border: 1px solid #2A221A; border-radius: 50%; color: #6B5744; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; line-height: 1; }
+.nav-c:hover { border-color: #D4A85366; color: #D4A853; }
 
-    .bg  { padding: 12px 26px; background: #D4A853; color: #0C0A09; border: none; border-radius: 7px; font-size: 13.5px; font-family: inherit; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s; letter-spacing: 0.02em; }
-    .bg:hover { opacity: 0.85; }
-    .bo  { padding: 12px 26px; background: transparent; border: 1px solid #2A221A; border-radius: 7px; color: #6B5744; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; transition: all .2s; letter-spacing: 0.02em; text-decoration: none; display: inline-block; }
-    .bo:hover { border-color: #D4A85344; color: #C4A882; }
-    .bg2 { padding: 12px 26px; background: transparent; border: 1px solid #1A140F; border-radius: 7px; color: #4A3F33; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; letter-spacing: 0.02em; }
-    .bg2:hover { color: #6B5744; border-color: #2A221A; }
+/* ─── DIFF GRID ─── */
+.diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+@media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr !important; } }
 
-    @keyframes fu  { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
-    @keyframes di  { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:none; } }
-    @keyframes sr  { from { opacity:0; transform:translateX(26px); } to { opacity:1; transform:none; } }
-    @keyframes su  { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-    @keyframes bf  { from { transform:scaleX(0); } to { transform:scaleX(1); } }
-    @keyframes pulse { 0%,100% { opacity:.25; } 50% { opacity:.7; } }
-  </style>
+/* ─── ANIMATIONS ─── */
+@keyframes fu  { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+@keyframes di  { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:none; } }
+@keyframes sr  { from { opacity:0; transform:translateX(26px); } to { opacity:1; transform:none; } }
+@keyframes su  { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+@keyframes bf  { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes pulse { 0%,100% { opacity:.25; } 50% { opacity:.7; } }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─── HR ─── */
+.section-hr { height: 1px; background: linear-gradient(90deg, transparent 0%, #2A221A 30%, #2A221A 70%, transparent 100%); }
+
+/* ─── ACCORDION ─── */
+.acc-outer { border: 1px solid #1A140F; border-radius: 9px; overflow: hidden; margin-bottom: 4px; transition: border-color .22s; }
+.acc-outer.open { border-color: #2A221A; }
+.acc-outer.gold.open { border-color: #D4A85330; }
+.acc-btn { width: 100%; padding: 14px 18px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #6B5744; font-size: 13.5px; font-family: inherit; font-weight: 300; text-align: left; transition: all .2s; }
+.acc-btn.gold { padding: 18px 20px; font-size: 15.5px; }
+.acc-outer.open .acc-btn { background: #161310; color: #C4A882; }
+.acc-outer.gold.open .acc-btn { color: #D4A853; }
+.acc-arrow { font-size: 11px; display: inline-block; color: #D4A85366; transition: transform .22s; }
+.acc-outer.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; padding: 0 18px 16px; animation: su .22s ease; }
+.acc-body.gold { padding: 0 20px 20px; }
+.acc-outer.open .acc-body { display: block; }
+
+/* ─── TESTIMONIAL CARD ─── */
+.tcard { background: #120F0C; border: 1px solid #1E1A15; border-radius: 12px; padding: 24px 26px; display: flex; gap: 18px; align-items: flex-start; }
+.tcard-avatar { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid #2A221A; background: #1E1A15; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: #6B5744; letter-spacing: 0.05em; overflow: hidden; }
+.tcard-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.tcard-header { display: flex; justify-content: space-between; margin-bottom: 9px; }
+.tcard-name { color: #C4A882; font-size: 13.5px; font-weight: 500; }
+.tcard-role { color: #4A3F33; font-size: 12px; margin-top: 2px; }
+.tcard-in { color: #4A3F33; font-size: 10px; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; border: 1px solid #2A221A; border-radius: 4px; padding: 3px 7px; transition: all .2s; flex-shrink: 0; align-self: flex-start; }
+.tcard-in:hover { color: #D4A853; border-color: #D4A85355; }
+.tcard-quote { color: #6B5744; line-height: 1.7; font-size: 13.5px; font-weight: 300; }
+.tcard-quote strong { color: #C4A882; font-weight: 500; }
+
+/* ─── PROBLEMS CARD ─── */
+.problems-card { background: #120F0C; border: 1px solid #1E1A15; border-radius: 14px; padding: 48px 42px; min-height: 258px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.problems-card .glow { position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,168,83,0.045) 0%, transparent 70%); pointer-events: none; }
+
+/* ─── DIFF CARD SPIDER ─── */
+.spider-card { background: #120F0C; border: 1px solid #1E1A15; border-radius: 12px; padding: 30px 14px 22px; }
+
+/* ─── DOT NAVIGATION ─── */
+.dot-nav { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 28px; }
+.dot-btn { height: 5px; border-radius: 2.5px; border: none; cursor: pointer; transition: all .3s; padding: 0; }
+.dot-btn.active { width: 22px; background: #D4A853; }
+.dot-btn:not(.active) { width: 6px; background: #2A221A; }
+
+/* ─── PROGRESS BARS ─── */
+.progress-track { flex: 1; height: 2px; background: #1A140F; border: none; border-radius: 1px; cursor: pointer; padding: 0; position: relative; overflow: hidden; }
+.progress-fill { position: absolute; inset: 0; transform-origin: left; }
+.progress-fill.active { background: #D4A853; animation: bf 5.2s linear forwards; }
+.progress-fill.done { background: #3A2F23; transform: scaleX(1); }
+
+@media (max-width: 640px) {
+  .problems-card { padding: 32px 24px; }
+  .tcard { padding: 18px 18px; gap: 14px; }
+}
+</style>
 </head>
 <body>
-  <div id="root"></div>
 
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section id="hero" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0C0A09;padding:80px 24px;">
+  <!-- Grain -->
+  <div style="position:absolute;inset:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E&quot;);background-repeat:repeat;pointer-events:none;z-index:1;"></div>
+  <!-- Warm glow -->
+  <div style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%);pointer-events:none;z-index:1;"></div>
 
-  <script type="text/babel">
-    const { useState, useEffect, useRef } = React;
+  <div style="position:relative;z-index:2;max-width:660px;width:100%;text-align:center;">
+    <!-- Eyebrow -->
+    <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:40px;animation:fu .6s ease both;">
+      <span style="width:4px;height:4px;border-radius:50%;background:#D4A853;flex-shrink:0;box-shadow:0 0 6px #D4A853;"></span>
+      <span style="font-size:11px;color:#6B5744;letter-spacing:0.22em;text-transform:uppercase;font-weight:400;">Product Marketing Manager</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:#D4A853;flex-shrink:0;box-shadow:0 0 6px #D4A853;"></span>
+    </div>
 
-    /* ─────────────────────────────────────────
-       DATA
-       ───────────────────────────────────────── */
+    <!-- Headline -->
+    <h1 style="font-family:'Lora', Georgia, serif;font-size:clamp(3.4rem,9vw,6rem);font-weight:300;color:#EDE5D8;line-height:1;letter-spacing:-0.03em;margin-bottom:30px;animation:fu .6s .1s ease both;">
+      Who is <span style="font-style:italic;color:#D4A853;">Saji</span>?
+    </h1>
 
-    const TESTIMONIALS = [
-      {
-        name: "Dr. Christa Dhimo, DBA, MBA",
-        role: "Senior Advisor: Strategy, Innovation & Performance",
-        company: "Impono Partners",
-        quote: "It was a pleasure to watch Saji run with our market positioning and competitive strategy work — and do some of the best work I've seen in a decade. He takes direction and feedback equally well, unencumbered by ego.",
-        highlight: "best work I've seen in a decade",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Kristin Kostka, MPH",
-        role: "Senior Clinical Scientist in AI",
-        company: "Guy's and St Thomas' NHS Foundation Trust",
-        quote: "Saji is an exceptional analyst — sharp as a tack, incredibly meticulous and well-spoken. He's a dream to work with. You'll only wish you could find more projects for him to contribute to.",
-        highlight: "sharp as a tack, incredibly meticulous",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Justin Manjourides",
-        role: "Associate Professor of Biostatistics",
-        company: "Northeastern University",
-        quote: "Saji demonstrated an extraordinary ability to distill complex data into actionable business insights. He will elevate any team he works with — I would strongly recommend him for any role requiring analytical acumen and strategic thinking.",
-        highlight: "distill complex data into actionable business insights",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Diwi Dhir",
-        role: "VP — Analytics Solutions Manager",
-        company: "JPMorganChase",
-        quote: "Saji has a knack for problem-solving in high-pressure situations. He knows how to find clarity even when directions aren't clear — any team would be fortunate to have him on board.",
-        highlight: "find clarity even when directions aren't clear",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Ben Brink",
-        role: "Founder",
-        company: "Flux Forward",
-        quote: "Saji was great at creating promotional materials and managing media tasks for over 50 events. His creativity, teamwork, and positive attitude made him a key part of our team. I highly recommend him for any marketing role.",
-        highlight: "creativity, teamwork, and positive attitude",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Allison Hogan",
-        role: "Director, Student Services & Operations",
-        company: "Northeastern University",
-        quote: "Saji successfully managed projects including rebuilding department reporting through Tableau dashboards and a student lifecycle mapping project. He is incredibly reliable, hardworking, and dedicated — a valuable employee for any employer.",
-        highlight: "incredibly reliable, hardworking, and dedicated",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Leah Boccaccio",
-        role: "Senior Advisor",
-        company: "Harvard International Office",
-        quote: "Saji is a gifted problem solver and analytical thinker. He excels at special projects because of his attention to detail, conscientiousness, and efficiency — he will be such an asset to any office he joins.",
-        highlight: "gifted problem solver and analytical thinker",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Peter Buschkopf",
-        role: "Senior International Student Advisor",
-        company: "Boston University",
-        quote: "Saji demonstrated an aptitude for quickly identifying areas for improvement and making workflows more efficient. His innovation and dedication to perpetual improvement evoke admiration from his colleagues and superiors.",
-        highlight: "innovation and dedication to perpetual improvement",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Sahal Ahmad",
-        role: "Data Scientist",
-        company: "Amazon Web Services (AWS)",
-        quote: "Saji singlehandedly conceptualized and productionized a student data dashboard that changed how we looked at our process. His data-centric skills with business outcome-driven thinking will be a win for any team.",
-        highlight: "data-centric skills with business outcome-driven thinking",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Jad El Rez",
-        role: "Senior Consultant — AI & Data",
-        company: "Deloitte",
-        quote: "Saji has impeccable attention to detail and is a strong team player. He has a strong background in business analytics and is able to effectively communicate technical concepts to non-technical audiences.",
-        highlight: "impeccable attention to detail",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Dr. Roopa Rawjee",
-        role: "Executive Director, Office of International Engagement",
-        company: "Illinois State University",
-        quote: "Saji is a leader — he takes initiative and presents creative solutions to opportunities and challenges. His calm, positive, and resilient approach was incredibly impressive. He is a joy to work with and will be an asset to any organization.",
-        highlight: "calm, positive, and resilient",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Sabina Muccigrosso",
-        role: "International Student Services Associate",
-        company: "Northeastern University",
-        quote: "Saji is an amazing coworker who always gives his best to his work. He is extremely thoughtful, full of a variety of knowledge, and while at OGS he worked on a variety of projects, vastly improving how the office functioned.",
-        highlight: "vastly improving how the office functioned",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Annie Lopatin",
-        role: "Senior Product Manager, Hemostasis Instruments",
-        company: "Werfen North America",
-        quote: "Saji played a huge role in our MBA group projects, jumping in to lead and develop key elements. He was highly dependable and easy to work with throughout — a genuine team player.",
-        highlight: "highly dependable and easy to work with",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Nima Pourkhodabakhsh",
-        role: "Business Analyst",
-        company: "Aviense",
-        quote: "Saji is highly skilled at conveying complex ideas in a clear and concise manner, making him an invaluable resource to his colleagues and clients. His passion, exceptional skills, and dedication to excellence make him a precious asset to any organization.",
-        highlight: "conveying complex ideas in a clear and concise manner",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Mojtaba Noghabaei",
-        role: "Principal Research Scientist Engineer",
-        company: "Autodesk",
-        quote: "Saji is one of the best people to have as a partner. I highly recommend him for data analytics — he is very detail-oriented, meticulous, and passionate about his work.",
-        highlight: "one of the best people to have as a partner",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Sepide Tabatabaei",
-        role: "Partner",
-        company: "Iran Headhunting Community",
-        quote: "Saji is creative, smart, and has excellent communication skills. His ability to focus helped him become the business expert he is now. He is one of the best in his field and always willing to share best practices.",
-        highlight: "one of the best in his field",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Majid Jalilian",
-        role: "Back End Developer",
-        company: "Takhfifan",
-        quote: "Saji's important feature, in addition to his management skills, is the motivation and effort he puts into the success of the work. He has played a significant role in the first sales and marketing of Kelasend.",
-        highlight: "motivation and effort he puts into the success of the work",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Sina Sedaghat Baghbani",
-        role: "Operations and Automation Specialist",
-        company: "3S Network Inc.",
-        quote: "Saji's tenacity and kindness are qualities that were very apparent to me. He bravely accepts his mistakes and works hard toward learning and progress. I recommend him for business-based projects — his passion and talent are clear.",
-        highlight: "tenacity and kindness",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Reza Mokhtarpour",
-        role: "Head of Talent Acquisition",
-        company: "Ofogh Koorosh Chain Stores",
-        quote: "Saji's knowledge in marketing is exceptional. He is creative, smart, has excellent communication skills, and is willing to help when you need it — the kind of person who does anything for the group's benefit.",
-        highlight: "knowledge in marketing is exceptional",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "Morteza Mosafer",
-        role: "Senior Sales and Supply Planning Specialist",
-        company: "Snappmarket",
-        quote: "Saji faces reality very well and tries to reduce job stress for the whole team. He is quick, thoughtful, and very interested in comprehensive research. I hope no one loses the experience of working with Saji.",
-        highlight: "quick, thoughtful, and very interested in comprehensive research",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-      {
-        name: "MohammadAli Milanisadr",
-        role: "Senior Product Manager",
-        company: "Private Company",
-        quote: "Saji is conscientious — he also encourages others to take action and be optimistic. The kind of teammate who lifts the energy of everyone around him.",
-        highlight: "encourages others to take action and be optimistic",
-        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
-        img: null,
-      },
-    ];
+    <!-- Sub -->
+    <p style="font-size:clamp(.95rem,2.2vw,1.1rem);color:#6B5744;line-height:1.75;max-width:480px;margin:0 auto 8px;font-weight:300;animation:fu .6s .18s ease both;">
+      I research what customers want, craft the story, then prove it with data.
+    </p>
+    <p style="font-size:13px;color:#3A2F23;line-height:1.6;max-width:420px;margin:0 auto;font-weight:300;animation:fu .6s .22s ease both;">
+      (Yes — I use AI. Built this with it too. Would've taken forever 5 years ago.)
+    </p>
 
-    const PROBLEMS = [
-      { q: "Not sure what your customers actually want?", a: "I run customer research & market analysis", eg: "Like when I identified unmet needs in digital learning through competitive analysis and user interviews." },
-      { q: "Struggling to explain your product's value?", a: "I craft positioning & messaging that clicks", eg: "I've positioned platforms for nationally recognized creators by translating features into outcomes." },
-      { q: "Need to launch but don't have a plan?", a: "I build go-to-market strategies that scale", eg: "Developed launch campaigns that drove 35% user growth in the first quarter." },
-      { q: "Can't tell if your marketing is actually working?", a: "I prove impact with data & analytics", eg: "I track the metrics that matter — from acquisition to activation to revenue." },
-      { q: "Competing in a crowded market?", a: "I run competitive analysis to find your edge", eg: "I map competitor positioning to surface white space opportunities." },
-    ];
+    <!-- Intent dropdown -->
+    <div id="intent-dropdown" style="margin-top:52px;max-width:380px;margin-left:auto;margin-right:auto;animation:fu .6s .3s ease both;">
+      <p style="font-size:11px;color:#3A2F23;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">Why are you here?</p>
+      <div style="position:relative;">
+        <button id="intent-btn" onclick="toggleIntent()" style="width:100%;padding:14px 18px;background:#120F0C;border:1px solid #221C16;border-radius:9px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#4A3F33;font-size:14px;font-family:inherit;font-weight:300;transition:border-color .2s;letter-spacing:0.01em;">
+          <span id="intent-label">Select a reason...</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" style="transition:transform .22s;flex-shrink:0;" id="intent-arrow">
+            <path d="M1.5 4l4.5 4.5L10.5 4" stroke="#6B5744" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="intent-menu" style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#110E0B;border:1px solid #221C16;border-radius:9px;overflow:hidden;z-index:100;box-shadow:0 20px 50px rgba(0,0,0,.75);animation:di .16s ease;"></div>
+      </div>
+    </div>
 
-    const DIFFS = [
-      {
-        id: "analytical", label: "Analytical", num: "01", accent: "#D4A853",
-        desc: "I dig into the data, find patterns, and turn insights into action. Numbers tell stories — I just know how to listen.",
-        caseStudy: { title: "Market Analysis for EdTech Platform", body: "Conducted competitive landscape analysis and user research that identified a $2B market gap. The insights shaped the entire product roadmap and go-to-market strategy." },
-        skills: [{ skill: "Data Analysis", value: 90 }, { skill: "Market Research", value: 85 }, { skill: "Customer Insights", value: 88 }, { skill: "Competitive Intel", value: 82 }, { skill: "Analytics Tools", value: 80 }],
-      },
-      {
-        id: "narrative", label: "Narrative", num: "02", accent: "#C4956A",
-        desc: "Great marketing connects needs with stories. I translate features into feelings and data into narratives that stick.",
-        caseStudy: { title: "Positioning for Creator Platform", body: "Crafted a messaging framework for nationally recognized creators that increased conversion by 40%. Turned 'tool for making content' into 'platform for building your legacy.'" },
-        skills: [{ skill: "Storytelling", value: 92 }, { skill: "Copywriting", value: 88 }, { skill: "Positioning", value: 90 }, { skill: "Messaging", value: 87 }, { skill: "Content Creation", value: 85 }],
-      },
-      {
-        id: "strategic", label: "Strategic", num: "03", accent: "#A07850",
-        desc: "I see the big picture, prioritize ruthlessly, and align stakeholders around what actually moves the needle.",
-        caseStudy: { title: "Go-to-Market for SaaS Launch", body: "Designed and executed a multi-channel launch that drove 35% user growth in Q1. Built from scratch: customer segmentation, pricing, channel mix, and success metrics." },
-        skills: [{ skill: "GTM Strategy", value: 90 }, { skill: "Business Acumen", value: 88 }, { skill: "Stakeholder Mgmt", value: 85 }, { skill: "Prioritization", value: 92 }, { skill: "Execution", value: 89 }],
-      },
-    ];
+    <!-- Scroll hint -->
+    <div style="margin-top:80px;display:flex;flex-direction:column;align-items:center;animation:fu .6s .45s ease both;">
+      <div style="width:1px;height:48px;background:linear-gradient(to bottom, transparent, #3A2F23);animation:pulse 2.5s ease-in-out infinite;"></div>
+    </div>
+  </div>
+</section>
 
-    const STORIES = [
-      { title: "Basketball", body: "Basketball taught me everything about teamwork, resilience, and reading the room. Winning isn't just about individual talent — it's about understanding roles, adapting to pressure, and executing when it counts. Those late-game moments where you need to stay calm and make the right call? That's basically every product launch." },
-      { title: "Civil Engineering", body: "Started in civil engineering thinking I'd build bridges and roads. Turns out, I was more interested in building systems and solving structural problems at a strategic level. Engineering taught me to think in frameworks, validate assumptions with data, and never trust a solution until you've stress-tested it." },
-      { title: "MBA at Northeastern", body: "My MBA in Marketing and Business Analytics is where everything clicked. I combined analytical rigor from engineering with storytelling and business strategy. Also became a Certified Scrum Product Owner (CSPO) — because shipping fast beats planning forever." },
-      { title: "Startups", body: "Startups showed me what it means to move fast and own outcomes. No bureaucracy, no endless approvals — just: here's the problem, figure it out, ship it. I've helped launch platforms, grow user bases, and position products in crowded markets." },
-    ];
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+     ═══════════════════════════════════════════ -->
+<section id="recommendations" style="padding:110px 24px;background:#0E0B09;">
+  <div class="section-hr"></div>
+  <div style="max-width:780px;margin:72px auto 0;">
+    <div class="reveal">
+      <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Social Proof</p>
+      <h2 class="s-title">First, let's hear from others</h2>
+      <p style="color:#4A3F33;font-size:14.5px;font-weight:300;margin-top:10px;margin-bottom:52px;">I can claim anything — we need proof first.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.12s;">
+      <div id="testimonials-container" style="display:flex;flex-direction:column;gap:10px;"></div>
+      <div class="dot-nav" id="testimonials-nav"></div>
+    </div>
+  </div>
+</section>
 
-    const INTENTS = [
-      { label: "I want to interview you", target: "resume" },
-      { label: "I'm looking to hire you", target: "recommendations" },
-      { label: "I want to work with you", target: "recommendations" },
-      { label: "I want to see your results", target: "analytical" },
-      { label: "I'm curious about your story", target: "story" },
-    ];
+<!-- ═══════════════════════════════════════════
+     PROBLEMS I SOLVE
+     ═══════════════════════════════════════════ -->
+<section style="padding:110px 24px;background:#0C0A09;">
+  <div class="section-hr"></div>
+  <div style="max-width:700px;margin:72px auto 0;">
+    <div class="reveal">
+      <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Value</p>
+      <h2 class="s-title">Problems I solve</h2>
+    </div>
+    <div class="reveal" style="transition-delay:.12s;">
+      <div class="problems-card" style="margin-top:44px;">
+        <div class="glow"></div>
+        <div id="problems-content"></div>
+        <div id="problems-progress" style="display:flex;gap:5px;margin-top:32px;"></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s;">
+      <div style="margin-top:18px;padding:22px 28px;background:#0E0B09;border:1px solid #1A140F;border-radius:10px;">
+        <p style="color:#4A3F33;font-size:13.5px;line-height:1.75;font-weight:300;">
+          <span style="color:#6B5744;">How?</span> Through analytical rigor, storytelling, and strategic thinking. And look — there are probably challenges I haven't faced yet. But I've built the critical thinking muscle to find the fastest path to a solution. That's the job.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ─── UTILITIES ──────────────────────────────────────────────────────── */
+<!-- ═══════════════════════════════════════════
+     DIFFERENTIATORS
+     ═══════════════════════════════════════════ -->
+<section>
+  <div style="padding:96px 24px 0;text-align:center;background:#0C0A09;">
+    <div class="reveal">
+      <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">What I bring</p>
+      <h2 class="s-title">Three dimensions</h2>
+    </div>
+  </div>
+  <div id="differentiators-container"></div>
+</section>
 
-    function useInView(threshold = 0.15) {
-      const ref = useRef(null);
-      const [vis, setVis] = useState(false);
-      useEffect(() => {
-        const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold });
-        if (ref.current) o.observe(ref.current);
-        return () => o.disconnect();
-      }, []);
-      return [ref, vis];
-    }
+<!-- ═══════════════════════════════════════════
+     MY STORY
+     ═══════════════════════════════════════════ -->
+<section id="story" style="padding:110px 24px;background:#0E0B09;">
+  <div class="section-hr"></div>
+  <div style="max-width:620px;margin:72px auto 0;">
+    <div class="reveal">
+      <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Background</p>
+      <h2 class="s-title">My story</h2>
+    </div>
+    <div class="reveal" style="transition-delay:.12s;">
+      <div style="margin-top:44px;" id="story-accordion"></div>
+    </div>
+  </div>
+</section>
 
-    function Reveal({ children, delay = 0, style = {} }) {
-      const [ref, vis] = useInView();
-      return (
-        <div ref={ref} style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(28px)", transition: `opacity .8s ${delay}s cubic-bezier(.16,1,.3,1), transform .8s ${delay}s cubic-bezier(.16,1,.3,1)`, ...style }}>
-          {children}
+<!-- ═══════════════════════════════════════════
+     FINAL / CTA
+     ═══════════════════════════════════════════ -->
+<section style="padding:110px 24px 80px;background:#0C0A09;">
+  <div class="section-hr"></div>
+  <div style="max-width:480px;margin:72px auto 0;text-align:center;">
+    <div class="reveal">
+      <h2 class="s-title">Let's connect</h2>
+      <p style="color:#4A3F33;font-size:14.5px;line-height:1.75;margin-top:10px;margin-bottom:44px;font-weight:300;">
+        Looking to hire, collaborate, or just chat about product marketing — I'd love to hear from you.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+        <a href="https://www.linkedin.com/in/saji-kazemi/" target="_blank" rel="noreferrer" class="bg">LinkedIn</a>
+        <a href="https://drive.google.com/file/d/1z3ZnCFIUre7LWsjh1SO990UprbTtnx3J/view?usp=sharing" target="_blank" rel="noreferrer" class="bo">Resume</a>
+        <a href="mailto:sajikazemi@outlook.com" class="bg2">Contact Me</a>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s;">
+      <p style="margin-top:72px;font-size:10.5px;color:#2A221A;letter-spacing:0.16em;text-transform:uppercase;">Built with AI · Made for startups · Designed for clarity</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const TESTIMONIALS = [
+  { name:"Dr. Christa Dhimo, DBA, MBA", role:"Senior Advisor: Strategy, Innovation & Performance", company:"Impono Partners", quote:"It was a pleasure to watch Saji run with our market positioning and competitive strategy work — and do some of the best work I've seen in a decade. He takes direction and feedback equally well, unencumbered by ego.", highlight:"best work I've seen in a decade", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Kristin Kostka, MPH", role:"Senior Clinical Scientist in AI", company:"Guy's and St Thomas' NHS Foundation Trust", quote:"Saji is an exceptional analyst — sharp as a tack, incredibly meticulous and well-spoken. He's a dream to work with. You'll only wish you could find more projects for him to contribute to.", highlight:"sharp as a tack, incredibly meticulous", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Justin Manjourides", role:"Associate Professor of Biostatistics", company:"Northeastern University", quote:"Saji demonstrated an extraordinary ability to distill complex data into actionable business insights. He will elevate any team he works with — I would strongly recommend him for any role requiring analytical acumen and strategic thinking.", highlight:"distill complex data into actionable business insights", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Diwi Dhir", role:"VP — Analytics Solutions Manager", company:"JPMorganChase", quote:"Saji has a knack for problem-solving in high-pressure situations. He knows how to find clarity even when directions aren't clear — any team would be fortunate to have him on board.", highlight:"find clarity even when directions aren't clear", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Ben Brink", role:"Founder", company:"Flux Forward", quote:"Saji was great at creating promotional materials and managing media tasks for over 50 events. His creativity, teamwork, and positive attitude made him a key part of our team. I highly recommend him for any marketing role.", highlight:"creativity, teamwork, and positive attitude", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Allison Hogan", role:"Director, Student Services & Operations", company:"Northeastern University", quote:"Saji successfully managed projects including rebuilding department reporting through Tableau dashboards and a student lifecycle mapping project. He is incredibly reliable, hardworking, and dedicated — a valuable employee for any employer.", highlight:"incredibly reliable, hardworking, and dedicated", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Leah Boccaccio", role:"Senior Advisor", company:"Harvard International Office", quote:"Saji is a gifted problem solver and analytical thinker. He excels at special projects because of his attention to detail, conscientiousness, and efficiency — he will be such an asset to any office he joins.", highlight:"gifted problem solver and analytical thinker", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Peter Buschkopf", role:"Senior International Student Advisor", company:"Boston University", quote:"Saji demonstrated an aptitude for quickly identifying areas for improvement and making workflows more efficient. His innovation and dedication to perpetual improvement evoke admiration from his colleagues and superiors.", highlight:"innovation and dedication to perpetual improvement", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Sahal Ahmad", role:"Data Scientist", company:"Amazon Web Services (AWS)", quote:"Saji singlehandedly conceptualized and productionized a student data dashboard that changed how we looked at our process. His data-centric skills with business outcome-driven thinking will be a win for any team.", highlight:"data-centric skills with business outcome-driven thinking", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Jad El Rez", role:"Senior Consultant — AI & Data", company:"Deloitte", quote:"Saji has impeccable attention to detail and is a strong team player. He has a strong background in business analytics and is able to effectively communicate technical concepts to non-technical audiences.", highlight:"impeccable attention to detail", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Dr. Roopa Rawjee", role:"Executive Director, Office of International Engagement", company:"Illinois State University", quote:"Saji is a leader — he takes initiative and presents creative solutions to opportunities and challenges. His calm, positive, and resilient approach was incredibly impressive. He is a joy to work with and will be an asset to any organization.", highlight:"calm, positive, and resilient", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Sabina Muccigrosso", role:"International Student Services Associate", company:"Northeastern University", quote:"Saji is an amazing coworker who always gives his best to his work. He is extremely thoughtful, full of a variety of knowledge, and while at OGS he worked on a variety of projects, vastly improving how the office functioned.", highlight:"vastly improving how the office functioned", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Annie Lopatin", role:"Senior Product Manager, Hemostasis Instruments", company:"Werfen North America", quote:"Saji played a huge role in our MBA group projects, jumping in to lead and develop key elements. He was highly dependable and easy to work with throughout — a genuine team player.", highlight:"highly dependable and easy to work with", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Nima Pourkhodabakhsh", role:"Business Analyst", company:"Aviense", quote:"Saji is highly skilled at conveying complex ideas in a clear and concise manner, making him an invaluable resource to his colleagues and clients. His passion, exceptional skills, and dedication to excellence make him a precious asset to any organization.", highlight:"conveying complex ideas in a clear and concise manner", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Mojtaba Noghabaei", role:"Principal Research Scientist Engineer", company:"Autodesk", quote:"Saji is one of the best people to have as a partner. I highly recommend him for data analytics — he is very detail-oriented, meticulous, and passionate about his work.", highlight:"one of the best people to have as a partner", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Sepide Tabatabaei", role:"Partner", company:"Iran Headhunting Community", quote:"Saji is creative, smart, and has excellent communication skills. His ability to focus helped him become the business expert he is now. He is one of the best in his field and always willing to share best practices.", highlight:"one of the best in his field", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Majid Jalilian", role:"Back End Developer", company:"Takhfifan", quote:"Saji's important feature, in addition to his management skills, is the motivation and effort he puts into the success of the work. He has played a significant role in the first sales and marketing of Kelasend.", highlight:"motivation and effort he puts into the success of the work", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Sina Sedaghat Baghbani", role:"Operations and Automation Specialist", company:"3S Network Inc.", quote:"Saji's tenacity and kindness are qualities that were very apparent to me. He bravely accepts his mistakes and works hard toward learning and progress. I recommend him for business-based projects — his passion and talent are clear.", highlight:"tenacity and kindness", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Reza Mokhtarpour", role:"Head of Talent Acquisition", company:"Ofogh Koorosh Chain Stores", quote:"Saji's knowledge in marketing is exceptional. He is creative, smart, has excellent communication skills, and is willing to help when you need it — the kind of person who does anything for the group's benefit.", highlight:"knowledge in marketing is exceptional", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"Morteza Mosafer", role:"Senior Sales and Supply Planning Specialist", company:"Snappmarket", quote:"Saji faces reality very well and tries to reduce job stress for the whole team. He is quick, thoughtful, and very interested in comprehensive research. I hope no one loses the experience of working with Saji.", highlight:"quick, thoughtful, and very interested in comprehensive research", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+  { name:"MohammadAli Milanisadr", role:"Senior Product Manager", company:"Private Company", quote:"Saji is conscientious — he also encourages others to take action and be optimistic. The kind of teammate who lifts the energy of everyone around him.", highlight:"encourages others to take action and be optimistic", linkedinUrl:"https://www.linkedin.com/in/saji-kazemi/" },
+];
+
+const PROBLEMS = [
+  { q:"Not sure what your customers actually want?", a:"I run customer research & market analysis", eg:"Like when I identified unmet needs in digital learning through competitive analysis and user interviews." },
+  { q:"Struggling to explain your product's value?", a:"I craft positioning & messaging that clicks", eg:"I've positioned platforms for nationally recognized creators by translating features into outcomes." },
+  { q:"Need to launch but don't have a plan?", a:"I build go-to-market strategies that scale", eg:"Developed launch campaigns that drove 35% user growth in the first quarter." },
+  { q:"Can't tell if your marketing is actually working?", a:"I prove impact with data & analytics", eg:"I track the metrics that matter — from acquisition to activation to revenue." },
+  { q:"Competing in a crowded market?", a:"I run competitive analysis to find your edge", eg:"I map competitor positioning to surface white space opportunities." },
+];
+
+const DIFFS = [
+  { id:"analytical", label:"Analytical", num:"01", accent:"#D4A853", desc:"I dig into the data, find patterns, and turn insights into action. Numbers tell stories — I just know how to listen.", case_title:"Market Analysis for EdTech Platform", case_body:"Conducted competitive landscape analysis and user research that identified a $2B market gap. The insights shaped the entire product roadmap and go-to-market strategy.", skills:[{skill:"Data Analysis",value:90},{skill:"Market Research",value:85},{skill:"Customer Insights",value:88},{skill:"Competitive Intel",value:82},{skill:"Analytics Tools",value:80}] },
+  { id:"narrative", label:"Narrative", num:"02", accent:"#C4956A", desc:"Great marketing connects needs with stories. I translate features into feelings and data into narratives that stick.", case_title:"Positioning for Creator Platform", case_body:"Crafted a messaging framework for nationally recognized creators that increased conversion by 40%. Turned 'tool for making content' into 'platform for building your legacy.'", skills:[{skill:"Storytelling",value:92},{skill:"Copywriting",value:88},{skill:"Positioning",value:90},{skill:"Messaging",value:87},{skill:"Content Creation",value:85}] },
+  { id:"strategic", label:"Strategic", num:"03", accent:"#A07850", desc:"I see the big picture, prioritize ruthlessly, and align stakeholders around what actually moves the needle.", case_title:"Go-to-Market for SaaS Launch", case_body:"Designed and executed a multi-channel launch that drove 35% user growth in Q1. Built from scratch: customer segmentation, pricing, channel mix, and success metrics.", skills:[{skill:"GTM Strategy",value:90},{skill:"Business Acumen",value:88},{skill:"Stakeholder Mgmt",value:85},{skill:"Prioritization",value:92},{skill:"Execution",value:89}] },
+];
+
+const STORIES = [
+  { title:"Basketball", body:"Basketball taught me everything about teamwork, resilience, and reading the room. Winning isn't just about individual talent — it's about understanding roles, adapting to pressure, and executing when it counts. Those late-game moments where you need to stay calm and make the right call? That's basically every product launch." },
+  { title:"Civil Engineering", body:"Started in civil engineering thinking I'd build bridges and roads. Turns out, I was more interested in building systems and solving structural problems at a strategic level. Engineering taught me to think in frameworks, validate assumptions with data, and never trust a solution until you've stress-tested it." },
+  { title:"MBA at Northeastern", body:"My MBA in Marketing and Business Analytics is where everything clicked. I combined analytical rigor from engineering with storytelling and business strategy. Also became a Certified Scrum Product Owner (CSPO) — because shipping fast beats planning forever." },
+  { title:"Startups", body:"Startups showed me what it means to move fast and own outcomes. No bureaucracy, no endless approvals — just: here's the problem, figure it out, ship it. I've helped launch platforms, grow user bases, and position products in crowded markets." },
+];
+
+const INTENTS = [
+  { label:"I want to interview you", target:"resume" },
+  { label:"I'm looking to hire you", target:"recommendations" },
+  { label:"I want to work with you", target:"recommendations" },
+  { label:"I want to see your results", target:"analytical" },
+  { label:"I'm curious about your story", target:"story" },
+];
+
+// ═══════════════════════════════════════════
+// INTENT DROPDOWN
+// ═══════════════════════════════════════════
+let intentOpen = false;
+const intentMenu = document.getElementById('intent-menu');
+const intentBtn = document.getElementById('intent-btn');
+const intentLabel = document.getElementById('intent-label');
+const intentArrow = document.getElementById('intent-arrow');
+
+// Build menu items
+INTENTS.forEach((intent, i) => {
+  const btn = document.createElement('button');
+  btn.style.cssText = `width:100%;padding:13px 18px;background:transparent;border:none;border-bottom:${i < INTENTS.length-1 ? '1px solid #1A140F' : 'none'};color:#6B5744;font-size:13.5px;font-family:inherit;font-weight:300;text-align:left;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:10px;letter-spacing:0.01em;`;
+  const dot = document.createElement('span');
+  dot.style.cssText = 'width:3.5px;height:3.5px;border-radius:50%;background:#2A221A;flex-shrink:0;transition:background .12s;';
+  btn.appendChild(dot);
+  btn.appendChild(document.createTextNode(intent.label));
+  btn.addEventListener('mouseenter', () => { btn.style.background='#1A140F'; btn.style.color='#D4A853'; dot.style.background='#D4A853'; });
+  btn.addEventListener('mouseleave', () => { btn.style.background='transparent'; btn.style.color='#6B5744'; dot.style.background='#2A221A'; });
+  btn.addEventListener('click', () => {
+    intentLabel.textContent = intent.label;
+    intentLabel.style.color = '#D4A853';
+    intentOpen = false;
+    intentMenu.style.display = 'none';
+    intentArrow.style.transform = 'none';
+    intentBtn.style.borderColor = '#221C16';
+    const el = document.getElementById(intent.target);
+    if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+  intentMenu.appendChild(btn);
+});
+
+function toggleIntent() {
+  intentOpen = !intentOpen;
+  intentMenu.style.display = intentOpen ? 'block' : 'none';
+  intentArrow.style.transform = intentOpen ? 'rotate(180deg)' : 'none';
+  intentBtn.style.borderColor = intentOpen ? '#D4A85355' : '#221C16';
+}
+
+document.addEventListener('mousedown', (e) => {
+  const dd = document.getElementById('intent-dropdown');
+  if (dd && !dd.contains(e.target)) {
+    intentOpen = false;
+    intentMenu.style.display = 'none';
+    intentArrow.style.transform = 'none';
+    intentBtn.style.borderColor = '#221C16';
+  }
+});
+
+// ═══════════════════════════════════════════
+// TESTIMONIALS
+// ═══════════════════════════════════════════
+const pairs = [];
+for (let i = 0; i < TESTIMONIALS.length; i += 2) pairs.push(TESTIMONIALS.slice(i, i + 2));
+let tIdx = 0;
+
+function getInitials(name) {
+  return name.replace(/^Dr\.?\s*/i, '').split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+}
+
+function renderTestimonials() {
+  const container = document.getElementById('testimonials-container');
+  container.innerHTML = '';
+  container.style.animation = 'none';
+  void container.offsetWidth;
+  container.style.animation = 'sr .4s cubic-bezier(.16,1,.3,1)';
+
+  pairs[tIdx].forEach(t => {
+    const idx = t.quote.indexOf(t.highlight);
+    const before = t.quote.slice(0, idx);
+    const after = t.quote.slice(idx + t.highlight.length);
+    const card = document.createElement('div');
+    card.className = 'tcard';
+    card.innerHTML = `
+      <div class="tcard-avatar">${getInitials(t.name)}</div>
+      <div style="flex:1;">
+        <div class="tcard-header">
+          <div>
+            <div class="tcard-name">${t.name}</div>
+            <div class="tcard-role">${t.role} · ${t.company}</div>
+          </div>
+          <a href="${t.linkedinUrl}" target="_blank" rel="noreferrer" class="tcard-in">in</a>
         </div>
-      );
+        <p class="tcard-quote">"${before}<strong>${t.highlight}</strong>${after}"</p>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Nav
+  const nav = document.getElementById('testimonials-nav');
+  nav.innerHTML = '';
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'nav-c';
+  prevBtn.textContent = '←';
+  prevBtn.onclick = () => { tIdx = (tIdx - 1 + pairs.length) % pairs.length; renderTestimonials(); };
+  nav.appendChild(prevBtn);
+
+  pairs.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot-btn' + (i === tIdx ? ' active' : '');
+    dot.onclick = () => { tIdx = i; renderTestimonials(); };
+    nav.appendChild(dot);
+  });
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'nav-c';
+  nextBtn.textContent = '→';
+  nextBtn.onclick = () => { tIdx = (tIdx + 1) % pairs.length; renderTestimonials(); };
+  nav.appendChild(nextBtn);
+}
+renderTestimonials();
+
+// ═══════════════════════════════════════════
+// PROBLEMS I SOLVE
+// ═══════════════════════════════════════════
+let pIdx = 0;
+let pTimer;
+
+function renderProblem() {
+  const content = document.getElementById('problems-content');
+  content.style.animation = 'none';
+  void content.offsetWidth;
+  content.style.animation = 'su .38s cubic-bezier(.16,1,.3,1)';
+  const p = PROBLEMS[pIdx];
+  content.innerHTML = `
+    <p style="font-size:10px;color:#4A3F33;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:18px;">Challenge ${pIdx+1} / ${PROBLEMS.length}</p>
+    <h3 style="font-size:clamp(1.25rem,3vw,1.8rem);color:#EDE5D8;font-weight:300;line-height:1.35;margin-bottom:18px;letter-spacing:-0.01em;font-family:'Lora',serif;">${p.q}</h3>
+    <p style="font-size:15.5px;color:#D4A853;font-weight:400;margin-bottom:10px;">→ ${p.a}</p>
+    <p style="color:#4A3F33;font-size:13.5px;line-height:1.65;font-weight:300;">${p.eg}</p>
+  `;
+
+  const progress = document.getElementById('problems-progress');
+  progress.innerHTML = '';
+  PROBLEMS.forEach((_, n) => {
+    const bar = document.createElement('button');
+    bar.className = 'progress-track';
+    bar.onclick = () => { pIdx = n; clearInterval(pTimer); startProblemTimer(); renderProblem(); };
+    if (n === pIdx) bar.innerHTML = '<div class="progress-fill active"></div>';
+    else if (n < pIdx) bar.innerHTML = '<div class="progress-fill done"></div>';
+    progress.appendChild(bar);
+  });
+}
+
+function startProblemTimer() {
+  pTimer = setInterval(() => { pIdx = (pIdx + 1) % PROBLEMS.length; renderProblem(); }, 5200);
+}
+renderProblem();
+startProblemTimer();
+
+// ═══════════════════════════════════════════
+// SPIDER CHART (SVG)
+// ═══════════════════════════════════════════
+function drawSpider(containerEl, skills, color) {
+  const W = 280, H = 260;
+  const cx = W / 2, cy = H / 2 + 5;
+  const R = 95;
+  const n = skills.length;
+  const levels = 5;
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;">`;
+
+  // Grid rings
+  for (let lv = 1; lv <= levels; lv++) {
+    const r = (R / levels) * lv;
+    let pts = [];
+    for (let i = 0; i < n; i++) {
+      const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+      pts.push(`${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`);
     }
+    svg += `<polygon points="${pts.join(' ')}" fill="none" stroke="#2A221A" stroke-width="1"/>`;
+  }
 
-    function HR() {
-      return <div style={{ height: 1, background: "linear-gradient(90deg, transparent 0%, #2A221A 30%, #2A221A 70%, transparent 100%)" }} />;
-    }
+  // Axis lines
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+    svg += `<line x1="${cx}" y1="${cy}" x2="${cx + R * Math.cos(angle)}" y2="${cy + R * Math.sin(angle)}" stroke="#2A221A" stroke-width="1"/>`;
+  }
 
-    /* ─── SPIDER CHART ───────────────────────────────────────────────────── */
+  // Data polygon
+  let dataPts = [];
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+    const r = (skills[i].value / 100) * R;
+    dataPts.push({ x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) });
+  }
+  svg += `<polygon points="${dataPts.map(p => `${p.x},${p.y}`).join(' ')}" fill="${color}" fill-opacity="0.15" stroke="${color}" stroke-width="1.5"/>`;
 
-    function Spider({ data, color }) {
-      return (
-        <Recharts.ResponsiveContainer width="100%" height={260}>
-          <Recharts.RadarChart data={data} margin={{ top: 10, right: 28, bottom: 10, left: 28 }}>
-            <Recharts.PolarGrid stroke="#2A221A" strokeWidth={1} />
-            <Recharts.PolarAngleAxis dataKey="skill" tick={{ fill: "#6B5744", fontSize: 10.5, fontFamily: "inherit", fontWeight: 400 }} />
-            <Recharts.PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} stroke="transparent" />
-            <Recharts.Radar dataKey="value" stroke={color} fill={color} fillOpacity={0.15} strokeWidth={1.5} dot={{ fill: color, r: 2.5 }} />
-          </Recharts.RadarChart>
-        </Recharts.ResponsiveContainer>
-      );
-    }
+  // Dots
+  dataPts.forEach(p => {
+    svg += `<circle cx="${p.x}" cy="${p.y}" r="2.5" fill="${color}"/>`;
+  });
 
-    /* ─── HERO ───────────────────────────────────────────────────────────── */
+  // Labels
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+    const lr = R + 22;
+    const lx = cx + lr * Math.cos(angle);
+    const ly = cy + lr * Math.sin(angle);
+    let anchor = 'middle';
+    if (Math.cos(angle) > 0.2) anchor = 'start';
+    else if (Math.cos(angle) < -0.2) anchor = 'end';
+    svg += `<text x="${lx}" y="${ly}" fill="#6B5744" font-size="10.5" font-family="Outfit,sans-serif" font-weight="400" text-anchor="${anchor}" dominant-baseline="central">${skills[i].skill}</text>`;
+  }
 
-    function Hero({ scrollTo }) {
-      const [open, setOpen] = useState(false);
-      const [chosen, setChosen] = useState(null);
-      const [hIdx, setHIdx] = useState(null);
-      const dropRef = useRef(null);
+  svg += '</svg>';
+  containerEl.innerHTML = svg;
+}
 
-      useEffect(() => {
-        const fn = (e) => { if (dropRef.current && !dropRef.current.contains(e.target)) setOpen(false); };
-        document.addEventListener("mousedown", fn);
-        return () => document.removeEventListener("mousedown", fn);
-      }, []);
-
-      const pick = (intent) => { setChosen(intent); setOpen(false); scrollTo(intent.target); };
-
-      return (
-        <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", background: "#0C0A09", padding: "80px 24px" }}>
-          <div style={{ position: "absolute", inset: 0, backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E")`, backgroundRepeat: "repeat", pointerEvents: "none", zIndex: 1 }} />
-          <div style={{ position: "absolute", top: "35%", left: "50%", transform: "translate(-50%,-50%)", width: 800, height: 500, background: "radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%)", pointerEvents: "none", zIndex: 1 }} />
-
-          <div style={{ position: "relative", zIndex: 2, maxWidth: 660, width: "100%", textAlign: "center" }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 40, animation: "fu .6s ease both" }}>
-              <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4A853", flexShrink: 0, boxShadow: "0 0 6px #D4A853" }} />
-              <span style={{ fontSize: 11, color: "#6B5744", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 400 }}>Product Marketing Manager</span>
-              <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4A853", flexShrink: 0, boxShadow: "0 0 6px #D4A853" }} />
-            </div>
-
-            <h1 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: "clamp(3.4rem, 9vw, 6rem)", fontWeight: 300, color: "#EDE5D8", lineHeight: 1, letterSpacing: "-0.03em", marginBottom: 30, animation: "fu .6s .1s ease both" }}>
-              Who is{" "}
-              <span style={{ fontStyle: "italic", color: "#D4A853" }}>Saji</span>?
-            </h1>
-
-            <p style={{ fontSize: "clamp(.95rem, 2.2vw, 1.1rem)", color: "#6B5744", lineHeight: 1.75, maxWidth: 480, margin: "0 auto 8px", fontWeight: 300, animation: "fu .6s .18s ease both" }}>
-              I research what customers want, craft the story, then prove it with data.
-            </p>
-            <p style={{ fontSize: 13, color: "#3A2F23", lineHeight: 1.6, maxWidth: 420, margin: "0 auto", fontWeight: 300, animation: "fu .6s .22s ease both" }}>
-              (Yes — I use AI. Built this with it too. Would've taken forever 5 years ago.)
-            </p>
-
-            <div ref={dropRef} style={{ marginTop: 52, maxWidth: 380, marginLeft: "auto", marginRight: "auto", animation: "fu .6s .3s ease both" }}>
-              <p style={{ fontSize: 11, color: "#3A2F23", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10 }}>Why are you here?</p>
-              <div style={{ position: "relative" }}>
-                <button
-                  onClick={() => setOpen(o => !o)}
-                  style={{ width: "100%", padding: "14px 18px", background: "#120F0C", border: `1px solid ${open ? "#D4A85355" : "#221C16"}`, borderRadius: 9, display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", color: chosen ? "#D4A853" : "#4A3F33", fontSize: 14, fontFamily: "inherit", fontWeight: 300, transition: "border-color .2s", letterSpacing: "0.01em" }}
-                >
-                  <span>{chosen ? chosen.label : "Select a reason..."}</span>
-                  <svg width="12" height="12" viewBox="0 0 12 12" style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform .22s", flexShrink: 0 }}>
-                    <path d="M1.5 4l4.5 4.5L10.5 4" stroke="#6B5744" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                {open && (
-                  <div style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0, background: "#110E0B", border: "1px solid #221C16", borderRadius: 9, overflow: "hidden", zIndex: 100, boxShadow: "0 20px 50px rgba(0,0,0,.75)", animation: "di .16s ease" }}>
-                    {INTENTS.map((intent, i) => (
-                      <button
-                        key={i}
-                        onClick={() => pick(intent)}
-                        onMouseEnter={() => setHIdx(i)}
-                        onMouseLeave={() => setHIdx(null)}
-                        style={{ width: "100%", padding: "13px 18px", background: hIdx === i ? "#1A140F" : "transparent", border: "none", borderBottom: i < INTENTS.length - 1 ? "1px solid #1A140F" : "none", color: hIdx === i ? "#D4A853" : "#6B5744", fontSize: 13.5, fontFamily: "inherit", fontWeight: 300, textAlign: "left", cursor: "pointer", transition: "all .12s", display: "flex", alignItems: "center", gap: 10, letterSpacing: "0.01em" }}
-                      >
-                        <span style={{ width: 3.5, height: 3.5, borderRadius: "50%", background: hIdx === i ? "#D4A853" : "#2A221A", flexShrink: 0, transition: "background .12s" }} />
-                        {intent.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div style={{ marginTop: 80, display: "flex", flexDirection: "column", alignItems: "center", animation: "fu .6s .45s ease both" }}>
-              <div style={{ width: 1, height: 48, background: "linear-gradient(to bottom, transparent, #3A2F23)", animation: "pulse 2.5s ease-in-out infinite" }} />
-            </div>
+// ═══════════════════════════════════════════
+// DIFFERENTIATORS
+// ═══════════════════════════════════════════
+const diffsContainer = document.getElementById('differentiators-container');
+DIFFS.forEach((d, i) => {
+  const even = i % 2 === 0;
+  const section = document.createElement('div');
+  section.id = d.id;
+  section.className = 'reveal';
+  section.style.cssText = `padding:96px 24px;background:${i % 2 === 0 ? '#0C0A09' : '#0E0B09'};`;
+  section.innerHTML = `
+    <div class="section-hr"></div>
+    <div style="max-width:940px;margin:72px auto 0;">
+      <div class="diff-grid" style="${even ? '' : ''}">
+        <div style="order:${even ? 0 : 1};">
+          <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:26px;">
+            <span style="font-size:11px;color:#2A221A;letter-spacing:0.12em;font-weight:500;">${d.num}</span>
+            <h2 style="font-family:'Lora',Georgia,serif;font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:300;color:${d.accent};letter-spacing:-0.04em;line-height:1;font-style:italic;">${d.label}</h2>
           </div>
-        </section>
-      );
-    }
-
-    /* ─── TESTIMONIALS ───────────────────────────────────────────────────── */
-
-    function Avatar({ img, name }) {
-      const initials = name.replace(/^Dr\.?\s*/i, "").split(" ").slice(0, 2).map(w => w[0]).join("").toUpperCase();
-      if (img) {
-        return <img src={img} alt={name} style={{ width: 42, height: 42, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "1.5px solid #2A221A" }} />;
-      }
-      return (
-        <div style={{ width: 42, height: 42, borderRadius: "50%", flexShrink: 0, border: "1.5px solid #2A221A", background: "#1E1A15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 500, color: "#6B5744", letterSpacing: "0.05em" }}>
-          {initials}
-        </div>
-      );
-    }
-
-    function TCard({ t }) {
-      const idx = t.quote.indexOf(t.highlight);
-      const before = t.quote.slice(0, idx);
-      const after = t.quote.slice(idx + t.highlight.length);
-      return (
-        <div style={{ background: "#120F0C", border: "1px solid #1E1A15", borderRadius: 12, padding: "24px 26px", display: "flex", gap: 18, alignItems: "flex-start" }}>
-          <Avatar img={t.img} name={t.name} />
-          <div style={{ flex: 1 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 9 }}>
-              <div>
-                <div style={{ color: "#C4A882", fontSize: 13.5, fontWeight: 500 }}>{t.name}</div>
-                <div style={{ color: "#4A3F33", fontSize: 12, marginTop: 2 }}>{t.role} · {t.company}</div>
-              </div>
-              <a
-                href={t.linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: "#4A3F33", fontSize: 10, fontWeight: 600, textDecoration: "none", letterSpacing: "0.05em", border: "1px solid #2A221A", borderRadius: 4, padding: "3px 7px", transition: "all .2s", flexShrink: 0, alignSelf: "flex-start" }}
-                onMouseEnter={e => { e.currentTarget.style.color = "#D4A853"; e.currentTarget.style.borderColor = "#D4A85355"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "#4A3F33"; e.currentTarget.style.borderColor = "#2A221A"; }}
-              >in</a>
-            </div>
-            <p style={{ color: "#6B5744", lineHeight: 1.7, fontSize: 13.5, fontWeight: 300 }}>
-              "{before}<strong style={{ color: "#C4A882", fontWeight: 500 }}>{t.highlight}</strong>{after}"
-            </p>
-          </div>
-        </div>
-      );
-    }
-
-    function Testimonials() {
-      const pairs = [];
-      for (let i = 0; i < TESTIMONIALS.length; i += 2) pairs.push(TESTIMONIALS.slice(i, i + 2));
-      const [idx, setIdx] = useState(0);
-      const [k, setK] = useState(0);
-      const go = (n) => { setIdx(n); setK(x => x + 1); };
-
-      return (
-        <section id="recommendations" style={{ padding: "110px 24px", background: "#0E0B09" }}>
-          <HR />
-          <div style={{ maxWidth: 780, margin: "72px auto 0" }}>
-            <Reveal>
-              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>Social Proof</p>
-              <h2 className="s-title">First, let's hear from others</h2>
-              <p style={{ color: "#4A3F33", fontSize: 14.5, fontWeight: 300, marginTop: 10, marginBottom: 52 }}>I can claim anything — we need proof first.</p>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div key={k} style={{ display: "flex", flexDirection: "column", gap: 10, animation: "sr .4s cubic-bezier(.16,1,.3,1)" }}>
-                {pairs[idx].map((t, i) => <TCard key={i} t={t} />)}
-              </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 28 }}>
-                <button onClick={() => go((idx - 1 + pairs.length) % pairs.length)} className="nav-c">←</button>
-                {pairs.map((_, i) => (
-                  <button key={i} onClick={() => go(i)} style={{ width: i === idx ? 22 : 6, height: 5, borderRadius: 2.5, background: i === idx ? "#D4A853" : "#2A221A", border: "none", cursor: "pointer", transition: "all .3s", padding: 0 }} />
-                ))}
-                <button onClick={() => go((idx + 1) % pairs.length)} className="nav-c">→</button>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      );
-    }
-
-    /* ─── PROBLEMS ───────────────────────────────────────────────────────── */
-
-    function Problems() {
-      const [i, setI] = useState(0);
-      const [k, setK] = useState(0);
-      useEffect(() => {
-        const t = setInterval(() => { setI(x => (x + 1) % PROBLEMS.length); setK(x => x + 1); }, 5200);
-        return () => clearInterval(t);
-      }, []);
-      const go = (n) => { setI(n); setK(x => x + 1); };
-      const p = PROBLEMS[i];
-
-      return (
-        <section style={{ padding: "110px 24px", background: "#0C0A09" }}>
-          <HR />
-          <div style={{ maxWidth: 700, margin: "72px auto 0" }}>
-            <Reveal>
-              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>Value</p>
-              <h2 className="s-title">Problems I solve</h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div style={{ marginTop: 44, background: "#120F0C", border: "1px solid #1E1A15", borderRadius: 14, padding: "48px 42px", minHeight: 258, display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", top: -50, right: -50, width: 200, height: 200, background: "radial-gradient(circle, rgba(212,168,83,0.045) 0%, transparent 70%)", pointerEvents: "none" }} />
-                <div key={k} style={{ animation: "su .38s cubic-bezier(.16,1,.3,1)" }}>
-                  <p style={{ fontSize: 10, color: "#4A3F33", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 18 }}>Challenge {i + 1} / {PROBLEMS.length}</p>
-                  <h3 style={{ fontSize: "clamp(1.25rem, 3vw, 1.8rem)", color: "#EDE5D8", fontWeight: 300, lineHeight: 1.35, marginBottom: 18, letterSpacing: "-0.01em", fontFamily: "'Lora', serif" }}>{p.q}</h3>
-                  <p style={{ fontSize: 15.5, color: "#D4A853", fontWeight: 400, marginBottom: 10 }}>→ {p.a}</p>
-                  <p style={{ color: "#4A3F33", fontSize: 13.5, lineHeight: 1.65, fontWeight: 300 }}>{p.eg}</p>
-                </div>
-                <div style={{ display: "flex", gap: 5, marginTop: 32 }}>
-                  {PROBLEMS.map((_, n) => (
-                    <button key={n} onClick={() => go(n)} style={{ flex: 1, height: 2, background: "#1A140F", border: "none", borderRadius: 1, cursor: "pointer", padding: 0, position: "relative", overflow: "hidden" }}>
-                      {n === i && <div style={{ position: "absolute", inset: 0, background: "#D4A853", animation: "bf 5.2s linear forwards", transformOrigin: "left" }} />}
-                      {n < i && <div style={{ position: "absolute", inset: 0, background: "#3A2F23" }} />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div style={{ marginTop: 18, padding: "22px 28px", background: "#0E0B09", border: "1px solid #1A140F", borderRadius: 10 }}>
-                <p style={{ color: "#4A3F33", fontSize: 13.5, lineHeight: 1.75, fontWeight: 300 }}>
-                  <span style={{ color: "#6B5744" }}>How?</span> Through analytical rigor, storytelling, and strategic thinking. And look — there are probably challenges I haven't faced yet. But I've built the critical thinking muscle to find the fastest path to a solution. That's the job.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      );
-    }
-
-    /* ─── DIFFERENTIATORS ────────────────────────────────────────────────── */
-
-    function DiffCard({ d, i }) {
-      const [ref, vis] = useInView(0.1);
-      const even = i % 2 === 0;
-      return (
-        <div ref={ref} id={d.id} style={{ padding: "96px 24px", background: i % 2 === 0 ? "#0C0A09" : "#0E0B09", opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(36px)", transition: "opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1)" }}>
-          <HR />
-          <div style={{ maxWidth: 940, margin: "72px auto 0" }}>
-            <div className="diff-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 52, alignItems: "center" }}>
-              <div style={{ order: even ? 0 : 1 }}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 26 }}>
-                  <span style={{ fontSize: 11, color: "#2A221A", letterSpacing: "0.12em", fontWeight: 500 }}>{d.num}</span>
-                  <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", fontWeight: 300, color: d.accent, letterSpacing: "-0.04em", lineHeight: 1, fontStyle: "italic" }}>{d.label}</h2>
-                </div>
-                <p style={{ fontSize: 15.5, color: "#6B5744", lineHeight: 1.75, marginBottom: 30, fontWeight: 300 }}>{d.desc}</p>
-                <div style={{ borderLeft: `2px solid ${d.accent}28`, paddingLeft: 20 }}>
-                  <p style={{ fontSize: 10, color: d.accent, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10, fontWeight: 500 }}>Case Study</p>
-                  <p style={{ fontSize: 13.5, color: "#C4A882", fontWeight: 500, marginBottom: 8 }}>{d.caseStudy.title}</p>
-                  <p style={{ color: "#4A3F33", fontSize: 13.5, lineHeight: 1.7, fontWeight: 300 }}>{d.caseStudy.body}</p>
-                </div>
-              </div>
-              <div style={{ order: even ? 1 : 0, background: "#120F0C", border: "1px solid #1E1A15", borderRadius: 12, padding: "30px 14px 22px" }}>
-                <p style={{ textAlign: "center", fontSize: 10, color: "#4A3F33", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 2 }}>Skill Proficiency</p>
-                <Spider data={d.skills} color={d.accent} />
-              </div>
-            </div>
+          <p style="font-size:15.5px;color:#6B5744;line-height:1.75;margin-bottom:30px;font-weight:300;">${d.desc}</p>
+          <div style="border-left:2px solid ${d.accent}28;padding-left:20px;">
+            <p style="font-size:10px;color:${d.accent};letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;font-weight:500;">Case Study</p>
+            <p style="font-size:13.5px;color:#C4A882;font-weight:500;margin-bottom:8px;">${d.case_title}</p>
+            <p style="color:#4A3F33;font-size:13.5px;line-height:1.7;font-weight:300;">${d.case_body}</p>
           </div>
         </div>
-      );
-    }
-
-    function Differentiators() {
-      return (
-        <section>
-          <div style={{ padding: "96px 24px 0", textAlign: "center", background: "#0C0A09" }}>
-            <Reveal>
-              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>What I bring</p>
-              <h2 className="s-title">Three dimensions</h2>
-            </Reveal>
-          </div>
-          {DIFFS.map((d, i) => <DiffCard key={d.id} d={d} i={i} />)}
-        </section>
-      );
-    }
-
-    /* ─── MY STORY ───────────────────────────────────────────────────── */
-
-    function Acc({ open, onToggle, label, gold, children }) {
-      return (
-        <div style={{ border: `1px solid ${open ? (gold ? "#D4A85330" : "#2A221A") : "#1A140F"}`, borderRadius: 9, overflow: "hidden", marginBottom: 4, transition: "border-color .22s" }}>
-          <button onClick={onToggle} style={{ width: "100%", padding: gold ? "18px 20px" : "14px 18px", background: open ? "#161310" : "transparent", border: "none", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", color: open ? (gold ? "#D4A853" : "#C4A882") : "#6B5744", fontSize: gold ? 15.5 : 13.5, fontFamily: "inherit", fontWeight: 300, textAlign: "left", transition: "all .2s" }}>
-            <span>{label}</span>
-            <span style={{ fontSize: 11, transform: open ? "rotate(180deg)" : "none", transition: "transform .22s", display: "inline-block", color: "#D4A85366" }}>▾</span>
-          </button>
-          {open && <div style={{ padding: gold ? "0 20px 20px" : "0 18px 16px", animation: "su .22s ease" }}>{children}</div>}
+        <div style="order:${even ? 1 : 0};" class="spider-card">
+          <p style="text-align:center;font-size:10px;color:#4A3F33;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2px;">Skill Proficiency</p>
+          <div class="spider-chart" data-diff-index="${i}"></div>
         </div>
-      );
+      </div>
+    </div>
+  `;
+  diffsContainer.appendChild(section);
+});
+
+// Draw spider charts
+document.querySelectorAll('.spider-chart').forEach(el => {
+  const idx = parseInt(el.dataset.diffIndex);
+  drawSpider(el, DIFFS[idx].skills, DIFFS[idx].accent);
+});
+
+// ═══════════════════════════════════════════
+// MY STORY ACCORDION
+// ═══════════════════════════════════════════
+const storyContainer = document.getElementById('story-accordion');
+const mainAcc = document.createElement('div');
+mainAcc.className = 'acc-outer gold';
+mainAcc.innerHTML = `
+  <button class="acc-btn gold" onclick="toggleMainStory()">
+    <span>Want the full backstory?</span>
+    <span class="acc-arrow">▾</span>
+  </button>
+  <div class="acc-body gold" id="story-body">
+    <p style="color:#4A3F33;line-height:1.8;font-size:13.5px;font-weight:300;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #1A140F;">
+      I walk into a room and instinctively start mentally reorganizing it — what goes where, what's essential, what's just noise. I bring that same lens to my work: untangling messy problems, aligning stakeholders, and turning ambiguity into focused, strategic action.
+    </p>
+    <div id="sub-stories" style="display:flex;flex-direction:column;"></div>
+  </div>
+`;
+storyContainer.appendChild(mainAcc);
+
+const subStories = document.getElementById('sub-stories');
+STORIES.forEach((s, i) => {
+  const acc = document.createElement('div');
+  acc.className = 'acc-outer';
+  acc.setAttribute('data-story-index', i);
+  acc.innerHTML = `
+    <button class="acc-btn" onclick="toggleSubStory(${i})">
+      <span>${s.title}</span>
+      <span class="acc-arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <p style="color:#4A3F33;line-height:1.75;font-size:13.5px;font-weight:300;">${s.body}</p>
+    </div>
+  `;
+  subStories.appendChild(acc);
+});
+
+function toggleMainStory() {
+  mainAcc.classList.toggle('open');
+}
+
+function toggleSubStory(i) {
+  const acc = document.querySelector(`[data-story-index="${i}"]`);
+  acc.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════
+// REVEAL ON SCROLL (Intersection Observer)
+// ═══════════════════════════════════════════
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
+  });
+}, { threshold: 0.15 });
 
-    function MyStory() {
-      const [main, setMain] = useState(false);
-      const [open, setOpen] = useState({});
-      const tog = (i) => setOpen(s => ({ ...s, [i]: !s[i] }));
-      return (
-        <section id="story" style={{ padding: "110px 24px", background: "#0E0B09" }}>
-          <HR />
-          <div style={{ maxWidth: 620, margin: "72px auto 0" }}>
-            <Reveal>
-              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>Background</p>
-              <h2 className="s-title">My story</h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div style={{ marginTop: 44 }}>
-                <Acc open={main} onToggle={() => setMain(!main)} label="Want the full backstory?" gold>
-                  <p style={{ color: "#4A3F33", lineHeight: 1.8, fontSize: 13.5, fontWeight: 300, marginBottom: 16, paddingBottom: 16, borderBottom: "1px solid #1A140F" }}>
-                    I walk into a room and instinctively start mentally reorganizing it — what goes where, what's essential, what's just noise. I bring that same lens to my work: untangling messy problems, aligning stakeholders, and turning ambiguity into focused, strategic action.
-                  </p>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    {STORIES.map((s, i) => (
-                      <Acc key={i} open={!!open[i]} onToggle={() => tog(i)} label={s.title}>
-                        <p style={{ color: "#4A3F33", lineHeight: 1.75, fontSize: 13.5, fontWeight: 300 }}>{s.body}</p>
-                      </Acc>
-                    ))}
-                  </div>
-                </Acc>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      );
-    }
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    /* ─── FINAL ──────────────────────────────────────────────────────────── */
-
-    function Final() {
-      return (
-        <section id="resume" style={{ padding: "110px 24px 80px", background: "#0C0A09" }}>
-          <HR />
-          <div style={{ maxWidth: 480, margin: "72px auto 0", textAlign: "center" }}>
-            <Reveal>
-              <h2 className="s-title">Let's connect</h2>
-              <p style={{ color: "#4A3F33", fontSize: 14.5, lineHeight: 1.75, marginTop: 10, marginBottom: 44, fontWeight: 300 }}>
-                Looking to hire, collaborate, or just chat about product marketing — I'd love to hear from you.
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
-                <a href="https://www.linkedin.com/in/saji-kazemi/" target="_blank" rel="noreferrer" className="bg">LinkedIn</a>
-                <a href="https://drive.google.com/file/d/1z3ZnCFIUre7LWsjh1SO990UprbTtnx3J/view?usp=sharing" target="_blank" rel="noreferrer" className="bo">Resume</a>
-                <a href="mailto:sajikazemi@outlook.com" className="bg2">Contact Me</a>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p style={{ marginTop: 72, fontSize: 10.5, color: "#2A221A", letterSpacing: "0.16em", textTransform: "uppercase" }}>Built with AI · Made for startups · Designed for clarity</p>
-            </Reveal>
-          </div>
-        </section>
-      );
-    }
-
-    /* ─── ROOT ───────────────────────────────────────────────────────────── */
-
-    function App() {
-      const scrollTo = (id) => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      };
-
-      return (
-        <>
-          <Hero scrollTo={scrollTo} />
-          <Testimonials />
-          <Problems />
-          <Differentiators />
-          <MyStory />
-          <Final />
-        </>
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-  </script>
+// Also add a "resume" scroll anchor (for the intent dropdown "I want to interview you")
+// It points to the resume link — we'll just scroll to the Final section
+const resumeAnchor = document.createElement('div');
+resumeAnchor.id = 'resume';
+resumeAnchor.style.cssText = 'position:absolute;bottom:0;';
+document.querySelector('section:last-of-type').style.position = 'relative';
+document.querySelector('section:last-of-type').appendChild(resumeAnchor);
+</script>
 </body>
 </html>
