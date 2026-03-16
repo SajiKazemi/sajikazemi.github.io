@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saji Kazemi — Product Marketing Manager</title>
+  <meta name="description" content="Saji Kazemi — Product Marketing Manager. I research what customers want, craft the story, then prove it with data." />
+  <meta name="author" content="Saji Kazemi" />
+  <meta property="og:title" content="Who is Saji? — Product Marketing Manager" />
+  <meta property="og:description" content="I research what customers want, craft the story, then prove it with data." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sajikazemi.github.io" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24'>✦</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    ::selection { background: #D4A85325; color: #D4A853; }
+
+    .s-title { font-family: 'Lora', Georgia, serif; font-size: clamp(1.85rem, 4.5vw, 2.8rem); font-weight: 300; color: #C4A882; letter-spacing: -0.02em; line-height: 1.15; }
+
+    .nav-c { width: 34px; height: 34px; background: #120F0C; border: 1px solid #2A221A; border-radius: 50%; color: #6B5744; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; }
+    .nav-c:hover { border-color: #D4A85366; color: #D4A853; }
+
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+    @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr !important; } }
+
+    .bg  { padding: 12px 26px; background: #D4A853; color: #0C0A09; border: none; border-radius: 7px; font-size: 13.5px; font-family: inherit; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s; letter-spacing: 0.02em; }
+    .bg:hover { opacity: 0.85; }
+    .bo  { padding: 12px 26px; background: transparent; border: 1px solid #2A221A; border-radius: 7px; color: #6B5744; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; transition: all .2s; letter-spacing: 0.02em; text-decoration: none; display: inline-block; }
+    .bo:hover { border-color: #D4A85344; color: #C4A882; }
+    .bg2 { padding: 12px 26px; background: transparent; border: 1px solid #1A140F; border-radius: 7px; color: #4A3F33; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; letter-spacing: 0.02em; }
+    .bg2:hover { color: #6B5744; border-color: #2A221A; }
+
+    @keyframes fu  { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+    @keyframes di  { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:none; } }
+    @keyframes sr  { from { opacity:0; transform:translateX(26px); } to { opacity:1; transform:none; } }
+    @keyframes su  { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+    @keyframes bf  { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+    @keyframes pulse { 0%,100% { opacity:.25; } 50% { opacity:.7; } }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    /* ─────────────────────────────────────────
+       DATA
+       ───────────────────────────────────────── */
+
+    const TESTIMONIALS = [
+      {
+        name: "Dr. Christa Dhimo, DBA, MBA",
+        role: "Senior Advisor: Strategy, Innovation & Performance",
+        company: "Impono Partners",
+        quote: "It was a pleasure to watch Saji run with our market positioning and competitive strategy work — and do some of the best work I've seen in a decade. He takes direction and feedback equally well, unencumbered by ego.",
+        highlight: "best work I've seen in a decade",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Kristin Kostka, MPH",
+        role: "Senior Clinical Scientist in AI",
+        company: "Guy's and St Thomas' NHS Foundation Trust",
+        quote: "Saji is an exceptional analyst — sharp as a tack, incredibly meticulous and well-spoken. He's a dream to work with. You'll only wish you could find more projects for him to contribute to.",
+        highlight: "sharp as a tack, incredibly meticulous",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Justin Manjourides",
+        role: "Associate Professor of Biostatistics",
+        company: "Northeastern University",
+        quote: "Saji demonstrated an extraordinary ability to distill complex data into actionable business insights. He will elevate any team he works with — I would strongly recommend him for any role requiring analytical acumen and strategic thinking.",
+        highlight: "distill complex data into actionable business insights",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Diwi Dhir",
+        role: "VP — Analytics Solutions Manager",
+        company: "JPMorganChase",
+        quote: "Saji has a knack for problem-solving in high-pressure situations. He knows how to find clarity even when directions aren't clear — any team would be fortunate to have him on board.",
+        highlight: "find clarity even when directions aren't clear",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Ben Brink",
+        role: "Founder",
+        company: "Flux Forward",
+        quote: "Saji was great at creating promotional materials and managing media tasks for over 50 events. His creativity, teamwork, and positive attitude made him a key part of our team. I highly recommend him for any marketing role.",
+        highlight: "creativity, teamwork, and positive attitude",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Allison Hogan",
+        role: "Director, Student Services & Operations",
+        company: "Northeastern University",
+        quote: "Saji successfully managed projects including rebuilding department reporting through Tableau dashboards and a student lifecycle mapping project. He is incredibly reliable, hardworking, and dedicated — a valuable employee for any employer.",
+        highlight: "incredibly reliable, hardworking, and dedicated",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Leah Boccaccio",
+        role: "Senior Advisor",
+        company: "Harvard International Office",
+        quote: "Saji is a gifted problem solver and analytical thinker. He excels at special projects because of his attention to detail, conscientiousness, and efficiency — he will be such an asset to any office he joins.",
+        highlight: "gifted problem solver and analytical thinker",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Peter Buschkopf",
+        role: "Senior International Student Advisor",
+        company: "Boston University",
+        quote: "Saji demonstrated an aptitude for quickly identifying areas for improvement and making workflows more efficient. His innovation and dedication to perpetual improvement evoke admiration from his colleagues and superiors.",
+        highlight: "innovation and dedication to perpetual improvement",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Sahal Ahmad",
+        role: "Data Scientist",
+        company: "Amazon Web Services (AWS)",
+        quote: "Saji singlehandedly conceptualized and productionized a student data dashboard that changed how we looked at our process. His data-centric skills with business outcome-driven thinking will be a win for any team.",
+        highlight: "data-centric skills with business outcome-driven thinking",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Jad El Rez",
+        role: "Senior Consultant — AI & Data",
+        company: "Deloitte",
+        quote: "Saji has impeccable attention to detail and is a strong team player. He has a strong background in business analytics and is able to effectively communicate technical concepts to non-technical audiences.",
+        highlight: "impeccable attention to detail",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Dr. Roopa Rawjee",
+        role: "Executive Director, Office of International Engagement",
+        company: "Illinois State University",
+        quote: "Saji is a leader — he takes initiative and presents creative solutions to opportunities and challenges. His calm, positive, and resilient approach was incredibly impressive. He is a joy to work with and will be an asset to any organization.",
+        highlight: "calm, positive, and resilient",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Sabina Muccigrosso",
+        role: "International Student Services Associate",
+        company: "Northeastern University",
+        quote: "Saji is an amazing coworker who always gives his best to his work. He is extremely thoughtful, full of a variety of knowledge, and while at OGS he worked on a variety of projects, vastly improving how the office functioned.",
+        highlight: "vastly improving how the office functioned",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Annie Lopatin",
+        role: "Senior Product Manager, Hemostasis Instruments",
+        company: "Werfen North America",
+        quote: "Saji played a huge role in our MBA group projects, jumping in to lead and develop key elements. He was highly dependable and easy to work with throughout — a genuine team player.",
+        highlight: "highly dependable and easy to work with",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Nima Pourkhodabakhsh",
+        role: "Business Analyst",
+        company: "Aviense",
+        quote: "Saji is highly skilled at conveying complex ideas in a clear and concise manner, making him an invaluable resource to his colleagues and clients. His passion, exceptional skills, and dedication to excellence make him a precious asset to any organization.",
+        highlight: "conveying complex ideas in a clear and concise manner",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Mojtaba Noghabaei",
+        role: "Principal Research Scientist Engineer",
+        company: "Autodesk",
+        quote: "Saji is one of the best people to have as a partner. I highly recommend him for data analytics — he is very detail-oriented, meticulous, and passionate about his work.",
+        highlight: "one of the best people to have as a partner",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Sepide Tabatabaei",
+        role: "Partner",
+        company: "Iran Headhunting Community",
+        quote: "Saji is creative, smart, and has excellent communication skills. His ability to focus helped him become the business expert he is now. He is one of the best in his field and always willing to share best practices.",
+        highlight: "one of the best in his field",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Majid Jalilian",
+        role: "Back End Developer",
+        company: "Takhfifan",
+        quote: "Saji's important feature, in addition to his management skills, is the motivation and effort he puts into the success of the work. He has played a significant role in the first sales and marketing of Kelasend.",
+        highlight: "motivation and effort he puts into the success of the work",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Sina Sedaghat Baghbani",
+        role: "Operations and Automation Specialist",
+        company: "3S Network Inc.",
+        quote: "Saji's tenacity and kindness are qualities that were very apparent to me. He bravely accepts his mistakes and works hard toward learning and progress. I recommend him for business-based projects — his passion and talent are clear.",
+        highlight: "tenacity and kindness",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Reza Mokhtarpour",
+        role: "Head of Talent Acquisition",
+        company: "Ofogh Koorosh Chain Stores",
+        quote: "Saji's knowledge in marketing is exceptional. He is creative, smart, has excellent communication skills, and is willing to help when you need it — the kind of person who does anything for the group's benefit.",
+        highlight: "knowledge in marketing is exceptional",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "Morteza Mosafer",
+        role: "Senior Sales and Supply Planning Specialist",
+        company: "Snappmarket",
+        quote: "Saji faces reality very well and tries to reduce job stress for the whole team. He is quick, thoughtful, and very interested in comprehensive research. I hope no one loses the experience of working with Saji.",
+        highlight: "quick, thoughtful, and very interested in comprehensive research",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+      {
+        name: "MohammadAli Milanisadr",
+        role: "Senior Product Manager",
+        company: "Private Company",
+        quote: "Saji is conscientious — he also encourages others to take action and be optimistic. The kind of teammate who lifts the energy of everyone around him.",
+        highlight: "encourages others to take action and be optimistic",
+        linkedinUrl: "https://www.linkedin.com/in/saji-kazemi/",
+        img: null,
+      },
+    ];
+
+    const PROBLEMS = [
+      { q: "Not sure what your customers actually want?", a: "I run customer research & market analysis", eg: "Like when I identified unmet needs in digital learning through competitive analysis and user interviews." },
+      { q: "Struggling to explain your product's value?", a: "I craft positioning & messaging that clicks", eg: "I've positioned platforms for nationally recognized creators by translating features into outcomes." },
+      { q: "Need to launch but don't have a plan?", a: "I build go-to-market strategies that scale", eg: "Developed launch campaigns that drove 35% user growth in the first quarter." },
+      { q: "Can't tell if your marketing is actually working?", a: "I prove impact with data & analytics", eg: "I track the metrics that matter — from acquisition to activation to revenue." },
+      { q: "Competing in a crowded market?", a: "I run competitive analysis to find your edge", eg: "I map competitor positioning to surface white space opportunities." },
+    ];
+
+    const DIFFS = [
+      {
+        id: "analytical", label: "Analytical", num: "01", accent: "#D4A853",
+        desc: "I dig into the data, find patterns, and turn insights into action. Numbers tell stories — I just know how to listen.",
+        caseStudy: { title: "Market Analysis for EdTech Platform", body: "Conducted competitive landscape analysis and user research that identified a $2B market gap. The insights shaped the entire product roadmap and go-to-market strategy." },
+        skills: [{ skill: "Data Analysis", value: 90 }, { skill: "Market Research", value: 85 }, { skill: "Customer Insights", value: 88 }, { skill: "Competitive Intel", value: 82 }, { skill: "Analytics Tools", value: 80 }],
+      },
+      {
+        id: "narrative", label: "Narrative", num: "02", accent: "#C4956A",
+        desc: "Great marketing connects needs with stories. I translate features into feelings and data into narratives that stick.",
+        caseStudy: { title: "Positioning for Creator Platform", body: "Crafted a messaging framework for nationally recognized creators that increased conversion by 40%. Turned 'tool for making content' into 'platform for building your legacy.'" },
+        skills: [{ skill: "Storytelling", value: 92 }, { skill: "Copywriting", value: 88 }, { skill: "Positioning", value: 90 }, { skill: "Messaging", value: 87 }, { skill: "Content Creation", value: 85 }],
+      },
+      {
+        id: "strategic", label: "Strategic", num: "03", accent: "#A07850",
+        desc: "I see the big picture, prioritize ruthlessly, and align stakeholders around what actually moves the needle.",
+        caseStudy: { title: "Go-to-Market for SaaS Launch", body: "Designed and executed a multi-channel launch that drove 35% user growth in Q1. Built from scratch: customer segmentation, pricing, channel mix, and success metrics." },
+        skills: [{ skill: "GTM Strategy", value: 90 }, { skill: "Business Acumen", value: 88 }, { skill: "Stakeholder Mgmt", value: 85 }, { skill: "Prioritization", value: 92 }, { skill: "Execution", value: 89 }],
+      },
+    ];
+
+    const STORIES = [
+      { title: "Basketball", body: "Basketball taught me everything about teamwork, resilience, and reading the room. Winning isn't just about individual talent — it's about understanding roles, adapting to pressure, and executing when it counts. Those late-game moments where you need to stay calm and make the right call? That's basically every product launch." },
+      { title: "Civil Engineering", body: "Started in civil engineering thinking I'd build bridges and roads. Turns out, I was more interested in building systems and solving structural problems at a strategic level. Engineering taught me to think in frameworks, validate assumptions with data, and never trust a solution until you've stress-tested it." },
+      { title: "MBA at Northeastern", body: "My MBA in Marketing and Business Analytics is where everything clicked. I combined analytical rigor from engineering with storytelling and business strategy. Also became a Certified Scrum Product Owner (CSPO) — because shipping fast beats planning forever." },
+      { title: "Startups", body: "Startups showed me what it means to move fast and own outcomes. No bureaucracy, no endless approvals — just: here's the problem, figure it out, ship it. I've helped launch platforms, grow user bases, and position products in crowded markets." },
+    ];
+
+    const INTENTS = [
+      { label: "I want to interview you", target: "resume" },
+      { label: "I'm looking to hire you", target: "recommendations" },
+      { label: "I want to work with you", target: "recommendations" },
+      { label: "I want to see your results", target: "analytical" },
+      { label: "I'm curious about your story", target: "story" },
+    ];
+
+    /* ─── UTILITIES ──────────────────────────────────────────────────────── */
+
+    function useInView(threshold = 0.15) {
+      const ref = useRef(null);
+      const [vis, setVis] = useState(false);
+      useEffect(() => {
+        const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold });
+        if (ref.current) o.observe(ref.current);
+        return () => o.disconnect();
+      }, []);
+      return [ref, vis];
+    }
+
+    function Reveal({ children, delay = 0, style = {} }) {
+      const [ref, vis] = useInView();
+      return (
+        <div ref={ref} style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(28px)", transition: `opacity .8s ${delay}s cubic-bezier(.16,1,.3,1), transform .8s ${delay}s cubic-bezier(.16,1,.3,1)`, ...style }}>
+          {children}
+        </div>
+      );
+    }
+
+    function HR() {
+      return <div style={{ height: 1, background: "linear-gradient(90deg, transparent 0%, #2A221A 30%, #2A221A 70%, transparent 100%)" }} />;
+    }
+
+    /* ─── SPIDER CHART ───────────────────────────────────────────────────── */
+
+    function Spider({ data, color }) {
+      return (
+        <Recharts.ResponsiveContainer width="100%" height={260}>
+          <Recharts.RadarChart data={data} margin={{ top: 10, right: 28, bottom: 10, left: 28 }}>
+            <Recharts.PolarGrid stroke="#2A221A" strokeWidth={1} />
+            <Recharts.PolarAngleAxis dataKey="skill" tick={{ fill: "#6B5744", fontSize: 10.5, fontFamily: "inherit", fontWeight: 400 }} />
+            <Recharts.PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} stroke="transparent" />
+            <Recharts.Radar dataKey="value" stroke={color} fill={color} fillOpacity={0.15} strokeWidth={1.5} dot={{ fill: color, r: 2.5 }} />
+          </Recharts.RadarChart>
+        </Recharts.ResponsiveContainer>
+      );
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────────── */
+
+    function Hero({ scrollTo }) {
+      const [open, setOpen] = useState(false);
+      const [chosen, setChosen] = useState(null);
+      const [hIdx, setHIdx] = useState(null);
+      const dropRef = useRef(null);
+
+      useEffect(() => {
+        const fn = (e) => { if (dropRef.current && !dropRef.current.contains(e.target)) setOpen(false); };
+        document.addEventListener("mousedown", fn);
+        return () => document.removeEventListener("mousedown", fn);
+      }, []);
+
+      const pick = (intent) => { setChosen(intent); setOpen(false); scrollTo(intent.target); };
+
+      return (
+        <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", background: "#0C0A09", padding: "80px 24px" }}>
+          <div style={{ position: "absolute", inset: 0, backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E")`, backgroundRepeat: "repeat", pointerEvents: "none", zIndex: 1 }} />
+          <div style={{ position: "absolute", top: "35%", left: "50%", transform: "translate(-50%,-50%)", width: 800, height: 500, background: "radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%)", pointerEvents: "none", zIndex: 1 }} />
+
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 660, width: "100%", textAlign: "center" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 40, animation: "fu .6s ease both" }}>
+              <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4A853", flexShrink: 0, boxShadow: "0 0 6px #D4A853" }} />
+              <span style={{ fontSize: 11, color: "#6B5744", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 400 }}>Product Marketing Manager</span>
+              <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4A853", flexShrink: 0, boxShadow: "0 0 6px #D4A853" }} />
+            </div>
+
+            <h1 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: "clamp(3.4rem, 9vw, 6rem)", fontWeight: 300, color: "#EDE5D8", lineHeight: 1, letterSpacing: "-0.03em", marginBottom: 30, animation: "fu .6s .1s ease both" }}>
+              Who is{" "}
+              <span style={{ fontStyle: "italic", color: "#D4A853" }}>Saji</span>?
+            </h1>
+
+            <p style={{ fontSize: "clamp(.95rem, 2.2vw, 1.1rem)", color: "#6B5744", lineHeight: 1.75, maxWidth: 480, margin: "0 auto 8px", fontWeight: 300, animation: "fu .6s .18s ease both" }}>
+              I research what customers want, craft the story, then prove it with data.
+            </p>
+            <p style={{ fontSize: 13, color: "#3A2F23", lineHeight: 1.6, maxWidth: 420, margin: "0 auto", fontWeight: 300, animation: "fu .6s .22s ease both" }}>
+              (Yes — I use AI. Built this with it too. Would've taken forever 5 years ago.)
+            </p>
+
+            <div ref={dropRef} style={{ marginTop: 52, maxWidth: 380, marginLeft: "auto", marginRight: "auto", animation: "fu .6s .3s ease both" }}>
+              <p style={{ fontSize: 11, color: "#3A2F23", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10 }}>Why are you here?</p>
+              <div style={{ position: "relative" }}>
+                <button
+                  onClick={() => setOpen(o => !o)}
+                  style={{ width: "100%", padding: "14px 18px", background: "#120F0C", border: `1px solid ${open ? "#D4A85355" : "#221C16"}`, borderRadius: 9, display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", color: chosen ? "#D4A853" : "#4A3F33", fontSize: 14, fontFamily: "inherit", fontWeight: 300, transition: "border-color .2s", letterSpacing: "0.01em" }}
+                >
+                  <span>{chosen ? chosen.label : "Select a reason..."}</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform .22s", flexShrink: 0 }}>
+                    <path d="M1.5 4l4.5 4.5L10.5 4" stroke="#6B5744" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {open && (
+                  <div style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0, background: "#110E0B", border: "1px solid #221C16", borderRadius: 9, overflow: "hidden", zIndex: 100, boxShadow: "0 20px 50px rgba(0,0,0,.75)", animation: "di .16s ease" }}>
+                    {INTENTS.map((intent, i) => (
+                      <button
+                        key={i}
+                        onClick={() => pick(intent)}
+                        onMouseEnter={() => setHIdx(i)}
+                        onMouseLeave={() => setHIdx(null)}
+                        style={{ width: "100%", padding: "13px 18px", background: hIdx === i ? "#1A140F" : "transparent", border: "none", borderBottom: i < INTENTS.length - 1 ? "1px solid #1A140F" : "none", color: hIdx === i ? "#D4A853" : "#6B5744", fontSize: 13.5, fontFamily: "inherit", fontWeight: 300, textAlign: "left", cursor: "pointer", transition: "all .12s", display: "flex", alignItems: "center", gap: 10, letterSpacing: "0.01em" }}
+                      >
+                        <span style={{ width: 3.5, height: 3.5, borderRadius: "50%", background: hIdx === i ? "#D4A853" : "#2A221A", flexShrink: 0, transition: "background .12s" }} />
+                        {intent.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div style={{ marginTop: 80, display: "flex", flexDirection: "column", alignItems: "center", animation: "fu .6s .45s ease both" }}>
+              <div style={{ width: 1, height: 48, background: "linear-gradient(to bottom, transparent, #3A2F23)", animation: "pulse 2.5s ease-in-out infinite" }} />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────────────────── */
+
+    function Avatar({ img, name }) {
+      const initials = name.replace(/^Dr\.?\s*/i, "").split(" ").slice(0, 2).map(w => w[0]).join("").toUpperCase();
+      if (img) {
+        return <img src={img} alt={name} style={{ width: 42, height: 42, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "1.5px solid #2A221A" }} />;
+      }
+      return (
+        <div style={{ width: 42, height: 42, borderRadius: "50%", flexShrink: 0, border: "1.5px solid #2A221A", background: "#1E1A15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 500, color: "#6B5744", letterSpacing: "0.05em" }}>
+          {initials}
+        </div>
+      );
+    }
+
+    function TCard({ t }) {
+      const idx = t.quote.indexOf(t.highlight);
+      const before = t.quote.slice(0, idx);
+      const after = t.quote.slice(idx + t.highlight.length);
+      return (
+        <div style={{ background: "#120F0C", border: "1px solid #1E1A15", borderRadius: 12, padding: "24px 26px", display: "flex", gap: 18, alignItems: "flex-start" }}>
+          <Avatar img={t.img} name={t.name} />
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 9 }}>
+              <div>
+                <div style={{ color: "#C4A882", fontSize: 13.5, fontWeight: 500 }}>{t.name}</div>
+                <div style={{ color: "#4A3F33", fontSize: 12, marginTop: 2 }}>{t.role} · {t.company}</div>
+              </div>
+              <a
+                href={t.linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "#4A3F33", fontSize: 10, fontWeight: 600, textDecoration: "none", letterSpacing: "0.05em", border: "1px solid #2A221A", borderRadius: 4, padding: "3px 7px", transition: "all .2s", flexShrink: 0, alignSelf: "flex-start" }}
+                onMouseEnter={e => { e.currentTarget.style.color = "#D4A853"; e.currentTarget.style.borderColor = "#D4A85355"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "#4A3F33"; e.currentTarget.style.borderColor = "#2A221A"; }}
+              >in</a>
+            </div>
+            <p style={{ color: "#6B5744", lineHeight: 1.7, fontSize: 13.5, fontWeight: 300 }}>
+              "{before}<strong style={{ color: "#C4A882", fontWeight: 500 }}>{t.highlight}</strong>{after}"
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function Testimonials() {
+      const pairs = [];
+      for (let i = 0; i < TESTIMONIALS.length; i += 2) pairs.push(TESTIMONIALS.slice(i, i + 2));
+      const [idx, setIdx] = useState(0);
+      const [k, setK] = useState(0);
+      const go = (n) => { setIdx(n); setK(x => x + 1); };
+
+      return (
+        <section id="recommendations" style={{ padding: "110px 24px", background: "#0E0B09" }}>
+          <HR />
+          <div style={{ maxWidth: 780, margin: "72px auto 0" }}>
+            <Reveal>
+              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>Social Proof</p>
+              <h2 className="s-title">First, let's hear from others</h2>
+              <p style={{ color: "#4A3F33", fontSize: 14.5, fontWeight: 300, marginTop: 10, marginBottom: 52 }}>I can claim anything — we need proof first.</p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div key={k} style={{ display: "flex", flexDirection: "column", gap: 10, animation: "sr .4s cubic-bezier(.16,1,.3,1)" }}>
+                {pairs[idx].map((t, i) => <TCard key={i} t={t} />)}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 28 }}>
+                <button onClick={() => go((idx - 1 + pairs.length) % pairs.length)} className="nav-c">←</button>
+                {pairs.map((_, i) => (
+                  <button key={i} onClick={() => go(i)} style={{ width: i === idx ? 22 : 6, height: 5, borderRadius: 2.5, background: i === idx ? "#D4A853" : "#2A221A", border: "none", cursor: "pointer", transition: "all .3s", padding: 0 }} />
+                ))}
+                <button onClick={() => go((idx + 1) % pairs.length)} className="nav-c">→</button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── PROBLEMS ───────────────────────────────────────────────────────── */
+
+    function Problems() {
+      const [i, setI] = useState(0);
+      const [k, setK] = useState(0);
+      useEffect(() => {
+        const t = setInterval(() => { setI(x => (x + 1) % PROBLEMS.length); setK(x => x + 1); }, 5200);
+        return () => clearInterval(t);
+      }, []);
+      const go = (n) => { setI(n); setK(x => x + 1); };
+      const p = PROBLEMS[i];
+
+      return (
+        <section style={{ padding: "110px 24px", background: "#0C0A09" }}>
+          <HR />
+          <div style={{ maxWidth: 700, margin: "72px auto 0" }}>
+            <Reveal>
+              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>Value</p>
+              <h2 className="s-title">Problems I solve</h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div style={{ marginTop: 44, background: "#120F0C", border: "1px solid #1E1A15", borderRadius: 14, padding: "48px 42px", minHeight: 258, display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", overflow: "hidden" }}>
+                <div style={{ position: "absolute", top: -50, right: -50, width: 200, height: 200, background: "radial-gradient(circle, rgba(212,168,83,0.045) 0%, transparent 70%)", pointerEvents: "none" }} />
+                <div key={k} style={{ animation: "su .38s cubic-bezier(.16,1,.3,1)" }}>
+                  <p style={{ fontSize: 10, color: "#4A3F33", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 18 }}>Challenge {i + 1} / {PROBLEMS.length}</p>
+                  <h3 style={{ fontSize: "clamp(1.25rem, 3vw, 1.8rem)", color: "#EDE5D8", fontWeight: 300, lineHeight: 1.35, marginBottom: 18, letterSpacing: "-0.01em", fontFamily: "'Lora', serif" }}>{p.q}</h3>
+                  <p style={{ fontSize: 15.5, color: "#D4A853", fontWeight: 400, marginBottom: 10 }}>→ {p.a}</p>
+                  <p style={{ color: "#4A3F33", fontSize: 13.5, lineHeight: 1.65, fontWeight: 300 }}>{p.eg}</p>
+                </div>
+                <div style={{ display: "flex", gap: 5, marginTop: 32 }}>
+                  {PROBLEMS.map((_, n) => (
+                    <button key={n} onClick={() => go(n)} style={{ flex: 1, height: 2, background: "#1A140F", border: "none", borderRadius: 1, cursor: "pointer", padding: 0, position: "relative", overflow: "hidden" }}>
+                      {n === i && <div style={{ position: "absolute", inset: 0, background: "#D4A853", animation: "bf 5.2s linear forwards", transformOrigin: "left" }} />}
+                      {n < i && <div style={{ position: "absolute", inset: 0, background: "#3A2F23" }} />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div style={{ marginTop: 18, padding: "22px 28px", background: "#0E0B09", border: "1px solid #1A140F", borderRadius: 10 }}>
+                <p style={{ color: "#4A3F33", fontSize: 13.5, lineHeight: 1.75, fontWeight: 300 }}>
+                  <span style={{ color: "#6B5744" }}>How?</span> Through analytical rigor, storytelling, and strategic thinking. And look — there are probably challenges I haven't faced yet. But I've built the critical thinking muscle to find the fastest path to a solution. That's the job.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── DIFFERENTIATORS ────────────────────────────────────────────────── */
+
+    function DiffCard({ d, i }) {
+      const [ref, vis] = useInView(0.1);
+      const even = i % 2 === 0;
+      return (
+        <div ref={ref} id={d.id} style={{ padding: "96px 24px", background: i % 2 === 0 ? "#0C0A09" : "#0E0B09", opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(36px)", transition: "opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1)" }}>
+          <HR />
+          <div style={{ maxWidth: 940, margin: "72px auto 0" }}>
+            <div className="diff-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 52, alignItems: "center" }}>
+              <div style={{ order: even ? 0 : 1 }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 26 }}>
+                  <span style={{ fontSize: 11, color: "#2A221A", letterSpacing: "0.12em", fontWeight: 500 }}>{d.num}</span>
+                  <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", fontWeight: 300, color: d.accent, letterSpacing: "-0.04em", lineHeight: 1, fontStyle: "italic" }}>{d.label}</h2>
+                </div>
+                <p style={{ fontSize: 15.5, color: "#6B5744", lineHeight: 1.75, marginBottom: 30, fontWeight: 300 }}>{d.desc}</p>
+                <div style={{ borderLeft: `2px solid ${d.accent}28`, paddingLeft: 20 }}>
+                  <p style={{ fontSize: 10, color: d.accent, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10, fontWeight: 500 }}>Case Study</p>
+                  <p style={{ fontSize: 13.5, color: "#C4A882", fontWeight: 500, marginBottom: 8 }}>{d.caseStudy.title}</p>
+                  <p style={{ color: "#4A3F33", fontSize: 13.5, lineHeight: 1.7, fontWeight: 300 }}>{d.caseStudy.body}</p>
+                </div>
+              </div>
+              <div style={{ order: even ? 1 : 0, background: "#120F0C", border: "1px solid #1E1A15", borderRadius: 12, padding: "30px 14px 22px" }}>
+                <p style={{ textAlign: "center", fontSize: 10, color: "#4A3F33", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 2 }}>Skill Proficiency</p>
+                <Spider data={d.skills} color={d.accent} />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Differentiators() {
+      return (
+        <section>
+          <div style={{ padding: "96px 24px 0", textAlign: "center", background: "#0C0A09" }}>
+            <Reveal>
+              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>What I bring</p>
+              <h2 className="s-title">Three dimensions</h2>
+            </Reveal>
+          </div>
+          {DIFFS.map((d, i) => <DiffCard key={d.id} d={d} i={i} />)}
+        </section>
+      );
+    }
+
+    /* ─── MY STORY ───────────────────────────────────────────────────── */
+
+    function Acc({ open, onToggle, label, gold, children }) {
+      return (
+        <div style={{ border: `1px solid ${open ? (gold ? "#D4A85330" : "#2A221A") : "#1A140F"}`, borderRadius: 9, overflow: "hidden", marginBottom: 4, transition: "border-color .22s" }}>
+          <button onClick={onToggle} style={{ width: "100%", padding: gold ? "18px 20px" : "14px 18px", background: open ? "#161310" : "transparent", border: "none", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", color: open ? (gold ? "#D4A853" : "#C4A882") : "#6B5744", fontSize: gold ? 15.5 : 13.5, fontFamily: "inherit", fontWeight: 300, textAlign: "left", transition: "all .2s" }}>
+            <span>{label}</span>
+            <span style={{ fontSize: 11, transform: open ? "rotate(180deg)" : "none", transition: "transform .22s", display: "inline-block", color: "#D4A85366" }}>▾</span>
+          </button>
+          {open && <div style={{ padding: gold ? "0 20px 20px" : "0 18px 16px", animation: "su .22s ease" }}>{children}</div>}
+        </div>
+      );
+    }
+
+    function MyStory() {
+      const [main, setMain] = useState(false);
+      const [open, setOpen] = useState({});
+      const tog = (i) => setOpen(s => ({ ...s, [i]: !s[i] }));
+      return (
+        <section id="story" style={{ padding: "110px 24px", background: "#0E0B09" }}>
+          <HR />
+          <div style={{ maxWidth: 620, margin: "72px auto 0" }}>
+            <Reveal>
+              <p style={{ fontSize: 11, color: "#4A3F33", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>Background</p>
+              <h2 className="s-title">My story</h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div style={{ marginTop: 44 }}>
+                <Acc open={main} onToggle={() => setMain(!main)} label="Want the full backstory?" gold>
+                  <p style={{ color: "#4A3F33", lineHeight: 1.8, fontSize: 13.5, fontWeight: 300, marginBottom: 16, paddingBottom: 16, borderBottom: "1px solid #1A140F" }}>
+                    I walk into a room and instinctively start mentally reorganizing it — what goes where, what's essential, what's just noise. I bring that same lens to my work: untangling messy problems, aligning stakeholders, and turning ambiguity into focused, strategic action.
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {STORIES.map((s, i) => (
+                      <Acc key={i} open={!!open[i]} onToggle={() => tog(i)} label={s.title}>
+                        <p style={{ color: "#4A3F33", lineHeight: 1.75, fontSize: 13.5, fontWeight: 300 }}>{s.body}</p>
+                      </Acc>
+                    ))}
+                  </div>
+                </Acc>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── FINAL ──────────────────────────────────────────────────────────── */
+
+    function Final() {
+      return (
+        <section id="resume" style={{ padding: "110px 24px 80px", background: "#0C0A09" }}>
+          <HR />
+          <div style={{ maxWidth: 480, margin: "72px auto 0", textAlign: "center" }}>
+            <Reveal>
+              <h2 className="s-title">Let's connect</h2>
+              <p style={{ color: "#4A3F33", fontSize: 14.5, lineHeight: 1.75, marginTop: 10, marginBottom: 44, fontWeight: 300 }}>
+                Looking to hire, collaborate, or just chat about product marketing — I'd love to hear from you.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
+                <a href="https://www.linkedin.com/in/saji-kazemi/" target="_blank" rel="noreferrer" className="bg">LinkedIn</a>
+                <a href="https://drive.google.com/file/d/1z3ZnCFIUre7LWsjh1SO990UprbTtnx3J/view?usp=sharing" target="_blank" rel="noreferrer" className="bo">Resume</a>
+                <a href="mailto:sajikazemi@outlook.com" className="bg2">Contact Me</a>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p style={{ marginTop: 72, fontSize: 10.5, color: "#2A221A", letterSpacing: "0.16em", textTransform: "uppercase" }}>Built with AI · Made for startups · Designed for clarity</p>
+            </Reveal>
+          </div>
+        </section>
+      );
+    }
+
+    /* ─── ROOT ───────────────────────────────────────────────────────────── */
+
+    function App() {
+      const scrollTo = (id) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      return (
+        <>
+          <Hero scrollTo={scrollTo} />
+          <Testimonials />
+          <Problems />
+          <Differentiators />
+          <MyStory />
+          <Final />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
