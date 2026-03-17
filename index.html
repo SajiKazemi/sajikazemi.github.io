@@ -11,16 +11,16 @@
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; font-size: 16.5px; }
+body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; font-size: 17.5px; line-height: 1.55; }
 ::selection { background: #D4A85325; color: #D4A853; }
 
 /* ─── READABILITY (keep theme, increase contrast) ─── */
 /* Many elements use inline muted colors; these overrides brighten them without changing layout/theme. */
-[style*="color:#6B5744"] { color: #A79078 !important; }
-[style*="color:#4A3F33"] { color: #8E7A65 !important; }
-[style*="color:#3A2F23"] { color: #7A6755 !important; }
-.bo, .nav-c, .acc-btn, .tcard-avatar, .tcard-quote { color: #A79078; }
-.bg2, .tcard-role, .tcard-in { color: #8E7A65; }
+[style*="color:#6B5744"] { color: #B5A18C !important; }
+[style*="color:#4A3F33"] { color: #A28F7A !important; }
+[style*="color:#3A2F23"] { color: #907E6A !important; }
+.bo, .nav-c, .acc-btn, .tcard-avatar, .tcard-quote { color: #B5A18C; }
+.bg2, .tcard-role, .tcard-in { color: #A28F7A; }
 
 /* ─── TYPOGRAPHY ─── */
 .s-title { font-family: 'Lora', Georgia, serif; font-size: clamp(1.85rem, 4.5vw, 2.8rem); font-weight: 300; color: #C4A882; letter-spacing: -0.02em; line-height: 1.15; }
@@ -28,13 +28,13 @@ body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -
 /* ─── BUTTONS ─── */
 .bg  { padding: 12px 26px; background: #D4A853; color: #0C0A09; border: none; border-radius: 7px; font-size: 13.5px; font-family: inherit; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s; letter-spacing: 0.02em; }
 .bg:hover { opacity: 0.85; }
-.bo  { padding: 12px 26px; background: transparent; border: 1px solid #2A221A; border-radius: 7px; color: #6B5744; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; transition: all .2s; letter-spacing: 0.02em; text-decoration: none; display: inline-block; }
+.bo  { padding: 12px 26px; background: transparent; border: 1px solid #2A221A; border-radius: 7px; color: #6B5744; font-size: 14.5px; font-family: inherit; font-weight: 300; cursor: pointer; transition: all .2s; letter-spacing: 0.02em; text-decoration: none; display: inline-block; }
 .bo:hover { border-color: #D4A85344; color: #C4A882; }
-.bg2 { padding: 12px 26px; background: transparent; border: 1px solid #1A140F; border-radius: 7px; color: #4A3F33; font-size: 13.5px; font-family: inherit; font-weight: 300; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; letter-spacing: 0.02em; }
+.bg2 { padding: 12px 26px; background: transparent; border: 1px solid #1A140F; border-radius: 7px; color: #4A3F33; font-size: 14.5px; font-family: inherit; font-weight: 300; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; letter-spacing: 0.02em; }
 .bg2:hover { color: #6B5744; border-color: #2A221A; }
 
 /* ─── NAV CIRCLES ─── */
-.nav-c { width: 34px; height: 34px; background: #120F0C; border: 1px solid #2A221A; border-radius: 50%; color: #6B5744; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; line-height: 1; }
+.nav-c { width: 36px; height: 36px; background: #120F0C; border: 1px solid #2A221A; border-radius: 50%; color: #6B5744; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; line-height: 1; }
 .nav-c:hover { border-color: #D4A85366; color: #D4A853; }
 
 /* ─── DIFF GRID ─── */
@@ -60,7 +60,7 @@ body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -
 .acc-outer { border: 1px solid #1A140F; border-radius: 9px; overflow: hidden; margin-bottom: 4px; transition: border-color .22s; }
 .acc-outer.open { border-color: #2A221A; }
 .acc-outer.gold.open { border-color: #D4A85330; }
-.acc-btn { width: 100%; padding: 14px 18px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #6B5744; font-size: 13.5px; font-family: inherit; font-weight: 300; text-align: left; transition: all .2s; }
+.acc-btn { width: 100%; padding: 15px 18px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #6B5744; font-size: 14.5px; font-family: inherit; font-weight: 300; text-align: left; transition: all .2s; }
 .acc-btn.gold { padding: 18px 20px; font-size: 15.5px; }
 .acc-outer.open .acc-btn { background: #161310; color: #C4A882; }
 .acc-outer.gold.open .acc-btn { color: #D4A853; }
@@ -79,7 +79,7 @@ body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -
 .tcard-role { color: #4A3F33; font-size: 12px; margin-top: 2px; }
 .tcard-in { color: #4A3F33; font-size: 10px; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; border: 1px solid #2A221A; border-radius: 4px; padding: 3px 7px; transition: all .2s; flex-shrink: 0; align-self: flex-start; }
 .tcard-in:hover { color: #D4A853; border-color: #D4A85355; }
-.tcard-quote { color: #A79078; line-height: 1.75; font-size: 14.5px; font-weight: 300; }
+.tcard-quote { color: #B5A18C; line-height: 1.75; font-size: 15.5px; font-weight: 300; }
 .tcard-quote strong { color: #C4A882; font-weight: 500; }
 
 /* ─── PROBLEMS CARD ─── */
