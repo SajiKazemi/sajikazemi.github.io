@@ -11,8 +11,16 @@
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -webkit-font-smoothing: antialiased; font-size: 16.5px; }
 ::selection { background: #D4A85325; color: #D4A853; }
+
+/* ─── READABILITY (keep theme, increase contrast) ─── */
+/* Many elements use inline muted colors; these overrides brighten them without changing layout/theme. */
+[style*="color:#6B5744"] { color: #A79078 !important; }
+[style*="color:#4A3F33"] { color: #8E7A65 !important; }
+[style*="color:#3A2F23"] { color: #7A6755 !important; }
+.bo, .nav-c, .acc-btn, .tcard-avatar, .tcard-quote { color: #A79078; }
+.bg2, .tcard-role, .tcard-in { color: #8E7A65; }
 
 /* ─── TYPOGRAPHY ─── */
 .s-title { font-family: 'Lora', Georgia, serif; font-size: clamp(1.85rem, 4.5vw, 2.8rem); font-weight: 300; color: #C4A882; letter-spacing: -0.02em; line-height: 1.15; }
@@ -71,7 +79,7 @@ body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -
 .tcard-role { color: #4A3F33; font-size: 12px; margin-top: 2px; }
 .tcard-in { color: #4A3F33; font-size: 10px; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; border: 1px solid #2A221A; border-radius: 4px; padding: 3px 7px; transition: all .2s; flex-shrink: 0; align-self: flex-start; }
 .tcard-in:hover { color: #D4A853; border-color: #D4A85355; }
-.tcard-quote { color: #6B5744; line-height: 1.7; font-size: 13.5px; font-weight: 300; }
+.tcard-quote { color: #A79078; line-height: 1.75; font-size: 14.5px; font-weight: 300; }
 .tcard-quote strong { color: #C4A882; font-weight: 500; }
 
 /* ─── PROBLEMS CARD ─── */
@@ -95,12 +103,12 @@ body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -
 
 /* ─── UNDER CONSTRUCTION ─── */
 .uc-banner { position: sticky; top: 0; z-index: 9999; background: rgba(18, 15, 12, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #1A140F; }
-.uc-inner { max-width: 980px; margin: 0 auto; padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.uc-inner { max-width: 980px; margin: 0 auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .uc-left { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
 .uc-dot { width: 7px; height: 7px; border-radius: 50%; background: #D4A853; box-shadow: 0 0 10px rgba(212,168,83,0.55); flex-shrink: 0; }
-.uc-text { color: #6B5744; font-size: 12.5px; font-weight: 300; letter-spacing: 0.02em; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.uc-text { color: #A79078; font-size: 14px; font-weight: 300; letter-spacing: 0.02em; line-height: 1.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .uc-text strong { color: #C4A882; font-weight: 500; }
-.uc-dismiss { background: transparent; border: 1px solid #2A221A; color: #6B5744; border-radius: 7px; padding: 7px 10px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 300; transition: all .2s; line-height: 1; }
+.uc-dismiss { background: transparent; border: 1px solid #2A221A; color: #A79078; border-radius: 8px; padding: 9px 12px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 300; transition: all .2s; line-height: 1; }
 .uc-dismiss:hover { border-color: #D4A85355; color: #D4A853; }
 @media (max-width: 520px) {
   .uc-text { white-space: normal; }
@@ -118,7 +126,7 @@ body { font-family: 'Outfit', sans-serif; background: #0C0A09; color: #F5F0E8; -
   <div class="uc-inner">
     <div class="uc-left">
       <span class="uc-dot" aria-hidden="true"></span>
-      <div class="uc-text"><strong>Under construction.</strong> I’m actively updating this site—some sections may change.</div>
+      <div class="uc-text"><strong>Under construction.</strong> I’m actively updating this site—some sections are placeholder for now.</div>
     </div>
     <button class="uc-dismiss" type="button" onclick="dismissUcBanner()" aria-label="Dismiss under construction notice">Dismiss</button>
   </div>
