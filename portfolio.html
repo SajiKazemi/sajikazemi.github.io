@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Saji Kazemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#F7F3EE; --surface:#FFFFFF; --surface-soft:#EEF3F9; --text:#2B3A4A; --muted:#5A6A7C; --accent:#2B5F8E; --border:#C7D5E4; --amber:#D4A853; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+    ::selection { background:#E8F0F8; color:var(--accent); }
+    .section-hr { height:1px; background:linear-gradient(90deg,transparent 0%,var(--border) 30%,var(--border) 70%,transparent 100%); }
+    .back-link { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:12.5px; text-decoration:none; letter-spacing:.05em; transition:color .2s; }
+    .back-link:hover { color:var(--accent); }
+    .hero-title { font-family:'Lora',Georgia,serif; font-size:clamp(2rem,5.6vw,3.8rem); font-weight:300; color:var(--accent); letter-spacing:-.03em; line-height:1.1; }
+    .controls { position:sticky; top:60px; z-index:40; background:rgba(247,243,238,.95); border-bottom:1px solid var(--border); backdrop-filter:blur(10px); padding:14px 24px; }
+    .search { width:100%; max-width:370px; padding:10px 14px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); font:300 13px 'Outfit',sans-serif; outline:none; }
+    .search:focus { border-color:#2B5F8E66; }
+    .search::placeholder { color:var(--muted); }
+    .view-btn { padding:8px 14px; border:1px solid var(--border); background:transparent; color:var(--muted); font:300 12px 'Outfit',sans-serif; cursor:pointer; }
+    .view-btn:first-child { border-radius:7px 0 0 7px; }
+    .view-btn:last-child { border-radius:0 7px 7px 0; border-left:none; }
+    .view-btn.active { background:var(--surface-soft); color:var(--accent); }
+    .pills { display:flex; gap:8px; flex-wrap:wrap; }
+    .pill { padding:6px 12px; border-radius:999px; border:1px solid var(--border); background:transparent; color:var(--muted); font:300 11px 'Outfit',sans-serif; letter-spacing:.04em; cursor:pointer; }
+    .pill.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px; }
+    .card { perspective:1000px; min-height:260px; height:280px; cursor:pointer; }
+    .card-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.4,0,.2,1); }
+    .card:hover .card-inner { transform:rotateY(180deg); }
+    .card.flipped .card-inner { transform:rotateY(180deg); }
+    .card-face { position:absolute; inset:0; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 16px; display:flex; flex-direction:column; backface-visibility:hidden; overflow:hidden; }
+    .card-face.back { transform:rotateY(180deg); background:#FDFEFF; }
+    .kicker { font-size:10px; color:var(--accent); letter-spacing:.13em; text-transform:uppercase; font-weight:500; margin-bottom:8px; }
+    .title { font-family:'Lora',Georgia,serif; font-size:1.05rem; font-weight:400; line-height:1.35; color:var(--text); }
+    .meta { font-size:13px; color:var(--muted); margin-top:5px; line-height:1.5; }
+    .body { margin-top:10px; font-size:14px; color:var(--muted); line-height:1.75; font-weight:300; }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:12px; }
+    .chip { font-size:11px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 10px; background:var(--surface-soft); }
+    .flip-hint { font-size:9px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; text-align:right; margin-top:8px; }
+    .link { color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; }
+    .link:hover { border-bottom-color:var(--accent); }
+    .timeline { display:flex; flex-direction:column; gap:12px; max-width:820px; }
+    .timeline-item { display:flex; gap:14px; }
+    .timeline-rail { width:18px; display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+    .timeline-dot { width:10px; height:10px; border-radius:50%; background:var(--accent); margin-top:8px; }
+    .timeline-line { width:1px; flex:1; background:linear-gradient(to bottom,#AAC0D3,transparent); margin-top:6px; }
+    .timeline-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 16px; flex:1; }
+    @media (max-width:700px) { .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(247,243,238,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);">
+    <a href="./index.html" class="back-link" aria-label="Back to homepage">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="#2B5F8E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      Saji Kazemi
+    </a>
+    <span style="font-family:'Lora',serif;font-size:14px;color:var(--muted);font-style:italic;">Portfolio</span>
+  </nav>
+
+  <section style="padding-top:120px;padding-bottom:40px;padding-left:24px;padding-right:24px;text-align:center;">
+    <div class="section-hr" style="max-width:980px;margin:0 auto 36px;"></div>
+    <p style="font-size:11px;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px;">Saji Kazemi · Portfolio</p>
+    <h1 class="hero-title" style="margin-bottom:12px;">Saji Kazemi</h1>
+    <p style="font-size:14.5px;color:var(--muted);font-weight:300;max-width:680px;margin:0 auto;line-height:1.75;">
+      Think of this as my highlight reel: strategy brain, storyteller voice, and data nerd energy, all in one place.
+    </p>
+  </section>
+
+  <section class="controls">
+    <div style="max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+        <input id="search" class="search" placeholder="Search role, org, category, keywords..." aria-label="Search portfolio cards">
+        <div style="display:flex;">
+          <button id="grid-view-btn" class="view-btn active" type="button">⊞ Grid</button>
+          <button id="timeline-view-btn" class="view-btn" type="button">≡ Timeline</button>
+        </div>
+      </div>
+      <div id="filters" class="pills"></div>
+      <p id="count" style="font-size:11px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;"></p>
+    </div>
+  </section>
+
+  <main style="max-width:980px;margin:0 auto;padding:28px 24px 90px;">
+    <div id="cards" class="grid"></div>
+    <div id="timeline" class="timeline" style="display:none;"></div>
+    <div id="empty" style="display:none;text-align:center;padding:60px 0;color:var(--muted);">No results. Try another filter or search term.</div>
+  </main>
+
+  <script>
+    const ITEMS = [
+      {type:"Work Experience", title:"Co-Founder", org:"Rekindle", date:"Aug 2025 – Present", location:"Boston, MA", summary:"Defined positioning, messaging, and GTM strategy for a hobby-rediscovery platform. Designed and launched a landing page informed by 70+ survey responses and 10 in-depth user interviews. Recruited and onboarded 5 founding buddies to validate the community layer.", tags:["Co-Founder","Community Platform","Third Spaces","Product Strategy","GTM","User Research"]},
+      {type:"Work Experience", title:"Career Transition — Work Authorization Processing", org:"", date:"Jun 2024 – Feb 2025", location:"", summary:"Career transition period focused on work authorization processing and preparing for the next US-based role.", tags:["Career Transition"]},
+      {type:"Work Experience", title:"Product Marketing & Program Manager", org:"Northeastern University", date:"Jan 2024 – Jun 2024", location:"Boston, MA", summary:"Worked on RWHN, NU's largest startup impact initiative ($1.3M). Conducted quantitative and qualitative market research, competitive analysis, and vendor evaluation, helping drive a mission pivot and shaping the business plan.", tags:["GTM","Market Research","Competitive Analysis","Health Tech","Startup","Stakeholder Management"]},
+      {type:"Work Experience", title:"Product Marketing Consultant", org:"Impono LLC", date:"Jan 2023 – Jan 2024", location:"Boston, MA", summary:"Led GTM strategy, product positioning, and buyer persona development for an early-stage B2B client. Increased demo requests by 35% and lead generation by 25%.", tags:["Positioning","Competitive Analysis","Buyer Personas","B2B","GTM","Lead Generation"]},
+      {type:"Work Experience", title:"Strategic Insights", org:"Werfen North America", date:"Jul 2022 – Dec 2022", location:"Bedford, MA", summary:"Built an interactive competitor intelligence dashboard that reduced analysis time by one week per quarter. Developed a 12-pillar evaluation framework for 80+ drugs through 50+ hours of stakeholder interviews and research.", tags:["Competitive Intel","Dashboard","Analytics","Market Research","Stakeholder Interviews"]},
+      {type:"Work Experience", title:"Business Analyst", org:"Northeastern University", date:"Jan 2021 – Jul 2022", location:"Boston, MA", summary:"Built 10+ live dashboards with Tableau, SQL, and Python across 25+ sources. Reduced ad hoc reporting by 30% and analyzed 500K+ data points to improve operational planning.", tags:["Tableau","SQL","Python","Dashboards","Data Analytics","Reporting","Process Improvement"]},
+      {type:"Work Experience", title:"Product Marketing Manager", org:"Shaparak.Blue Consulting Firm", date:"Jan 2020 – Jul 2020", location:"Tehran, Iran", summary:"Led multi-channel content and advertising across Instagram, LinkedIn, and Twitter. Attracted 500+ attendees, generated 150+ applications, and contributed $200K+ revenue.", tags:["B2C","Content Strategy","Social Media","Campaign Management","Revenue Growth"]},
+      {type:"Work Experience", title:"Product Marketing Manager", org:"Kelasend", date:"May 2018 – Nov 2019", location:"Tehran, Iran", summary:"Launched RadioKelasend and led GTM for mobile and web platforms. Drove 35% customer growth, 40% MAU growth, and 10% revenue lift in six months.", tags:["Product Marketing","Mobile","GTM","Growth","Persona-Driven Design","B2C"]},
+      {type:"Work Experience", title:"Co-Founder & Media/Event Marketing Coordinator", org:"TNK and 20TA30", date:"2017 – 2018", location:"Tehran, Iran", summary:"Led product ideation and launch of TNK platform connecting 100+ athletes with coaches and driving 140%+ sales growth in year one. Co-led marketing for 150+ events and helped grow a 20,000+ member community.", tags:["Co-Founder","Startup","Event Marketing","Community","Product Launch","Growth"]},
+      {type:"Projects", title:"Algorithmic vs. Human Decision-Making in Recruitment", org:"Northeastern University", date:"Jan 2023 – Apr 2023", location:"", summary:"Co-authored with Dr. Mary Steffel. Survey-based study on fairness, trust, and perceived evaluator ability in AI vs human hiring decisions. Found AI evaluations were perceived as less fair and trustworthy in self-evaluation contexts. [View Paper](https://drive.google.com/file/d/1W7wRItfTmuQ78bAXWQJIqX-hJaySMHsH/view?usp=share_link)", tags:["Academic Research","AI","Behavioral Economics","Hiring","Co-authored","Survey Research"]},
+      {type:"Projects", title:"Matiloos (4-Do) Franchising Possibilities / Marketing Plan", org:"Client Work", date:"Oct 2019 – Dec 2019", location:"", summary:"Assessed franchising viability and readiness. Proposed a suitable franchising model where viable and internal capability improvements where prerequisites were missing.", tags:["Franchising","Strategy Consulting","Marketing Plan","Market Analysis"]},
+      {type:"Education", title:"MBA — Marketing & Business Analytics", org:"D'Amore-McKim School of Business, Northeastern University", date:"2021 – 2023", location:"Boston, MA", summary:"Recipient of MBA Achiever Scholarship. Global Student Mentor. Focused on advanced marketing, analytics, strategy, and operations coursework.", tags:["MBA","Marketing Strategy","Business Analytics","Northeastern"]},
+      {type:"Education", title:"Bachelor's Degree — Business Administration", org:"University of Tehran", date:"Transferred from Civil Engineering", location:"Tehran, Iran", summary:"Completed 99 credits in Business Administration after transferring from Civil Engineering (89 credits completed).", tags:["Business Administration","Civil Engineering","University of Tehran","Strategy"]},
+      {type:"Certifications", title:"Certified Scrum Product Owner (CSPO)", org:"Scrum Alliance", date:"Nov 2024 – Nov 2026", location:"", summary:"Certified Scrum Product Owner credential.", tags:["Agile","Scrum","Product Ownership","Certification"]},
+      {type:"Certifications", title:"Adobe Analytics Essential Training", org:"LinkedIn Learning", date:"Jul 2023", location:"", summary:"Professional learning in Adobe Analytics fundamentals.", tags:["Analytics","Adobe Analytics","Marketing Analytics"]},
+      {type:"Certifications", title:"Google Analytics 4 (GA4) Essential Training", org:"LinkedIn Learning", date:"Jul 2023", location:"", summary:"Training in GA4 fundamentals and measurement.", tags:["Analytics","GA4","Google Analytics"]},
+      {type:"Volunteering", title:"Member of Executive Team", org:"CreativeMornings Tehran", date:"May 2018 – Dec 2020", location:"Tehran, Iran", summary:"Arts and culture community leadership and event support.", tags:["Community","Events","Arts & Culture","Leadership"]},
+      {type:"Volunteering", title:"Research & Executive Team Member", org:"Job Fair, University of Tehran", date:"Feb 2019 – Nov 2019", location:"Tehran, Iran", summary:"Organized the first-ever job fair at the University of Tehran.", tags:["Education","Career Development","Event Management","Research"]},
+      {type:"Honors & Awards", title:"2nd Place — Unilever Ideatrophy Competition", org:"Unilever", date:"Dec 2017", location:"", summary:"Led a 3-month campaign strategy raising Clear brand awareness in Iran, using a World Cup-driven communication strategy.", tags:["Marketing","Brand Strategy","Competition"]},
+      {type:"Honors & Awards", title:"Champion — Tehran Men's Basketball League", org:"", date:"Jun 2016", location:"", summary:"League champion.", tags:["Basketball","Sports","Leadership"]},
+      {type:"Languages", title:"Languages", org:"", date:"", location:"", summary:"Persian (Native/Bilingual), English (Full Professional), Chinese Mandarin (Limited Working), Arabic (Elementary).", tags:["Persian","English","Mandarin","Arabic"]},
+      {type:"Skills", title:"Product Marketing Skills", org:"", date:"", location:"", summary:"Positioning, GTM, market research, buyer personas, competitive strategy, launch execution, KPIs, and cross-functional collaboration.", tags:["Product Marketing","GTM","Positioning","Segmentation","Launches"]},
+      {type:"Skills", title:"Data & Analytics Skills", org:"", date:"", location:"", summary:"SQL, Python, Tableau, Power BI, Google Analytics, Adobe Analytics, data visualization, experimentation, and business intelligence.", tags:["SQL","Python","Tableau","Power BI","BI","Analytics"]},
+      {type:"Memberships", title:"Project Management Institute (PMI) — Member", org:"PMI", date:"Nov 2024 – Present", location:"", summary:"Active professional membership.", tags:["PMI","Project Management","Professional Organization"]},
+      {type:"Memberships", title:"Scrum Alliance — Member", org:"Scrum Alliance", date:"Nov 2024 – Present", location:"", summary:"Active professional membership.", tags:["Scrum","Agile","Professional Organization"]}
+    ];
+
+    const TYPES = ["All", ...Array.from(new Set(ITEMS.map(i => i.type)))];
+    let activeType = "All";
+    let query = "";
+    let viewMode = "grid";
+
+    const filtersEl = document.getElementById("filters");
+    const searchEl = document.getElementById("search");
+    const gridViewBtn = document.getElementById("grid-view-btn");
+    const timelineViewBtn = document.getElementById("timeline-view-btn");
+    const cardsEl = document.getElementById("cards");
+    const timelineEl = document.getElementById("timeline");
+    const countEl = document.getElementById("count");
+    const emptyEl = document.getElementById("empty");
+
+    function renderFilters() {
+      filtersEl.innerHTML = "";
+      TYPES.forEach((type) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "pill" + (type === activeType ? " active" : "");
+        b.textContent = type;
+        b.addEventListener("click", () => { activeType = type; renderFilters(); renderContent(); });
+        filtersEl.appendChild(b);
+      });
+    }
+
+    function filteredItems() {
+      const q = query.trim().toLowerCase();
+      return ITEMS.filter((i) => {
+        const typeOk = activeType === "All" || i.type === activeType;
+        const text = [i.type, i.title, i.org, i.date, i.location, i.summary, ...(i.tags || [])].join(" ").toLowerCase();
+        return typeOk && (!q || text.includes(q));
+      });
+    }
+
+    function parseDateRank(dateText) {
+      if (!dateText) return -1;
+      const lower = dateText.toLowerCase();
+      const years = [...dateText.matchAll(/\b(19|20)\d{2}\b/g)].map((m) => Number(m[0]));
+      const year = years.length ? years[0] : -1;
+      if (year < 0) return -1;
+      const monthMap = {
+        jan: 1, january: 1, feb: 2, february: 2, mar: 3, march: 3, apr: 4, april: 4, may: 5, jun: 6, june: 6,
+        jul: 7, july: 7, aug: 8, august: 8, sep: 9, sept: 9, september: 9, oct: 10, october: 10, nov: 11, november: 11, dec: 12, december: 12
+      };
+      let month = 1;
+      for (const key of Object.keys(monthMap)) {
+        if (lower.includes(key)) { month = monthMap[key]; break; }
+      }
+      return year * 100 + month;
+    }
+
+    function sortedForTimeline(items) {
+      return [...items].sort((a, b) => parseDateRank(b.date) - parseDateRank(a.date));
+    }
+
+    function renderGrid(items) {
+      cardsEl.innerHTML = "";
+      items.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "card";
+        const summaryHtml = item.summary.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a class="link" href="$2" target="_blank" rel="noreferrer">$1</a>');
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="card-face front">
+              <p class="kicker">${item.type}</p>
+              <h3 class="title">${item.title}</h3>
+              <p class="meta">${item.org || ""}${item.org && item.location ? " · " : ""}${item.location || ""}</p>
+              <p class="meta">${item.date || ""}</p>
+              <div class="chips">${(item.tags || []).map((t) => `<span class="chip">${t}</span>`).join("")}</div>
+              <p class="flip-hint">hover or click to flip ↻</p>
+            </div>
+            <div class="card-face back">
+              <p class="kicker">Description</p>
+              <h3 class="title">${item.title}</h3>
+              <p class="body">${summaryHtml}</p>
+              <p class="meta">${item.org || ""}${item.org && item.date ? " · " : ""}${item.date || ""}</p>
+            </div>
+          </div>
+        `;
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a")) return;
+          card.classList.toggle("flipped");
+        });
+        cardsEl.appendChild(card);
+      });
+    }
+
+    function renderTimeline(items) {
+      timelineEl.innerHTML = "";
+      const ordered = sortedForTimeline(items);
+      ordered.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "timeline-item";
+        const summaryHtml = item.summary.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a class="link" href="$2" target="_blank" rel="noreferrer">$1</a>');
+        row.innerHTML = `
+          <div class="timeline-rail">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <article class="timeline-card">
+            <p class="kicker">${item.type}</p>
+            <h3 class="title">${item.title}</h3>
+            <p class="meta">${item.org || ""}${item.org && item.location ? " · " : ""}${item.location || ""}</p>
+            <p class="meta">${item.date || ""}</p>
+            <p class="body">${summaryHtml}</p>
+            <div class="chips">${(item.tags || []).map((t) => `<span class="chip">${t}</span>`).join("")}</div>
+          </article>
+        `;
+        timelineEl.appendChild(row);
+      });
+    }
+
+    function renderContent() {
+      const items = filteredItems();
+      countEl.textContent = `${items.length} cards${activeType !== "All" ? ` · ${activeType}` : ""}${viewMode === "timeline" ? " · Timeline" : ""}`;
+      emptyEl.style.display = items.length ? "none" : "block";
+      if (viewMode === "grid") {
+        cardsEl.style.display = "grid";
+        timelineEl.style.display = "none";
+        renderGrid(items);
+      } else {
+        cardsEl.style.display = "none";
+        timelineEl.style.display = "flex";
+        renderTimeline(items);
+      }
+    }
+
+    searchEl.addEventListener("input", (e) => { query = e.target.value || ""; renderContent(); });
+    gridViewBtn.addEventListener("click", () => {
+      viewMode = "grid";
+      gridViewBtn.classList.add("active");
+      timelineViewBtn.classList.remove("active");
+      renderContent();
+    });
+    timelineViewBtn.addEventListener("click", () => {
+      viewMode = "timeline";
+      timelineViewBtn.classList.add("active");
+      gridViewBtn.classList.remove("active");
+      renderContent();
+    });
+    renderFilters();
+    renderContent();
+  </script>
+</body>
+</html>
