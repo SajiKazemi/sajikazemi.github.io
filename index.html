@@ -22,8 +22,8 @@
 
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; font-size: 17.5px; line-height: 1.55; padding-top: calc(var(--uc-top-offset) + var(--site-header-h)); }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; font-size: 17.5px; line-height: 1.55; padding-top: calc(var(--uc-top-offset) + var(--site-header-h)); overflow-x: hidden; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
 ::selection { background: var(--tint); color: var(--accent); }
 
 /* ─── READABILITY OVERRIDES ─── */
@@ -87,11 +87,55 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
   flex: 1;
   min-width: 0;
 }
-@media (max-width: 640px) {
-  .site-topbar-inner { flex-direction: column; align-items: stretch; }
-  .site-topbar-nav { justify-content: center; }
-}
 section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site-header-h) + 12px); }
+
+/* Hero — layout in CSS so mobile can override cleanly */
+#hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  background: #F7F3EE;
+  padding: 80px max(16px, env(safe-area-inset-left)) 56px max(16px, env(safe-area-inset-right));
+}
+.hero-glow {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(800px, 100vw);
+  height: min(500px, 75vh);
+  max-width: 100%;
+  background: radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.hero-h1 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(2.25rem, 11vw, 6.4rem);
+  font-weight: 300;
+  color: #EDE5D8;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+  animation: fu .6s .1s ease both;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+#intent-dropdown {
+  margin-top: 52px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fu .6s .3s ease both;
+  position: relative;
+  z-index: 50;
+  width: 100%;
+}
 
 /* ─── NAV CIRCLES ─── */
 .nav-c { width: 36px; height: 36px; background: #EEF3F9; border: 1px solid var(--border); border-radius: 50%; color: var(--text); font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; line-height: 1; }
@@ -122,13 +166,14 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 .acc-outer.gold.open { border-color: var(--accent); }
 .acc-btn { width: 100%; padding: 15px 18px; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--text); font-size: 14.5px; font-family: inherit; font-weight: 300; text-align: left; transition: all .2s; }
 .acc-btn.gold { padding: 18px 20px; font-size: 15.5px; }
-.acc-outer.open .acc-btn { background: #EEF3F9; color: var(--accent); }
-.acc-outer.gold.open .acc-btn { color: var(--accent); }
+/* Use direct child (>) so nested accordions inside an open panel stay independent */
+.acc-outer.open > .acc-btn { background: #EEF3F9; color: var(--accent); }
+.acc-outer.gold.open > .acc-btn { color: var(--accent); }
 .acc-arrow { font-size: 11px; display: inline-block; color: var(--accent); transition: transform .22s; }
-.acc-outer.open .acc-arrow { transform: rotate(180deg); }
+.acc-outer.open > .acc-btn .acc-arrow { transform: rotate(180deg); }
 .acc-body { display: none; padding: 0 18px 16px; animation: su .22s ease; }
 .acc-body.gold { padding: 0 20px 20px; }
-.acc-outer.open .acc-body { display: block; }
+.acc-outer.open > .acc-body { display: block; }
 
 /* ─── TESTIMONIAL CARD ─── */
 .tcard { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px; display: flex; gap: 18px; align-items: flex-start; }
@@ -178,6 +223,90 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   .problems-card { padding: 32px 24px; }
   .tcard { padding: 18px 18px; gap: 14px; }
 }
+
+/* ─── MOBILE & TOUCH ─── */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .site-topbar { padding: 8px 14px; }
+  .site-topbar-brand { font-size: 0.98rem; }
+}
+
+@media (max-width: 640px) {
+  .site-topbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .site-topbar-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    gap: 8px;
+    padding: 2px 2px 10px;
+    margin: 0 -2px;
+    scrollbar-width: thin;
+  }
+  .site-topbar-nav a {
+    flex-shrink: 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  #hero {
+    padding: 68px max(14px, env(safe-area-inset-left)) 40px max(14px, env(safe-area-inset-right));
+  }
+  #intent-dropdown { max-width: none; margin-top: 36px; }
+  #hero-scroll-hint { margin-top: 36px !important; }
+  #recommendations { padding: 56px 16px 80px !important; }
+  #problems { padding: 72px 16px !important; }
+  #story { padding: 72px 16px !important; }
+  #connect { padding: 72px 16px 56px !important; }
+  #diff-intro { padding: 56px 16px 0 !important; }
+  #differentiators-container > div {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 56px !important;
+  }
+  .dot-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    row-gap: 14px;
+    margin-top: 22px;
+    padding: 0 4px;
+  }
+  .nav-c {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  .tcard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tcard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .tcard-in { align-self: flex-start; }
+  #problems-progress {
+    min-height: 44px;
+    align-items: center !important;
+  }
+  .progress-track {
+    min-height: 10px;
+  }
+  .spider-card { padding: 22px 10px 18px; }
+}
+
+@media (max-width: 380px) {
+  .hero-h1 { font-size: clamp(2rem, 12vw, 3.5rem); }
+}
 </style>
 </head>
 <body>
@@ -208,13 +337,13 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 <!-- ═══════════════════════════════════════════
      HERO
      ═══════════════════════════════════════════ -->
-<section id="hero" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;background:#F7F3EE;padding:80px 24px 56px;">
+<section id="hero">
   <!-- Grain (clipped here so hero can stay overflow:visible for intent dropdown) -->
   <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;">
     <div style="position:absolute;inset:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E&quot;);background-repeat:repeat;"></div>
   </div>
   <!-- Warm glow -->
-  <div style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%);pointer-events:none;z-index:1;overflow:hidden;"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
 
   <div style="position:relative;z-index:2;max-width:660px;width:100%;text-align:center;">
     <!-- Eyebrow -->
@@ -225,7 +354,7 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     </div>
 
     <!-- Headline -->
-    <h1 style="font-family:'Lora', Georgia, serif;font-size:clamp(3.8rem,9.5vw,6.4rem);font-weight:300;color:#EDE5D8;line-height:1;letter-spacing:-0.03em;margin-bottom:32px;animation:fu .6s .1s ease both;">
+    <h1 class="hero-h1">
       Who is <span style="font-style:italic;color:#D4A853;">Saji</span>?
     </h1>
 
@@ -238,7 +367,7 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     </p>
 
     <!-- Intent dropdown -->
-    <div id="intent-dropdown" style="margin-top:52px;max-width:380px;margin-left:auto;margin-right:auto;animation:fu .6s .3s ease both;position:relative;z-index:50;">
+    <div id="intent-dropdown">
       <p style="font-size:12.5px;color:#907E6A;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">Why are you here?</p>
       <div style="position:relative;z-index:50;">
         <button id="intent-btn" onclick="toggleIntent()" style="width:100%;padding:16px 18px;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#2B3A4A;font-size:16px;font-family:inherit;font-weight:300;transition:border-color .2s;letter-spacing:0.01em;">
@@ -306,7 +435,7 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
      DIFFERENTIATORS
      ═══════════════════════════════════════════ -->
 <section>
-  <div style="padding:96px 24px 0;text-align:center;background:#F7F3EE;">
+  <div id="diff-intro" style="padding:96px 24px 0;text-align:center;background:#F7F3EE;">
     <div class="reveal">
       <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">What I bring</p>
       <h2 class="s-title">Three dimensions</h2>
