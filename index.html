@@ -16,12 +16,14 @@
   --tint: #E8F0F8;
   --muted: #5A6A7C;
   --border: #C7D5E4;
+  --uc-top-offset: 0px;
+  --site-header-h: 64px;
 }
 
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; font-size: 17.5px; line-height: 1.55; }
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; font-size: 17.5px; line-height: 1.55; padding-top: calc(var(--uc-top-offset) + var(--site-header-h)); }
 ::selection { background: var(--tint); color: var(--accent); }
 
 /* ─── READABILITY OVERRIDES ─── */
@@ -42,8 +44,54 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
 .bo:hover { border-color: var(--accent); color: var(--accent); }
 .bg2 { padding: 12px 26px; background: transparent; border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-size: 14.5px; font-family: inherit; font-weight: 300; cursor: pointer; text-decoration: none; display: inline-block; transition: all .2s; letter-spacing: 0.02em; }
 .bg2:hover { color: var(--accent); border-color: var(--accent); }
-.top-actions { padding: 18px 24px 0; background: #F7F3EE; }
-.top-actions-inner { max-width: 980px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+/* Fixed top bar — always visible; body padding reserves space */
+.site-topbar {
+  position: fixed;
+  top: var(--uc-top-offset);
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(247, 243, 238, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(43, 95, 142, 0.08);
+  padding: 10px 20px;
+}
+.site-topbar-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+}
+.site-topbar-brand {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.site-topbar-brand:hover { opacity: 0.88; }
+.site-topbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .site-topbar-inner { flex-direction: column; align-items: stretch; }
+  .site-topbar-nav { justify-content: center; }
+}
+section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site-header-h) + 12px); }
 
 /* ─── NAV CIRCLES ─── */
 .nav-c { width: 36px; height: 36px; background: #EEF3F9; border: 1px solid var(--border); border-radius: 50%; color: var(--text); font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; line-height: 1; }
@@ -114,7 +162,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
 .progress-fill.done { background: #84A5C4; transform: scaleX(1); }
 
 /* ─── UNDER CONSTRUCTION ─── */
-.uc-banner { position: sticky; top: 0; z-index: 9999; background: rgba(247, 243, 238, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+.uc-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10001; background: rgba(247, 243, 238, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
 .uc-inner { max-width: 980px; margin: 0 auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .uc-left { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
 .uc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(43,95,142,0.35); flex-shrink: 0; }
@@ -144,24 +192,29 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
   </div>
 </div>
 
-<section class="top-actions" aria-label="Quick actions">
-  <div class="top-actions-inner">
-    <a href="./portfolio.html" class="bg2" aria-label="Open full portfolio page">Portfolio</a>
-    <a href="https://www.linkedin.com/in/saji-kazemi/" target="_blank" rel="noreferrer" class="bg">LinkedIn</a>
-    <a href="https://drive.google.com/file/d/1z3ZnCFIUre7LWsjh1SO990UprbTtnx3J/view?usp=sharing" target="_blank" rel="noreferrer" class="bo">Resume</a>
-    <a href="mailto:sajikazemi@outlook.com?subject=Schedule%20a%20time" class="bg2">Schedule a time</a>
-    <a href="mailto:sajikazemi@outlook.com" class="bg2">Contact me</a>
+<header class="site-topbar" aria-label="Site navigation">
+  <div class="site-topbar-inner">
+    <a href="#hero" class="site-topbar-brand">Saji Kazemi</a>
+    <nav class="site-topbar-nav" aria-label="Quick links">
+      <a href="./portfolio.html" class="bg2" aria-label="Open full portfolio page">Portfolio</a>
+      <a href="https://www.linkedin.com/in/saji-kazemi/" target="_blank" rel="noreferrer" class="bg">LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1z3ZnCFIUre7LWsjh1SO990UprbTtnx3J/view?usp=sharing" target="_blank" rel="noreferrer" class="bo">Resume</a>
+      <a href="https://calendly.com/sajikazemi/30min" target="_blank" rel="noopener noreferrer" class="bg2">Book a call</a>
+      <a href="mailto:sajikazemi@outlook.com" class="bg2">Contact me</a>
+    </nav>
   </div>
-</section>
+</header>
 
 <!-- ═══════════════════════════════════════════
      HERO
      ═══════════════════════════════════════════ -->
-<section id="hero" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#F7F3EE;padding:80px 24px;">
-  <!-- Grain -->
-  <div style="position:absolute;inset:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E&quot;);background-repeat:repeat;pointer-events:none;z-index:1;"></div>
+<section id="hero" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;background:#F7F3EE;padding:80px 24px 56px;">
+  <!-- Grain (clipped here so hero can stay overflow:visible for intent dropdown) -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;">
+    <div style="position:absolute;inset:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E&quot;);background-repeat:repeat;"></div>
+  </div>
   <!-- Warm glow -->
-  <div style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%);pointer-events:none;z-index:1;"></div>
+  <div style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse, rgba(212,168,83,0.065) 0%, transparent 68%);pointer-events:none;z-index:1;overflow:hidden;"></div>
 
   <div style="position:relative;z-index:2;max-width:660px;width:100%;text-align:center;">
     <!-- Eyebrow -->
@@ -185,20 +238,20 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
     </p>
 
     <!-- Intent dropdown -->
-    <div id="intent-dropdown" style="margin-top:52px;max-width:380px;margin-left:auto;margin-right:auto;animation:fu .6s .3s ease both;">
+    <div id="intent-dropdown" style="margin-top:52px;max-width:380px;margin-left:auto;margin-right:auto;animation:fu .6s .3s ease both;position:relative;z-index:50;">
       <p style="font-size:12.5px;color:#907E6A;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">Why are you here?</p>
-      <div style="position:relative;">
+      <div style="position:relative;z-index:50;">
         <button id="intent-btn" onclick="toggleIntent()" style="width:100%;padding:16px 18px;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#2B3A4A;font-size:16px;font-family:inherit;font-weight:300;transition:border-color .2s;letter-spacing:0.01em;">
           <span id="intent-label">Select a reason...</span>
           <svg width="12" height="12" viewBox="0 0 12 12" style="transition:transform .22s;flex-shrink:0;" id="intent-arrow">
             <path d="M1.5 4l4.5 4.5L10.5 4" stroke="#2B5F8E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div id="intent-menu" style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:9px;overflow:hidden;z-index:100;box-shadow:0 20px 50px rgba(43,58,74,.12);animation:di .16s ease;"></div>
+        <div id="intent-menu" style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:9px;overflow-x:hidden;overflow-y:auto;max-height:min(70vh,420px);z-index:200;box-shadow:0 20px 50px rgba(43,58,74,.12);animation:di .16s ease;"></div>
       </div>
     </div>
     <!-- Scroll hint -->
-    <div id="hero-scroll-hint" style="margin-top:80px;display:flex;flex-direction:column;align-items:center;animation:fu .6s .45s ease both;">
+    <div id="hero-scroll-hint" style="margin-top:56px;display:flex;flex-direction:column;align-items:center;animation:fu .6s .45s ease both;">
       <div style="width:1px;height:48px;background:linear-gradient(to bottom, transparent, #3A2F23);animation:pulse 2.5s ease-in-out infinite;"></div>
     </div>
   </div>
@@ -207,9 +260,9 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
 <!-- ═══════════════════════════════════════════
      TESTIMONIALS
      ═══════════════════════════════════════════ -->
-<section id="recommendations" style="padding:110px 24px;background:#F7F3EE;">
+<section id="recommendations" style="padding:88px 24px 110px;background:#F7F3EE;">
   <div class="section-hr"></div>
-  <div style="max-width:780px;margin:72px auto 0;">
+  <div style="max-width:780px;margin:64px auto 0;">
     <div class="reveal">
       <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Social Proof</p>
       <h2 class="s-title">First, let's hear from others</h2>
@@ -225,7 +278,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
 <!-- ═══════════════════════════════════════════
      PROBLEMS I SOLVE
      ═══════════════════════════════════════════ -->
-<section style="padding:110px 24px;background:#F7F3EE;">
+<section id="problems" style="padding:110px 24px;background:#F7F3EE;">
   <div class="section-hr"></div>
   <div style="max-width:700px;margin:72px auto 0;">
     <div class="reveal">
@@ -281,7 +334,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
 <!-- ═══════════════════════════════════════════
      FINAL / CTA
      ═══════════════════════════════════════════ -->
-<section style="padding:110px 24px 80px;background:#F7F3EE;">
+<section id="connect" style="padding:110px 24px 80px;background:#F7F3EE;">
   <div class="section-hr"></div>
   <div style="max-width:480px;margin:72px auto 0;text-align:center;">
     <div class="reveal">
@@ -293,7 +346,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--te
         <a href="./portfolio.html" class="bg2" aria-label="Open full portfolio page">Portfolio</a>
         <a href="https://www.linkedin.com/in/saji-kazemi/" target="_blank" rel="noreferrer" class="bg">LinkedIn</a>
         <a href="https://drive.google.com/file/d/1z3ZnCFIUre7LWsjh1SO990UprbTtnx3J/view?usp=sharing" target="_blank" rel="noreferrer" class="bo">Resume</a>
-        <a href="mailto:sajikazemi@outlook.com?subject=Schedule%20a%20time" class="bg2">Schedule a time</a>
+        <a href="https://calendly.com/sajikazemi/30min" target="_blank" rel="noopener noreferrer" class="bg2">Book a call</a>
         <a href="mailto:sajikazemi@outlook.com" class="bg2">Contact me</a>
       </div>
     </div>
@@ -353,10 +406,11 @@ const STORIES = [
 ];
 
 const INTENTS = [
-  { label:"I'm curious about your story", target:"story" },
-  { label:"I want to interview you", target:"resume" },
-  { label:"I'm looking to hire you", target:"recommendations" },
-  { label:"I want to work with you", target:"recommendations" },
+  { label:"I'm curious about your story", subtitle:"Read my journey and what makes me tick", target:"story" },
+  { label:"I want to interview you", subtitle:"See credentials, experience, and what I bring to the table", target:"resume" },
+  { label:"I'm looking to hire you", subtitle:"Learn how I solve problems and what I've shipped", target:"recommendations" },
+  { label:"I have a marketing problem", subtitle:"Explore the challenges I can help you solve", target:"problems" },
+  { label:"I want to work with you", subtitle:"Partnerships, projects, and ways we can build together", target:"connect" },
 ];
 
 // ═══════════════════════════════════════════
@@ -380,16 +434,38 @@ function setIntentOpenState(isOpen) {
   }
 }
 
-// Build menu items
+// Build menu items (order, dot icon, and row styles unchanged; subtitles added)
 INTENTS.forEach((intent, i) => {
   const btn = document.createElement('button');
   btn.style.cssText = `width:100%;padding:13px 18px;background:transparent;border:none;border-bottom:${i < INTENTS.length-1 ? '1px solid #C7D5E4' : 'none'};color:#2B3A4A;font-size:13.5px;font-family:inherit;font-weight:300;text-align:left;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:10px;letter-spacing:0.01em;`;
   const dot = document.createElement('span');
   dot.style.cssText = 'width:3.5px;height:3.5px;border-radius:50%;background:#84A5C4;flex-shrink:0;transition:background .12s;';
+  const textCol = document.createElement('span');
+  textCol.style.cssText = 'display:flex;flex-direction:column;gap:2px;text-align:left;';
+  const titleEl = document.createElement('span');
+  titleEl.textContent = intent.label;
+  titleEl.style.fontWeight = '500';
+  const subEl = document.createElement('span');
+  subEl.textContent = intent.subtitle;
+  subEl.style.cssText = 'font-size:12px;color:#5A6A7C;font-weight:300;line-height:1.35;';
+  textCol.appendChild(titleEl);
+  textCol.appendChild(subEl);
   btn.appendChild(dot);
-  btn.appendChild(document.createTextNode(intent.label));
-  btn.addEventListener('mouseenter', () => { btn.style.background='#E8F0F8'; btn.style.color='#2B5F8E'; dot.style.background='#2B5F8E'; });
-  btn.addEventListener('mouseleave', () => { btn.style.background='transparent'; btn.style.color='#2B3A4A'; dot.style.background='#84A5C4'; });
+  btn.appendChild(textCol);
+  btn.addEventListener('mouseenter', () => {
+    btn.style.background = '#E8F0F8';
+    btn.style.color = '#2B5F8E';
+    dot.style.background = '#2B5F8E';
+    titleEl.style.color = '#2B5F8E';
+    subEl.style.color = '#2B5F8E';
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.background = 'transparent';
+    btn.style.color = '#2B3A4A';
+    dot.style.background = '#84A5C4';
+    titleEl.style.color = '#2B3A4A';
+    subEl.style.color = '#5A6A7C';
+  });
   btn.addEventListener('click', () => {
     intentLabel.textContent = intent.label;
     intentLabel.style.color = '#2B5F8E';
@@ -422,6 +498,43 @@ function getInitials(name) {
   return name.replace(/^Dr\.?\s*/i, '').split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
 }
 
+const RECOMMENDER_PHOTOS = {
+  christadhimo: "Photos/Recom/christadhimo.jpeg",
+  kristinkostka: "Photos/Recom/kristinkostka.jpeg",
+  justinmanjourides: "Photos/Recom/justin-manjourides.jpeg",
+  diwidhir: "Photos/Recom/diwidhir.jpeg",
+  benbrink: "Photos/Recom/Ben Brink.png",
+  allisonhogan: "Photos/Recom/allisonhogan.jpeg",
+  leahboccaccio: "Photos/Recom/leah-boccaccio.jpeg",
+  peterbuschkopf: "Photos/Recom/Peter Buschkopf.jpeg",
+  sahalahmad: "Photos/Recom/sahalahmad.jpeg",
+  jadelrez: "Photos/Recom/jad-elrez.jpeg",
+  rooparawjee: "Photos/Recom/Dr. Roopa Rawjee.png",
+  sabinamuccigrosso: "Photos/Recom/sabina-muccigrosso.jpeg",
+  annielopatin: "Photos/Recom/Annie Lopatin.jpeg",
+  nimapourkhodabakhsh: "Photos/Recom/Nima Pourkhodabakhsh.jpeg",
+  mojtabanoghabaei: "Photos/Recom/Mojtaba Noghabaei.jpeg",
+  sepidetabatabaei: "Photos/Recom/sepideh-tabatabaie.jpeg",
+  majidjalilian: "Photos/Recom/Majid Jalilian.png",
+  sinasedaghatbaghbani: "Photos/Recom/Sina Sedaghat.png",
+  rezamokhtarpour: "Photos/Recom/reza-mokhtarpour.jpeg",
+  mortezamosafer: "Photos/Recom/mortezamosafer.jpeg",
+  mohammadalimilanisadr: "Photos/Recom/MohammadAli Milanisadr.jpeg",
+};
+
+function normalizePersonName(name) {
+  return name
+    .toLowerCase()
+    .replace(/^dr\.?\s+/i, '')
+    .replace(/,.*$/, '')
+    .replace(/[^a-z]/g, '');
+}
+
+function getRecommenderPhoto(name) {
+  const key = normalizePersonName(name);
+  return RECOMMENDER_PHOTOS[key] || null;
+}
+
 function renderTestimonials() {
   const container = document.getElementById('testimonials-container');
   container.innerHTML = '';
@@ -433,10 +546,15 @@ function renderTestimonials() {
     const idx = t.quote.indexOf(t.highlight);
     const before = t.quote.slice(0, idx);
     const after = t.quote.slice(idx + t.highlight.length);
+    const initials = getInitials(t.name);
+    const photoPath = getRecommenderPhoto(t.name);
+    const avatarHtml = photoPath
+      ? `<img src="${encodeURI(photoPath)}" alt="${t.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.remove(); this.parentElement.textContent='${initials}'">`
+      : initials;
     const card = document.createElement('div');
     card.className = 'tcard';
     card.innerHTML = `
-      <div class="tcard-avatar">${getInitials(t.name)}</div>
+      <div class="tcard-avatar">${avatarHtml}</div>
       <div style="flex:1;">
         <div class="tcard-header">
           <div>
@@ -709,20 +827,39 @@ document.querySelector('section:last-of-type').appendChild(resumeAnchor);
 // ═══════════════════════════════════════════
 const UC_STORAGE_KEY = 'uc_banner_dismissed_v1';
 
+function updateLayoutOffsets() {
+  const banner = document.getElementById('uc-banner');
+  const topbar = document.querySelector('.site-topbar');
+  let ucH = 0;
+  if (banner && window.getComputedStyle(banner).display !== 'none') {
+    ucH = banner.offsetHeight;
+  }
+  document.documentElement.style.setProperty('--uc-top-offset', ucH + 'px');
+  let barH = 64;
+  if (topbar) {
+    barH = topbar.offsetHeight;
+    document.documentElement.style.setProperty('--site-header-h', barH + 'px');
+  }
+}
+
 function showUcBannerIfNeeded() {
   const dismissed = localStorage.getItem(UC_STORAGE_KEY) === '1';
   const banner = document.getElementById('uc-banner');
   if (!banner || dismissed) return;
   banner.style.display = 'block';
+  requestAnimationFrame(() => updateLayoutOffsets());
 }
 
 function dismissUcBanner() {
   try { localStorage.setItem(UC_STORAGE_KEY, '1'); } catch {}
   const banner = document.getElementById('uc-banner');
   if (banner) banner.style.display = 'none';
+  updateLayoutOffsets();
 }
 
 showUcBannerIfNeeded();
+updateLayoutOffsets();
+window.addEventListener('resize', () => { updateLayoutOffsets(); });
 </script>
 </body>
 </html>
