@@ -145,6 +145,82 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
 @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr !important; } }
 
+/* ─── THREE DIMENSIONS CAROUSEL ─── */
+.diff-carousel-root {
+  background: #F7F3EE;
+  padding-bottom: 24px;
+}
+.diff-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  touch-action: pan-y pinch-zoom;
+}
+.diff-carousel-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .diff-carousel-track { transition-duration: 0.01ms; }
+}
+.diff-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 48px 24px 8px;
+  background: #F7F3EE;
+}
+#diff-carousel-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 12px 16px 40px;
+  flex-wrap: wrap;
+}
+#diff-carousel-nav .nav-c {
+  width: 44px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+#diff-carousel-nav .nav-c:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+#diff-carousel-nav .dot-btn {
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+}
+#diff-carousel-nav .dot-btn:not(.active) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.25s ease;
+}
+#diff-carousel-nav .dot-btn:not(.active):hover {
+  background: #BFD0E0;
+}
+#diff-carousel-nav .dot-btn.active {
+  width: 28px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.3s ease, background 0.25s ease;
+}
+
 /* ─── ANIMATIONS ─── */
 @keyframes fu  { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
 @keyframes di  { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:none; } }
@@ -267,10 +343,14 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   #story { padding: 72px 16px !important; }
   #connect { padding: 72px 16px 56px !important; }
   #diff-intro { padding: 56px 16px 0 !important; }
-  #differentiators-container > div {
+  .diff-slide {
     padding-left: 16px !important;
     padding-right: 16px !important;
-    padding-top: 56px !important;
+    padding-top: 40px !important;
+  }
+  #diff-carousel-nav {
+    padding-bottom: 28px;
+    margin-top: 8px;
   }
   .dot-nav {
     flex-wrap: wrap;
@@ -434,14 +514,14 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 <!-- ═══════════════════════════════════════════
      DIFFERENTIATORS
      ═══════════════════════════════════════════ -->
-<section>
+<section id="dimensions" aria-label="Three dimensions">
   <div id="diff-intro" style="padding:96px 24px 0;text-align:center;background:#F7F3EE;">
     <div class="reveal">
       <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">What I bring</p>
       <h2 class="s-title">Three dimensions</h2>
     </div>
   </div>
-  <div id="differentiators-container"></div>
+  <div id="differentiators-container" class="diff-carousel-root reveal"></div>
 </section>
 
 <!-- ═══════════════════════════════════════════
@@ -843,19 +923,31 @@ function drawSpider(containerEl, skills, color) {
 }
 
 // ═══════════════════════════════════════════
-// DIFFERENTIATORS
+// DIFFERENTIATORS (carousel)
 // ═══════════════════════════════════════════
 const diffsContainer = document.getElementById('differentiators-container');
+let diffCarouselIdx = 0;
+const viewport = document.createElement('div');
+viewport.className = 'diff-carousel-viewport';
+const track = document.createElement('div');
+track.className = 'diff-carousel-track';
+track.setAttribute('role', 'region');
+track.setAttribute('aria-roledescription', 'carousel');
+track.setAttribute('aria-label', 'Three dimensions slides');
+
 DIFFS.forEach((d, i) => {
   const even = i % 2 === 0;
-  const section = document.createElement('div');
-  section.id = d.id;
-  section.className = 'reveal';
-  section.style.cssText = `padding:96px 24px;background:${i % 2 === 0 ? '#F7F3EE' : '#FFFFFF'};`;
-  section.innerHTML = `
+  const slide = document.createElement('div');
+  slide.className = 'diff-slide';
+  slide.id = d.id;
+  slide.setAttribute('role', 'group');
+  slide.setAttribute('aria-roledescription', 'slide');
+  slide.setAttribute('aria-label', `${d.label} (${i + 1} of ${DIFFS.length})`);
+  slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+  slide.innerHTML = `
     <div class="section-hr"></div>
-    <div style="max-width:940px;margin:72px auto 0;">
-      <div class="diff-grid" style="${even ? '' : ''}">
+    <div style="max-width:940px;margin:48px auto 0;">
+      <div class="diff-grid">
         <div style="order:${even ? 0 : 1};">
           <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:26px;">
             <span style="font-size:11px;color:#2A221A;letter-spacing:0.12em;font-weight:500;">${d.num}</span>
@@ -875,14 +967,107 @@ DIFFS.forEach((d, i) => {
       </div>
     </div>
   `;
-  diffsContainer.appendChild(section);
+  track.appendChild(slide);
 });
 
+viewport.appendChild(track);
+diffsContainer.appendChild(viewport);
+
+const diffNav = document.createElement('nav');
+diffNav.className = 'diff-carousel-nav';
+diffNav.id = 'diff-carousel-nav';
+diffNav.setAttribute('aria-label', 'Carousel controls');
+
+function updateDiffCarouselAria() {
+  track.querySelectorAll('.diff-slide').forEach((el, i) => {
+    el.setAttribute('aria-hidden', i === diffCarouselIdx ? 'false' : 'true');
+  });
+}
+
+function goToDiffSlide(i, opts) {
+  const smooth = opts == null || opts.smooth !== false;
+  diffCarouselIdx = (i + DIFFS.length) % DIFFS.length;
+  track.style.transition = smooth
+    ? ''
+    : 'none';
+  if (!smooth) {
+    track.offsetHeight;
+  }
+  track.style.transform = `translateX(-${diffCarouselIdx * 100}%)`;
+  if (!smooth) {
+    requestAnimationFrame(() => {
+      track.style.transition = '';
+    });
+  }
+  diffNav.querySelectorAll('.dot-btn').forEach((dot, di) => {
+    dot.classList.toggle('active', di === diffCarouselIdx);
+    if (di === diffCarouselIdx) dot.setAttribute('aria-current', 'true');
+    else dot.removeAttribute('aria-current');
+  });
+  updateDiffCarouselAria();
+}
+
+const prevDiff = document.createElement('button');
+prevDiff.type = 'button';
+prevDiff.className = 'nav-c';
+prevDiff.textContent = '←';
+prevDiff.setAttribute('aria-label', 'Previous dimension');
+prevDiff.addEventListener('click', () => goToDiffSlide(diffCarouselIdx - 1));
+
+DIFFS.forEach((_, di) => {
+  const dot = document.createElement('button');
+  dot.type = 'button';
+  dot.className = 'dot-btn' + (di === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Go to slide ${di + 1}`);
+  if (di === 0) dot.setAttribute('aria-current', 'true');
+  dot.addEventListener('click', () => goToDiffSlide(di));
+  diffNav.appendChild(dot);
+});
+
+const nextDiff = document.createElement('button');
+nextDiff.type = 'button';
+nextDiff.className = 'nav-c';
+nextDiff.textContent = '→';
+nextDiff.setAttribute('aria-label', 'Next dimension');
+nextDiff.addEventListener('click', () => goToDiffSlide(diffCarouselIdx + 1));
+
+diffNav.insertBefore(prevDiff, diffNav.firstChild);
+diffNav.appendChild(nextDiff);
+diffsContainer.appendChild(diffNav);
+
+let diffTouchStartX = null;
+viewport.addEventListener('touchstart', (e) => {
+  if (e.changedTouches.length) diffTouchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
+viewport.addEventListener('touchend', (e) => {
+  if (diffTouchStartX == null || !e.changedTouches.length) return;
+  const dx = e.changedTouches[0].clientX - diffTouchStartX;
+  diffTouchStartX = null;
+  if (Math.abs(dx) < 48) return;
+  if (dx > 0) goToDiffSlide(diffCarouselIdx - 1);
+  else goToDiffSlide(diffCarouselIdx + 1);
+}, { passive: true });
+
+function syncDiffCarouselFromHash() {
+  const id = (location.hash || '').replace(/^#/, '');
+  const idx = DIFFS.findIndex((d) => d.id === id);
+  if (idx >= 0) {
+    goToDiffSlide(idx, { smooth: false });
+    const anchor = document.getElementById(id);
+    if (anchor) {
+      requestAnimationFrame(() => anchor.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    }
+  }
+}
+window.addEventListener('hashchange', syncDiffCarouselFromHash);
+
 // Draw spider charts
-document.querySelectorAll('.spider-chart').forEach(el => {
-  const idx = parseInt(el.dataset.diffIndex);
+document.querySelectorAll('.spider-chart').forEach((el) => {
+  const idx = parseInt(el.dataset.diffIndex, 10);
   drawSpider(el, DIFFS[idx].skills, DIFFS[idx].accent);
 });
+
+syncDiffCarouselFromHash();
 
 // ═══════════════════════════════════════════
 // MY STORY ACCORDION
