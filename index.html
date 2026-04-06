@@ -6,7 +6,7 @@
 <title>Who is Saji? — Product Marketing Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;450;500&display=swap" rel="stylesheet">
 <style>
 /* ─── PALETTE ─── */
 :root {
@@ -137,6 +137,129 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   width: 100%;
 }
 
+/* Intent dropdown — minimal, floating */
+.intent-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 15px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow: none;
+}
+.intent-btn:hover,
+.intent-btn.intent-btn--open {
+  border-color: var(--border);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(43, 95, 142, 0.08);
+}
+.intent-btn--selected #intent-label {
+  color: var(--accent);
+}
+#intent-arrow {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: transform 0.22s ease;
+}
+#intent-arrow path {
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+#intent-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(199, 213, 228, 0.6);
+  background: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 60px -12px rgba(43, 58, 74, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.5);
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: min(70vh, 420px);
+  transform-origin: top center;
+}
+#intent-menu.intent-menu--open {
+  display: block;
+  animation: di 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  #intent-menu.intent-menu--open {
+    animation: none;
+  }
+}
+.intent-item {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+.intent-item:hover {
+  background: rgba(232, 240, 248, 0.7);
+}
+.intent-item__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+}
+.intent-item__title {
+  font-size: 14.5px;
+  font-weight: 450;
+  color: var(--text);
+  line-height: 1.35;
+}
+.intent-item__sub {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: 3px;
+}
+.intent-item__arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1;
+}
+.intent-item:hover .intent-item__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ─── NAV CIRCLES ─── */
 .nav-c { width: 36px; height: 36px; background: #EEF3F9; border: 1px solid var(--border); border-radius: 50%; color: var(--text); font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s; font-family: inherit; padding: 0; line-height: 1; }
 .nav-c:hover { border-color: var(--accent); color: var(--accent); }
@@ -174,7 +297,8 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   padding: 48px 24px 8px;
   background: #F7F3EE;
 }
-#diff-carousel-nav {
+#diff-carousel-nav,
+#problems-carousel-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -184,7 +308,8 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   padding: 12px 16px 40px;
   flex-wrap: wrap;
 }
-#diff-carousel-nav .nav-c {
+#diff-carousel-nav .nav-c,
+#problems-carousel-nav .nav-c {
   width: 44px;
   height: 44px;
   background: #FFFFFF;
@@ -194,26 +319,31 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   font-size: 16px;
   flex-shrink: 0;
 }
-#diff-carousel-nav .nav-c:hover {
+#diff-carousel-nav .nav-c:hover,
+#problems-carousel-nav .nav-c:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
-#diff-carousel-nav .dot-btn {
+#diff-carousel-nav .dot-btn,
+#problems-carousel-nav .dot-btn {
   height: auto;
   border-radius: 0;
   background: transparent;
 }
-#diff-carousel-nav .dot-btn:not(.active) {
+#diff-carousel-nav .dot-btn:not(.active),
+#problems-carousel-nav .dot-btn:not(.active) {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--border);
   transition: background 0.25s ease;
 }
-#diff-carousel-nav .dot-btn:not(.active):hover {
+#diff-carousel-nav .dot-btn:not(.active):hover,
+#problems-carousel-nav .dot-btn:not(.active):hover {
   background: #BFD0E0;
 }
-#diff-carousel-nav .dot-btn.active {
+#diff-carousel-nav .dot-btn.active,
+#problems-carousel-nav .dot-btn.active {
   width: 28px;
   height: 8px;
   border-radius: 999px;
@@ -223,7 +353,7 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 
 /* ─── ANIMATIONS ─── */
 @keyframes fu  { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
-@keyframes di  { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:none; } }
+@keyframes di  { from { opacity:0; transform:scale(0.98); } to { opacity:1; transform:scale(1); } }
 @keyframes sr  { from { opacity:0; transform:translateX(26px); } to { opacity:1; transform:none; } }
 @keyframes su  { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
 @keyframes bf  { from { transform:scaleX(0); } to { transform:scaleX(1); } }
@@ -266,6 +396,40 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 /* ─── PROBLEMS CARD ─── */
 .problems-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 14px; padding: 48px 42px; min-height: 258px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
 .problems-card .glow { position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(43,95,142,0.10) 0%, transparent 70%); pointer-events: none; }
+
+/* ─── PROBLEMS FILTER ─── */
+.problems-filter { display: flex; justify-content: center; margin-bottom: 36px; }
+.problems-filter__pills { display: inline-flex; padding: 4px; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); gap: 2px; }
+.problems-filter__btn { padding: 8px 18px; border-radius: 999px; border: none; font-size: 13px; font-family: 'Outfit', sans-serif; font-weight: 400; cursor: pointer; background: transparent; color: var(--muted); transition: all 0.2s ease; white-space: nowrap; }
+.problems-filter__btn:hover { color: var(--text); }
+.problems-filter__btn.active { background: var(--accent); color: #FFFFFF; }
+
+/* ─── PROBLEMS ACCORDION (desktop ≥768px) ─── */
+.problems-accordion { display: flex; flex-direction: column; gap: 6px; }
+.problems-acc-item { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.22s ease; }
+.problems-acc-item[aria-expanded="true"] { border-color: var(--accent); }
+.problems-acc-header { width: 100%; padding: 18px 22px; background: transparent; border: none; display: flex; align-items: center; cursor: pointer; font-family: 'Lora', Georgia, serif; font-size: clamp(0.95rem, 2vw, 1.15rem); font-weight: 400; color: var(--text); text-align: left; gap: 16px; line-height: 1.4; transition: background 0.2s ease, color 0.2s ease; }
+.problems-acc-item[aria-expanded="true"] > .problems-acc-header { background: #EEF3F9; color: var(--accent); }
+.problems-acc-tag { font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); white-space: nowrap; flex-shrink: 0; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; line-height: 1; }
+.problems-acc-chevron { font-size: 11px; color: var(--accent); flex-shrink: 0; transition: transform 0.22s ease; display: inline-block; }
+.problems-acc-item[aria-expanded="true"] .problems-acc-chevron { transform: rotate(180deg); }
+.problems-acc-body { display: none; padding: 0 22px 22px; animation: su 0.22s ease; }
+.problems-acc-item[aria-expanded="true"] > .problems-acc-body { display: block; }
+
+/* ─── PROBLEM CTA ─── */
+.problem-cta { display: inline-flex; align-items: center; margin-top: 20px; padding: 10px 18px; background: transparent; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Outfit', sans-serif; font-weight: 400; color: var(--text); text-decoration: none; transition: all 0.2s ease; }
+.problem-cta:hover { border-color: var(--accent); color: var(--accent); transform: translateX(2px); }
+
+/* ─── PROBLEMS NOT-A-FIT ─── */
+.problems-notfit { margin-top: 12px; padding: 18px 24px; background: transparent; border: 1px dashed var(--border); border-radius: 10px; font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+/* ─── PROBLEMS RESPONSIVE ─── */
+#problems-desktop { display: block; }
+#problems-mobile { display: none; }
+@media (max-width: 767px) {
+  #problems-desktop { display: none; }
+  #problems-mobile { display: block; }
+}
 
 /* ─── DIFF CARD SPIDER ─── */
 .spider-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 30px 14px 22px; }
@@ -348,7 +512,8 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     padding-right: 16px !important;
     padding-top: 40px !important;
   }
-  #diff-carousel-nav {
+  #diff-carousel-nav,
+  #problems-carousel-nav {
     padding-bottom: 28px;
     margin-top: 8px;
   }
@@ -374,13 +539,6 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     gap: 8px;
   }
   .tcard-in { align-self: flex-start; }
-  #problems-progress {
-    min-height: 44px;
-    align-items: center !important;
-  }
-  .progress-track {
-    min-height: 10px;
-  }
   .spider-card { padding: 22px 10px 18px; }
 }
 
@@ -450,18 +608,54 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     <div id="intent-dropdown">
       <p style="font-size:12.5px;color:#907E6A;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">Why are you here?</p>
       <div style="position:relative;z-index:50;">
-        <button id="intent-btn" onclick="toggleIntent()" style="width:100%;padding:16px 18px;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#2B3A4A;font-size:16px;font-family:inherit;font-weight:300;transition:border-color .2s;letter-spacing:0.01em;">
+        <button type="button" id="intent-btn" class="intent-btn" onclick="toggleIntent()" aria-expanded="false" aria-haspopup="listbox">
           <span id="intent-label">Select a reason...</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" style="transition:transform .22s;flex-shrink:0;" id="intent-arrow">
-            <path d="M1.5 4l4.5 4.5L10.5 4" stroke="#2B5F8E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg id="intent-arrow" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+            <path d="M1.5 4l4.5 4.5L10.5 4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div id="intent-menu" style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:9px;overflow-x:hidden;overflow-y:auto;max-height:min(70vh,420px);z-index:200;box-shadow:0 20px 50px rgba(43,58,74,.12);animation:di .16s ease;"></div>
+        <div id="intent-menu" role="listbox" aria-label="Choose why you are here"></div>
       </div>
     </div>
     <!-- Scroll hint -->
     <div id="hero-scroll-hint" style="margin-top:56px;display:flex;flex-direction:column;align-items:center;animation:fu .6s .45s ease both;">
       <div style="width:1px;height:48px;background:linear-gradient(to bottom, transparent, #3A2F23);animation:pulse 2.5s ease-in-out infinite;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROBLEMS I SOLVE
+     ═══════════════════════════════════════════ -->
+<section id="problems" style="padding:110px 24px;background:#F7F3EE;">
+  <div class="section-hr"></div>
+  <div style="max-width:700px;margin:72px auto 0;">
+    <div class="reveal">
+      <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Value</p>
+      <h2 class="s-title">Problems I solve</h2>
+      <p style="color:var(--muted);font-size:14.5px;font-weight:300;margin-top:10px;margin-bottom:32px;">Whether you're 12 people or 400, here's where I plug in.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.12s;">
+      <div class="problems-filter" id="problems-filter"></div>
+      <div id="problems-desktop">
+        <div class="problems-accordion" id="problems-accordion" role="list"></div>
+      </div>
+      <div id="problems-mobile">
+        <div class="diff-carousel-viewport" id="problems-carousel-viewport">
+          <div class="diff-carousel-track" id="problems-track" role="region" aria-roledescription="carousel" aria-label="Problems I solve"></div>
+        </div>
+        <nav class="diff-carousel-nav" id="problems-carousel-nav" aria-label="Problems carousel controls"></nav>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s;">
+      <div style="margin-top:18px;padding:22px 28px;background:#FFFFFF;border:1px solid #C7D5E4;border-left:3px solid var(--accent);border-radius:10px;">
+        <p style="color:#4A3F33;font-size:15.5px;line-height:1.75;font-weight:300;">
+          <span style="color:var(--accent);font-weight:500;">How?</span> Three things, mostly. I dig into the data until it tells me something real. I turn that into a story people actually want to repeat. And I keep my eye on the outcome, not the activity. Haven't seen every problem yet, but I've built the muscle to figure out the fastest path through a new one.
+        </p>
+      </div>
+      <div class="problems-notfit">
+        <span style="color:var(--text);font-weight:500;">Not a fit if</span> you need someone to run paid media, manage a 10-person team, or write press releases. I do positioning, GTM, and competitive intelligence — deeply.
+      </div>
     </div>
   </div>
 </section>
@@ -480,33 +674,6 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     <div class="reveal" style="transition-delay:.12s;">
       <div id="testimonials-container" style="display:flex;flex-direction:column;gap:10px;"></div>
       <div class="dot-nav" id="testimonials-nav"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     PROBLEMS I SOLVE
-     ═══════════════════════════════════════════ -->
-<section id="problems" style="padding:110px 24px;background:#F7F3EE;">
-  <div class="section-hr"></div>
-  <div style="max-width:700px;margin:72px auto 0;">
-    <div class="reveal">
-      <p style="font-size:11px;color:#4A3F33;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Value</p>
-      <h2 class="s-title">Problems I solve</h2>
-    </div>
-    <div class="reveal" style="transition-delay:.12s;">
-      <div class="problems-card" style="margin-top:44px;">
-        <div class="glow"></div>
-        <div id="problems-content"></div>
-        <div id="problems-progress" style="display:flex;gap:5px;margin-top:32px;"></div>
-      </div>
-    </div>
-    <div class="reveal" style="transition-delay:.2s;">
-      <div style="margin-top:18px;padding:22px 28px;background:#FFFFFF;border:1px solid #C7D5E4;border-radius:10px;">
-        <p style="color:#4A3F33;font-size:13.5px;line-height:1.75;font-weight:300;">
-          <span style="color:#6B5744;">How?</span> Through analytical rigor, storytelling, and strategic thinking. And look — there are probably challenges I haven't faced yet. But I've built the critical thinking muscle to find the fastest path to a solution. That's the job.
-        </p>
-      </div>
     </div>
   </div>
 </section>
@@ -594,11 +761,12 @@ const TESTIMONIALS = [
 ];
 
 const PROBLEMS = [
-  { q:"Not sure what your customers actually want?", a:"I run customer research & market analysis", eg:"Like when I identified unmet needs in digital learning through competitive analysis and user interviews." },
-  { q:"Struggling to explain your product's value?", a:"I craft positioning & messaging that clicks", eg:"I've positioned platforms for nationally recognized creators by translating features into outcomes." },
-  { q:"Need to launch but don't have a plan?", a:"I build go-to-market strategies that scale", eg:"Developed launch campaigns that drove 35% user growth in the first quarter." },
-  { q:"Can't tell if your marketing is actually working?", a:"I prove impact with data & analytics", eg:"I track the metrics that matter — from acquisition to activation to revenue." },
-  { q:"Competing in a crowded market?", a:"I run competitive analysis to find your edge", eg:"I map competitor positioning to surface white space opportunities." },
+  { stage:"growth", stageLabel:"GROWTH STAGE · 50–500", q:"Your positioning made sense at Series A. Now it doesn't.", a:"I rebuild positioning from customer interviews up.", eg:"At Impono, I ran 14 customer interviews, rewrote the homepage and three product pages, and demo requests went up 35% in the next quarter." },
+  { stage:"growth", stageLabel:"GROWTH STAGE · 50–500", q:"Sales and product are telling different stories.", a:"I write the shared narrative both teams actually use.", eg:"I've built messaging frameworks that survived contact with sellers — short enough to memorize, specific enough to repeat in a discovery call." },
+  { stage:"growth", stageLabel:"GROWTH STAGE · 50–500", q:"Competitors are in every deal, and you're guessing why you lose.", a:"I build competitive intel your sales team will actually open.", eg:"At Werfen, I built a competitor dashboard reps used live on calls. Battlecards, objection handling, win/loss patterns — all in one place, updated weekly." },
+  { stage:"growth", stageLabel:"GROWTH STAGE · 50–500", q:"Launches keep slipping or landing flat.", a:"I run GTM end-to-end on a real timeline.", eg:"At Northeastern's health-tech initiative, I shipped a launch from research through measurement: positioning doc, channel plan, enablement, and a metrics dashboard. CSPO-certified, so I run it like a sprint." },
+  { stage:"early", stageLabel:"EARLY STAGE · <50", q:"You're the founder still writing the website at midnight.", a:"I take messaging off your plate so you can ship product.", eg:"I co-founded Rekindle and lived this exact problem. I move in days, not weeks — rough drafts on Monday, tested copy by Friday." },
+  { stage:"early", stageLabel:"EARLY STAGE · <50", q:"You don't know if you have a real market yet.", a:"I run lean validation before you burn the runway.", eg:"My background is analytics before marketing. Customer interviews, landing page tests, signal tracking — and I'll tell you straight what the data says, even when it's not what you wanted to hear." },
 ];
 
 const DIFFS = [
@@ -615,11 +783,10 @@ const STORIES = [
 ];
 
 const INTENTS = [
-  { label:"I'm curious about your story", subtitle:"Read my journey and what makes me tick", target:"story" },
-  { label:"I want to interview you", subtitle:"See credentials, experience, and what I bring to the table", target:"resume" },
-  { label:"I'm looking to hire you", subtitle:"Learn how I solve problems and what I've shipped", target:"recommendations" },
-  { label:"I have a marketing problem", subtitle:"Explore the challenges I can help you solve", target:"problems" },
-  { label:"I want to work with you", subtitle:"Partnerships, projects, and ways we can build together", target:"connect" },
+  { label:"I'm the hiring manager looking to hire you", subtitle:"See the problems I solve and proof from people I've worked with", action:"scroll", target:"problems" },
+  { label:"I'm the recruiter who wants to interview you", subtitle:"Explore my portfolio and past work", action:"href", href:"./portfolio.html" },
+  { label:"I'm just curious who you really are!", subtitle:"Read my story and what makes me tick", action:"scroll", target:"story" },
+  { label:"I have a marketing problem and want to book a call", subtitle:"Book a 30-min call on Calendly — let's talk about it", action:"calendly", href:"https://calendly.com/sajikazemi/30min" },
 ];
 
 // ═══════════════════════════════════════════
@@ -634,53 +801,49 @@ const heroScrollHint = document.getElementById('hero-scroll-hint');
 
 function setIntentOpenState(isOpen) {
   intentOpen = isOpen;
-  intentMenu.style.display = isOpen ? 'block' : 'none';
-  intentArrow.style.transform = isOpen ? 'rotate(180deg)' : 'none';
-  intentBtn.style.borderColor = isOpen ? '#2B5F8E66' : '#C7D5E4';
+  intentMenu.classList.toggle('intent-menu--open', isOpen);
+  intentBtn.classList.toggle('intent-btn--open', isOpen);
+  intentBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  intentArrow.style.transform = isOpen ? 'rotate(180deg)' : '';
   if (heroScrollHint) {
     heroScrollHint.style.visibility = isOpen ? 'hidden' : 'visible';
     heroScrollHint.style.pointerEvents = isOpen ? 'none' : 'auto';
   }
 }
 
-// Build menu items (order, dot icon, and row styles unchanged; subtitles added)
-INTENTS.forEach((intent, i) => {
+INTENTS.forEach((intent) => {
   const btn = document.createElement('button');
-  btn.style.cssText = `width:100%;padding:13px 18px;background:transparent;border:none;border-bottom:${i < INTENTS.length-1 ? '1px solid #C7D5E4' : 'none'};color:#2B3A4A;font-size:13.5px;font-family:inherit;font-weight:300;text-align:left;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:10px;letter-spacing:0.01em;`;
-  const dot = document.createElement('span');
-  dot.style.cssText = 'width:3.5px;height:3.5px;border-radius:50%;background:#84A5C4;flex-shrink:0;transition:background .12s;';
+  btn.type = 'button';
+  btn.className = 'intent-item';
+  btn.setAttribute('role', 'option');
   const textCol = document.createElement('span');
-  textCol.style.cssText = 'display:flex;flex-direction:column;gap:2px;text-align:left;';
+  textCol.className = 'intent-item__text';
   const titleEl = document.createElement('span');
+  titleEl.className = 'intent-item__title';
   titleEl.textContent = intent.label;
-  titleEl.style.fontWeight = '500';
   const subEl = document.createElement('span');
+  subEl.className = 'intent-item__sub';
   subEl.textContent = intent.subtitle;
-  subEl.style.cssText = 'font-size:12px;color:#5A6A7C;font-weight:300;line-height:1.35;';
+  const arrow = document.createElement('span');
+  arrow.className = 'intent-item__arrow';
+  arrow.setAttribute('aria-hidden', 'true');
+  arrow.textContent = '→';
   textCol.appendChild(titleEl);
   textCol.appendChild(subEl);
-  btn.appendChild(dot);
   btn.appendChild(textCol);
-  btn.addEventListener('mouseenter', () => {
-    btn.style.background = '#E8F0F8';
-    btn.style.color = '#2B5F8E';
-    dot.style.background = '#2B5F8E';
-    titleEl.style.color = '#2B5F8E';
-    subEl.style.color = '#2B5F8E';
-  });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.background = 'transparent';
-    btn.style.color = '#2B3A4A';
-    dot.style.background = '#84A5C4';
-    titleEl.style.color = '#2B3A4A';
-    subEl.style.color = '#5A6A7C';
-  });
+  btn.appendChild(arrow);
   btn.addEventListener('click', () => {
     intentLabel.textContent = intent.label;
-    intentLabel.style.color = '#2B5F8E';
+    intentBtn.classList.add('intent-btn--selected');
     setIntentOpenState(false);
-    const el = document.getElementById(intent.target);
-    if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+    if (intent.action === 'scroll') {
+      const el = document.getElementById(intent.target);
+      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else if (intent.action === 'href') {
+      window.location.href = intent.href;
+    } else if (intent.action === 'calendly') {
+      window.open(intent.href, '_blank', 'noopener,noreferrer');
+    }
   });
   intentMenu.appendChild(btn);
 });
@@ -805,39 +968,204 @@ renderTestimonials();
 // ═══════════════════════════════════════════
 // PROBLEMS I SOLVE
 // ═══════════════════════════════════════════
+let activeFilter = 'all';
 let pIdx = 0;
-let pTimer;
+const CALENDLY_URL = 'https://calendly.com/sajikazemi/30min';
 
-function renderProblem() {
-  const content = document.getElementById('problems-content');
-  content.style.animation = 'none';
-  void content.offsetWidth;
-  content.style.animation = 'su .38s cubic-bezier(.16,1,.3,1)';
-  const p = PROBLEMS[pIdx];
-  content.innerHTML = `
-    <p style="font-size:10px;color:#5A6A7C;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:18px;">Challenge ${pIdx+1} / ${PROBLEMS.length}</p>
-    <h3 style="font-size:clamp(1.25rem,3vw,1.8rem);color:#2B3A4A;font-weight:300;line-height:1.35;margin-bottom:18px;letter-spacing:-0.01em;font-family:'Lora',serif;">${p.q}</h3>
-    <p style="font-size:15.5px;color:#2B5F8E;font-weight:400;margin-bottom:10px;">→ ${p.a}</p>
-    <p style="color:#5A6A7C;font-size:13.5px;line-height:1.65;font-weight:300;">${p.eg}</p>
-  `;
+function getFilteredProblems() {
+  if (activeFilter === 'all') return PROBLEMS;
+  return PROBLEMS.filter(p => p.stage === activeFilter);
+}
 
-  const progress = document.getElementById('problems-progress');
-  progress.innerHTML = '';
-  PROBLEMS.forEach((_, n) => {
-    const bar = document.createElement('button');
-    bar.className = 'progress-track';
-    bar.onclick = () => { pIdx = n; clearInterval(pTimer); startProblemTimer(); renderProblem(); };
-    if (n === pIdx) bar.innerHTML = '<div class="progress-fill active"></div>';
-    else if (n < pIdx) bar.innerHTML = '<div class="progress-fill done"></div>';
-    progress.appendChild(bar);
+// ── Filter toggle ──
+const filterContainer = document.getElementById('problems-filter');
+const FILTERS = [
+  { value: 'all', label: 'All' },
+  { value: 'growth', label: 'Growth stage · 50–500' },
+  { value: 'early', label: 'Early stage · <50' },
+];
+const pillWrap = document.createElement('div');
+pillWrap.className = 'problems-filter__pills';
+FILTERS.forEach(f => {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'problems-filter__btn' + (f.value === 'all' ? ' active' : '');
+  btn.textContent = f.label;
+  btn.dataset.filter = f.value;
+  btn.addEventListener('click', () => {
+    activeFilter = f.value;
+    pillWrap.querySelectorAll('.problems-filter__btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f.value));
+    renderAccordion();
+    renderMobileCarousel();
+  });
+  pillWrap.appendChild(btn);
+});
+filterContainer.appendChild(pillWrap);
+
+// ── Desktop accordion ──
+const accordionEl = document.getElementById('problems-accordion');
+
+function renderAccordion() {
+  const problems = getFilteredProblems();
+  accordionEl.innerHTML = '';
+  problems.forEach((p, i) => {
+    const headerId = 'prob-h-' + PROBLEMS.indexOf(p);
+    const bodyId = 'prob-b-' + PROBLEMS.indexOf(p);
+    const expanded = i === 0;
+
+    const item = document.createElement('div');
+    item.className = 'problems-acc-item';
+    item.setAttribute('aria-expanded', String(expanded));
+    item.setAttribute('role', 'listitem');
+
+    const header = document.createElement('button');
+    header.type = 'button';
+    header.className = 'problems-acc-header';
+    header.id = headerId;
+    header.setAttribute('aria-expanded', String(expanded));
+    header.setAttribute('aria-controls', bodyId);
+
+    const qSpan = document.createElement('span');
+    qSpan.style.flex = '1';
+    qSpan.textContent = p.q;
+    const tag = document.createElement('span');
+    tag.className = 'problems-acc-tag';
+    tag.textContent = p.stageLabel;
+    const chevron = document.createElement('span');
+    chevron.className = 'problems-acc-chevron';
+    chevron.setAttribute('aria-hidden', 'true');
+    chevron.textContent = '▾';
+    header.appendChild(qSpan);
+    header.appendChild(tag);
+    header.appendChild(chevron);
+
+    const body = document.createElement('div');
+    body.className = 'problems-acc-body';
+    body.id = bodyId;
+    body.setAttribute('role', 'region');
+    body.setAttribute('aria-labelledby', headerId);
+    body.innerHTML = `
+      <p style="font-size:15.5px;color:var(--accent);font-weight:400;margin-bottom:10px;">→ ${p.a}</p>
+      <p style="color:var(--muted);font-size:13.5px;line-height:1.65;font-weight:300;">${p.eg}</p>
+      <a href="${CALENDLY_URL}" target="_blank" rel="noopener noreferrer" class="problem-cta">Sound familiar? → Book 20 minutes</a>
+    `;
+
+    header.addEventListener('click', () => {
+      const wasOpen = item.getAttribute('aria-expanded') === 'true';
+      accordionEl.querySelectorAll('.problems-acc-item').forEach(el => {
+        el.setAttribute('aria-expanded', 'false');
+        el.querySelector('.problems-acc-header').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        item.setAttribute('aria-expanded', 'true');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    item.appendChild(header);
+    item.appendChild(body);
+    accordionEl.appendChild(item);
+  });
+}
+renderAccordion();
+
+// ── Mobile carousel ──
+const problemsTrack = document.getElementById('problems-track');
+const problemsNav = document.getElementById('problems-carousel-nav');
+const problemsViewport = document.getElementById('problems-carousel-viewport');
+
+function renderMobileCarousel() {
+  const problems = getFilteredProblems();
+  pIdx = 0;
+  problemsTrack.innerHTML = '';
+  problemsNav.innerHTML = '';
+
+  problems.forEach((p, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'diff-slide';
+    slide.style.padding = '0 0 12px';
+    slide.style.background = 'transparent';
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', `Problem ${i + 1} of ${problems.length}`);
+    slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+    slide.innerHTML = `
+      <div class="problems-card" style="margin-top:0;">
+        <div class="glow"></div>
+        <p style="font-size:10px;color:var(--muted);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:18px;">${p.stageLabel}</p>
+        <h3 style="font-size:clamp(1.25rem,3vw,1.8rem);color:#2B3A4A;font-weight:300;line-height:1.35;margin-bottom:18px;letter-spacing:-0.01em;font-family:'Lora',serif;">${p.q}</h3>
+        <p style="font-size:15.5px;color:#2B5F8E;font-weight:400;margin-bottom:10px;">→ ${p.a}</p>
+        <p style="color:#5A6A7C;font-size:13.5px;line-height:1.65;font-weight:300;">${p.eg}</p>
+        <a href="${CALENDLY_URL}" target="_blank" rel="noopener noreferrer" class="problem-cta">Sound familiar? → Book 20 minutes</a>
+      </div>
+    `;
+    problemsTrack.appendChild(slide);
+  });
+
+  const prev = document.createElement('button');
+  prev.type = 'button';
+  prev.className = 'nav-c';
+  prev.textContent = '←';
+  prev.setAttribute('aria-label', 'Previous problem');
+  prev.addEventListener('click', () => goToProblemSlide(pIdx - 1));
+  problemsNav.appendChild(prev);
+
+  problems.forEach((_, pi) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'dot-btn' + (pi === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Go to problem ${pi + 1}`);
+    if (pi === 0) dot.setAttribute('aria-current', 'true');
+    dot.addEventListener('click', () => goToProblemSlide(pi));
+    problemsNav.appendChild(dot);
+  });
+
+  const next = document.createElement('button');
+  next.type = 'button';
+  next.className = 'nav-c';
+  next.textContent = '→';
+  next.setAttribute('aria-label', 'Next problem');
+  next.addEventListener('click', () => goToProblemSlide(pIdx + 1));
+  problemsNav.appendChild(next);
+
+  problemsTrack.style.transform = 'translateX(0)';
+}
+
+function goToProblemSlide(i, opts) {
+  const problems = getFilteredProblems();
+  if (!problems.length) return;
+  const smooth = opts == null || opts.smooth !== false;
+  pIdx = (i + problems.length) % problems.length;
+  problemsTrack.style.transition = smooth ? '' : 'none';
+  if (!smooth) problemsTrack.offsetHeight;
+  problemsTrack.style.transform = `translateX(-${pIdx * 100}%)`;
+  if (!smooth) {
+    requestAnimationFrame(() => { problemsTrack.style.transition = ''; });
+  }
+  problemsNav.querySelectorAll('.dot-btn').forEach((dot, di) => {
+    dot.classList.toggle('active', di === pIdx);
+    if (di === pIdx) dot.setAttribute('aria-current', 'true');
+    else dot.removeAttribute('aria-current');
+  });
+  problemsTrack.querySelectorAll('.diff-slide').forEach((el, si) => {
+    el.setAttribute('aria-hidden', si === pIdx ? 'false' : 'true');
   });
 }
 
-function startProblemTimer() {
-  pTimer = setInterval(() => { pIdx = (pIdx + 1) % PROBLEMS.length; renderProblem(); }, 5200);
-}
-renderProblem();
-startProblemTimer();
+renderMobileCarousel();
+
+let probTouchStartX = null;
+problemsViewport.addEventListener('touchstart', (e) => {
+  if (e.changedTouches.length) probTouchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
+problemsViewport.addEventListener('touchend', (e) => {
+  if (probTouchStartX == null || !e.changedTouches.length) return;
+  const dx = e.changedTouches[0].clientX - probTouchStartX;
+  probTouchStartX = null;
+  if (Math.abs(dx) < 48) return;
+  if (dx > 0) goToProblemSlide(pIdx - 1);
+  else goToProblemSlide(pIdx + 1);
+}, { passive: true });
 
 // ═══════════════════════════════════════════
 // SPIDER CHART (SVG)
@@ -1128,8 +1456,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Also add a "resume" scroll anchor (for the intent dropdown "I want to interview you")
-// It points to the resume link — we'll just scroll to the Final section
+// Scroll anchor used for legacy / deep links (#resume)
 const resumeAnchor = document.createElement('div');
 resumeAnchor.id = 'resume';
 resumeAnchor.style.cssText = 'position:absolute;bottom:0;';
