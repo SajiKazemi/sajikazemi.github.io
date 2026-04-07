@@ -6,7 +6,7 @@
 <title>Who is Saji? — Product Marketing Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;450;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Lora:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;450;500;600&display=swap" rel="stylesheet">
 <style>
 /* ─── PALETTE ─── */
 :root {
@@ -125,6 +125,54 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   animation: fu .6s .1s ease both;
   word-wrap: break-word;
   overflow-wrap: anywhere;
+}
+.hero-tagline {
+  max-width: 560px;
+  margin: 0 auto 12px;
+  padding: 0 12px 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.12rem, 2.65vw, 1.36rem);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.hero-tagline::after {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 22%, #D4A853 50%, var(--accent) 78%, transparent 100%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.hero-tagline__setup {
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.2;
+}
+.hero-tagline__payoff {
+  margin-top: -0.06em;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.hero-tagline__hear {
+  font-family: 'Caveat', cursive;
+  font-size: 1.22em;
+  font-weight: 600;
+  color: #D4A853;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  vertical-align: -0.08em;
 }
 #intent-dropdown {
   margin-top: 52px;
@@ -421,7 +469,30 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 .problem-cta:hover { border-color: var(--accent); color: var(--accent); transform: translateX(2px); }
 
 /* ─── PROBLEMS NOT-A-FIT ─── */
-.problems-notfit { margin-top: 12px; padding: 18px 24px; background: transparent; border: 1px dashed var(--border); border-radius: 10px; font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+.problems-notfit {
+  margin-top: 18px;
+  padding: 20px 24px 22px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  box-shadow: 0 6px 28px rgba(43, 58, 74, 0.08);
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.65;
+  font-weight: 300;
+}
+.problems-notfit__eyebrow {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.problems-notfit__lead { color: var(--text); font-weight: 500; }
 
 /* ─── PROBLEMS RESPONSIVE ─── */
 #problems-desktop { display: block; }
@@ -597,8 +668,9 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
     </h1>
 
     <!-- Sub -->
-    <p style="font-size:clamp(1.15rem,2.6vw,1.4rem);color:#B5A18C;line-height:1.75;max-width:520px;margin:0 auto 10px;font-weight:300;animation:fu .6s .18s ease both;">
-      I research what customers want, craft the story, then prove it with data.
+    <p class="hero-tagline" style="animation:fu .6s .18s ease both;">
+      <span class="hero-tagline__setup">Your customers already know what they want.</span>
+      <span class="hero-tagline__payoff">I help you <span class="hero-tagline__hear">hear</span> it.</span>
     </p>
     <p style="font-size:15px;color:#907E6A;line-height:1.7;max-width:520px;margin:0 auto;font-weight:300;animation:fu .6s .22s ease both;">
       (Yes — I use AI. Built this with it too. Would've taken forever 5 years ago.)
@@ -653,8 +725,11 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
           <span style="color:var(--accent);font-weight:500;">How?</span> Three things, mostly. I dig into the data until it tells me something real. I turn that into a story people actually want to repeat. And I keep my eye on the outcome, not the activity. Haven't seen every problem yet, but I've built the muscle to figure out the fastest path through a new one.
         </p>
       </div>
-      <div class="problems-notfit">
-        <span style="color:var(--text);font-weight:500;">Not a fit if</span> you need someone to run paid media, manage a 10-person team, or write press releases. I do positioning, GTM, and competitive intelligence — deeply.
+      <div class="problems-notfit" role="note" aria-label="What this role is not a fit for">
+        <span class="problems-notfit__eyebrow">Scope</span>
+        <p style="margin:0;color:var(--muted);">
+          <span class="problems-notfit__lead">Not a fit if</span> you need someone to run paid media, manage a 10-person team, or write press releases. I do positioning, GTM, and competitive intelligence — deeply.
+        </p>
       </div>
     </div>
   </div>
