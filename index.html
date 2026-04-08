@@ -256,42 +256,57 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
 }
 .intent-item {
   width: 100%;
-  padding: 14px 16px;
-  border-radius: 8px;
+  padding: 14px 14px 16px;
+  border-radius: 10px;
   border: none;
   background: transparent;
   cursor: pointer;
   color: var(--text);
   font-family: 'Outfit', sans-serif;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   text-align: left;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
 }
 .intent-item:hover {
-  background: rgba(232, 240, 248, 0.7);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 1px 0 rgba(43, 95, 142, 0.06);
 }
 .intent-item__text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 4px;
   min-width: 0;
   flex: 1;
 }
-.intent-item__title {
-  font-size: 14.5px;
-  font-weight: 450;
+.intent-item__line1 {
+  font-size: 15px;
+  font-weight: 500;
   color: var(--text);
-  line-height: 1.35;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
 }
-.intent-item__sub {
-  font-size: 12.5px;
+.intent-item__line2 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1.35;
+  margin-top: 1px;
+}
+.intent-item__blurb {
+  font-size: 11.5px;
   font-weight: 300;
   color: var(--muted);
-  line-height: 1.4;
-  margin-top: 3px;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(199, 213, 228, 0.65);
+  width: 100%;
 }
 .intent-item__arrow {
   opacity: 0;
@@ -299,9 +314,10 @@ section[id], #resume { scroll-margin-top: calc(var(--uc-top-offset) + var(--site
   transition: opacity 0.15s ease, transform 0.15s ease;
   flex-shrink: 0;
   font-size: 14px;
-  color: var(--muted);
+  color: var(--accent);
   font-weight: 300;
   line-height: 1;
+  margin-top: 4px;
 }
 .intent-item:hover .intent-item__arrow {
   opacity: 1;
@@ -858,10 +874,10 @@ const STORIES = [
 ];
 
 const INTENTS = [
-  { label:"I'm the hiring manager looking to hire you", subtitle:"See the problems I solve and proof from people I've worked with", action:"scroll", target:"problems" },
-  { label:"I'm the recruiter who wants to interview you", subtitle:"Explore my portfolio and past work", action:"href", href:"./portfolio.html" },
-  { label:"I'm just curious who you really are!", subtitle:"Read my story and what makes me tick", action:"scroll", target:"story" },
-  { label:"I have a marketing problem and want to book a call", subtitle:"Book a 30-min call on Calendly — let's talk about it", action:"calendly", href:"https://calendly.com/sajikazemi/30min" },
+  { line1: "I'm the hiring manager", line2: 'Looking to hire you', blurb: 'See the problems I solve and proof from people I\'ve worked with', action: 'scroll', target: 'problems' },
+  { line1: "I'm the recruiter", line2: 'Want to interview you', blurb: 'Explore my portfolio and past work', action: 'href', href: './portfolio.html' },
+  { line1: "I'm just curious", line2: 'Who you really are', blurb: 'Read my story and what makes me tick', action: 'scroll', target: 'story' },
+  { line1: 'I have a marketing problem', line2: 'Want to book a call', blurb: "Book a 30-min call on Calendly — let's talk about it", action: 'calendly', href: 'https://calendly.com/sajikazemi/30min' },
 ];
 
 // ═══════════════════════════════════════════
@@ -891,24 +907,29 @@ INTENTS.forEach((intent) => {
   btn.type = 'button';
   btn.className = 'intent-item';
   btn.setAttribute('role', 'option');
+  btn.setAttribute('aria-label', `${intent.line1}. ${intent.line2}. ${intent.blurb}`);
   const textCol = document.createElement('span');
   textCol.className = 'intent-item__text';
-  const titleEl = document.createElement('span');
-  titleEl.className = 'intent-item__title';
-  titleEl.textContent = intent.label;
-  const subEl = document.createElement('span');
-  subEl.className = 'intent-item__sub';
-  subEl.textContent = intent.subtitle;
+  const line1El = document.createElement('span');
+  line1El.className = 'intent-item__line1';
+  line1El.textContent = intent.line1;
+  const line2El = document.createElement('span');
+  line2El.className = 'intent-item__line2';
+  line2El.textContent = intent.line2;
+  const blurbEl = document.createElement('span');
+  blurbEl.className = 'intent-item__blurb';
+  blurbEl.textContent = intent.blurb;
   const arrow = document.createElement('span');
   arrow.className = 'intent-item__arrow';
   arrow.setAttribute('aria-hidden', 'true');
   arrow.textContent = '→';
-  textCol.appendChild(titleEl);
-  textCol.appendChild(subEl);
+  textCol.appendChild(line1El);
+  textCol.appendChild(line2El);
+  textCol.appendChild(blurbEl);
   btn.appendChild(textCol);
   btn.appendChild(arrow);
   btn.addEventListener('click', () => {
-    intentLabel.textContent = intent.label;
+    intentLabel.textContent = `${intent.line1} · ${intent.line2}`;
     intentBtn.classList.add('intent-btn--selected');
     setIntentOpenState(false);
     if (intent.action === 'scroll') {
